@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="e5c0de8f-f52b-46a8-9b23-f27cbb6f7c1d" name="140.123.13.130" url="http://140.123.13.130:16888">
+        <fileTransfer host="140.123.13.130" port="22" rootFolder="/data1/adm/cycwww.ccu.edu.tw/tcrReg" accessType="SFTP" username="center">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
