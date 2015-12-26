@@ -12,7 +12,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('tcr_details', function (Blueprint $table) {
+        Schema::create('tcr_habits', function (Blueprint $table) {
             $table->increments('id');
             $table->string('account_id');
             $table->integer('meat_veg');
@@ -30,6 +30,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tcr_users');
+        Schema::drop('tcr_habits');
     }
 }
