@@ -1,20 +1,18 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Routes File
-|--------------------------------------------------------------------------
-|
-| Here is where you will register all of the routes in an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
 
-Route::get('/', function () {
-    //return view('welcome');
-    return "WELL";
-});
+Route::get('/', function () {return view('index');});
+
+/* LOGIN_PAGE -- Start of Login Purpose Method */
+
+Route::get('generalLogin', 'LoginController@generalLogin');
+Route::get('consoleLogin', 'LoginController@consoleLogin');
+
+/* LOGIN_PAGE -- End of Login Purpose Method */
+
+/* GENERAL_MEMBER -- Start of General Member System Method */
+
+
 
 /*
 |--------------------------------------------------------------------------
