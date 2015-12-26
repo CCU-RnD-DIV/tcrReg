@@ -12,16 +12,16 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('tcr_users', function (Blueprint $table) {
+        Schema::create('tcr_details', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('email')->unique();
-            $table->string('pwd', 60);
-            $table->string('pid')->unique();
-            //$table->string('pwd_alter', 60);
-            $table->string('type');
-            $table->integer('reg_verify');
+            $table->string('account_id');
+            $table->integer('is_chief');
+            $table->integer('chief_assigner');
+            $table->integer('is_chicken');
+            $table->integer('chicken_assigner');
+            $table->integer('is_chick');
+            $table->integer('chick_assigner');
             $table->rememberToken();
-            $table->timestamps('reg_time');
         });
 
 
