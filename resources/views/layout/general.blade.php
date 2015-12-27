@@ -34,7 +34,7 @@
             <nav>
                 <ul class="nav nav-pills pull-right">
                     <li role="presentation"><a href="http://dream.k12cc.tw">研習營首頁</a></li>
-                    <li role="presentation" class="active"><a href="/">報名首頁</a></li>
+                    <li role="presentation"><a href="/">報名首頁</a></li>
                     <li role="presentation"><a href="generalLogin">登入報名系統</a></li>
                 </ul>
             </nav>
