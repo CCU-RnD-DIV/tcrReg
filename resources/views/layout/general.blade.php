@@ -8,7 +8,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>105偏鄉教師暑假教學專業成長研習 線上報名系統</title>
+    <title>105偏鄉教師寒假教學專業成長研習 線上報名系統</title>
+
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
     <!-- Bootstrap core CSS -->
     <!-- Latest compiled and minified CSS -->
@@ -20,7 +22,7 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
-    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
 
 </head>
 
@@ -36,12 +38,14 @@
                     <li role="presentation"><a href="generalLogin">登入報名系統</a></li>
                 </ul>
             </nav>
-            <h3 class="text-muted"><a href="index.php">105偏鄉教師暑假教學專業成長研習 線上報名系統</a></h3>
+            <h3 class="text-muted"><a href="index.php">105偏鄉教師寒假教學專業成長研習 線上報名系統</a></h3>
         </div>
 
         <div style="width: 100%; background-image: url('http://dream.k12cc.tw/uploads/tad_themes/school2014/slide/slide_1_7.png'); background-repeat: no-repeat; background-size: 100%;">
             <div style="padding-top: 100px;padding-bottom: 80px;"></div>
         </div>
+
+        <br>
 
         @yield('content')
 

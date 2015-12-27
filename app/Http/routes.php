@@ -8,6 +8,9 @@ Route::get('/', function () {return view('index');});
 Route::get('regPrimary', 'RegisterController@regPrimary');
 Route::get('regJunior', 'RegisterController@regJunior');
 
+Route::post('regPrimary', 'RegisterController@storePrimary');
+Route::post('regJunior', 'RegisterController@storeJunior');
+
 /* LOGIN_PAGE -- Start of Login Purpose Method */
 
 Route::get('generalLogin', 'LoginController@generalLogin');

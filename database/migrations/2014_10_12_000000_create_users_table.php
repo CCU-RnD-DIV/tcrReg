@@ -21,7 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('type');
             $table->integer('reg_verify');
             $table->rememberToken();
-            $table->timestamps('reg_time');
+            $table->timestamps();
+            $table->timestamp('reg_time');
         });
 
 
