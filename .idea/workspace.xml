@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2932f9b2-30a2-4117-a87b-0c194c6eab9e" name="Default" comment="Add custom validation messages and update the index.blade.php content">
+    <list default="true" id="2932f9b2-30a2-4117-a87b-0c194c6eab9e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="tcrReg.iws" />
@@ -601,7 +601,13 @@
       <option name="project" value="LOCAL" />
       <updated>1451200286676</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Test for github settings&#10;&#10;Nothing changes">
+      <created>1451200731032</created>
+      <option name="number" value="00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1451200731033</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -646,7 +652,8 @@
     <MESSAGE value="Modify Register Controller&#10;Could Probably Reach the Basic Insert Function in Registering" />
     <MESSAGE value="# NOTE #&#10;&#10;We use validation to check the form input; however, the variable $errors should be dumped as expected, it doesn't work.&#10;&#10;We changed the route.php content, moving the register route control to middleware; thus, we have the error msg." />
     <MESSAGE value="Add custom validation messages and update the index.blade.php content" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add custom validation messages and update the index.blade.php content" />
+    <MESSAGE value="Test for github settings&#10;&#10;Nothing changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test for github settings&#10;&#10;Nothing changes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
