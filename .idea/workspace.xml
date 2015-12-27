@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2932f9b2-30a2-4117-a87b-0c194c6eab9e" name="Default" comment="# NOTE #&#10;&#10;We use validation to check the form input; however, the variable $errors should be dumped as expected, it doesn't work.&#10;&#10;We changed the route.php content, moving the register route control to middleware; thus, we have the error msg.">
+    <list default="true" id="2932f9b2-30a2-4117-a87b-0c194c6eab9e" name="Default" comment="Add custom validation messages and update the index.blade.php content">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layout/general.blade.php" afterPath="$PROJECT_DIR$/resources/views/layout/general.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/register/register.blade.php" afterPath="$PROJECT_DIR$/resources/views/register/register.blade.php" />
     </list>
     <ignored path="tcrReg.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -92,8 +89,8 @@
       <file leaf-file-name="general.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/layout/general.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.67287236">
-              <caret line="43" column="185" selection-start-line="43" selection-start-column="185" selection-end-line="43" selection-end-column="185" />
+            <state vertical-scroll-proportion="0.47340426">
+              <caret line="33" column="17" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -488,6 +485,8 @@
     <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
     <property name="SearchEverywhereHistoryKey" value="htm&#9;FILE&#9;file:///Users/GaryGong/Documents/tcrReg/vendor/illuminate/html/HtmlServiceProvider.php&#10;ViewServiceProvide&#9;null&#9;null&#10;Html&#9;null&#9;null" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -596,7 +595,13 @@
       <option name="project" value="LOCAL" />
       <updated>1451193552880</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Add custom validation messages and update the index.blade.php content">
+      <created>1451200286676</created>
+      <option name="number" value="00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1451200286676</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -629,6 +634,8 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Correct the Conflict of Table Name ( Redeclare)" />
     <MESSAGE value="Correct the Conflict of Class Name ( Redeclare)" />
     <MESSAGE value="Using Artisan Migration" />
@@ -638,7 +645,8 @@
     <MESSAGE value="Add jQuery CDN" />
     <MESSAGE value="Modify Register Controller&#10;Could Probably Reach the Basic Insert Function in Registering" />
     <MESSAGE value="# NOTE #&#10;&#10;We use validation to check the form input; however, the variable $errors should be dumped as expected, it doesn't work.&#10;&#10;We changed the route.php content, moving the register route control to middleware; thus, we have the error msg." />
-    <option name="LAST_COMMIT_MESSAGE" value="# NOTE #&#10;&#10;We use validation to check the form input; however, the variable $errors should be dumped as expected, it doesn't work.&#10;&#10;We changed the route.php content, moving the register route control to middleware; thus, we have the error msg." />
+    <MESSAGE value="Add custom validation messages and update the index.blade.php content" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add custom validation messages and update the index.blade.php content" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1057,8 +1065,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/layout/general.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.67287236">
-          <caret line="43" column="185" selection-start-line="43" selection-start-column="185" selection-end-line="43" selection-end-column="185" />
+        <state vertical-scroll-proportion="0.47340426">
+          <caret line="33" column="17" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
           <folding />
         </state>
       </provider>
