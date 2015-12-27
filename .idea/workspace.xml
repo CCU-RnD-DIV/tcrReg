@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2932f9b2-30a2-4117-a87b-0c194c6eab9e" name="Default" comment="Modify Register Controller&#10;Could Probably Reach the Basic Insert Function in Registering">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/console/index.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/general/index.blade.php" />
+    <list default="true" id="2932f9b2-30a2-4117-a87b-0c194c6eab9e" name="Default" comment="# NOTE #&#10;&#10;We use validation to check the form input; however, the variable $errors should be dumped as expected, it doesn't work.&#10;&#10;We changed the route.php content, moving the register route control to middleware; thus, we have the error msg.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/RegisterController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/RegisterController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/index.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layout/general.blade.php" afterPath="$PROJECT_DIR$/resources/views/layout/general.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/register/register.blade.php" afterPath="$PROJECT_DIR$/resources/views/register/register.blade.php" />
     </list>
     <ignored path="tcrReg.iws" />
@@ -29,38 +27,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.51861703">
-              <caret line="26" column="2" selection-start-line="26" selection-start-column="2" selection-end-line="26" selection-end-column="2" />
+            <state vertical-scroll-proportion="-20.625">
+              <caret line="33" column="60" selection-start-line="33" selection-start-column="60" selection-end-line="33" selection-end-column="60" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/app.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.333334">
-              <caret line="132" column="77" selection-start-line="132" selection-start-column="77" selection-end-line="132" selection-end-column="77" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Kernel.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Kernel.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.125">
-              <caret line="16" column="78" selection-start-line="16" selection-start-column="78" selection-end-line="16" selection-end-column="78" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AppServiceProvider.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
+      <file leaf-file-name="Request.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Requests/Request.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-0.0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -72,7 +50,7 @@
       <file leaf-file-name="RegisterController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RegisterController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.4166667">
+            <state vertical-scroll-proportion="-10.708333">
               <caret line="37" column="31" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
               <folding>
                 <element signature="e#128#150#0#PHP" expanded="true" />
@@ -91,16 +69,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AddRegister.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Requests/AddRegister.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.0">
-              <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="RegisterDetails.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Register/RegisterDetails.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -111,14 +79,44 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/index.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-25.0">
+              <caret line="40" column="36" selection-start-line="40" selection-start-column="36" selection-end-line="40" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="general.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/layout/general.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.67287236">
+              <caret line="43" column="185" selection-start-line="43" selection-start-column="185" selection-end-line="43" selection-end-column="185" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AddRegister.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Requests/AddRegister.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-4.8333335">
+              <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="register.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/register/register.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-25.083334">
-              <caret line="109" column="23" selection-start-line="109" selection-start-column="23" selection-end-line="109" selection-end-column="23" />
+            <state vertical-scroll-proportion="8.125">
+              <caret line="14" column="135" selection-start-line="14" selection-start-column="135" selection-end-line="14" selection-end-column="135" />
               <folding>
-                <marker date="1451193117000" expanded="true" signature="4370:4583" placeholder="..." />
-                <marker date="1451193117000" expanded="true" signature="4384:4581" placeholder="..." />
+                <marker date="1451199790000" expanded="true" signature="5590:5803" placeholder="..." />
+                <marker date="1451199790000" expanded="true" signature="5604:5801" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -146,7 +144,6 @@
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/config/app.php" />
         <option value="$PROJECT_DIR$/vendor/illuminate/html/HtmlServiceProvider.php" />
-        <option value="$PROJECT_DIR$/resources/views/layout/general.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_12_26_170817_create_after_register.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_12_26_171427_create_register_data.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_12_26_171504_create_users_details_table.php" />
@@ -156,11 +153,13 @@
         <option value="$PROJECT_DIR$/app/Register.php" />
         <option value="$PROJECT_DIR$/app/Register/RegisterUsers.php" />
         <option value="$PROJECT_DIR$/app/Register/RegisterDetails.php" />
-        <option value="$PROJECT_DIR$/app/Http/Requests/AddRegister.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/RegisterController.php" />
-        <option value="$PROJECT_DIR$/resources/views/register/register.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/resources/views/register/register.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Requests/AddRegister.php" />
+        <option value="$PROJECT_DIR$/resources/views/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/layout/general.blade.php" />
       </list>
     </option>
   </component>
@@ -256,6 +255,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="register" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tcrReg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tcrReg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -569,7 +590,13 @@
       <option name="project" value="LOCAL" />
       <updated>1451186692427</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="# NOTE #&#10;&#10;We use validation to check the form input; however, the variable $errors should be dumped as expected, it doesn't work.&#10;&#10;We changed the route.php content, moving the register route control to middleware; thus, we have the error msg.">
+      <created>1451193552880</created>
+      <option name="number" value="00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1451193552880</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -610,21 +637,14 @@
     <MESSAGE value="Add Register Controller&#10;Add Register View Pages" />
     <MESSAGE value="Add jQuery CDN" />
     <MESSAGE value="Modify Register Controller&#10;Could Probably Reach the Basic Insert Function in Registering" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modify Register Controller&#10;Could Probably Reach the Basic Insert Function in Registering" />
+    <MESSAGE value="# NOTE #&#10;&#10;We use validation to check the form input; however, the variable $errors should be dumped as expected, it doesn't work.&#10;&#10;We changed the route.php content, moving the register route control to middleware; thus, we have the error msg." />
+    <option name="LAST_COMMIT_MESSAGE" value="# NOTE #&#10;&#10;We use validation to check the form input; however, the variable $errors should be dumped as expected, it doesn't work.&#10;&#10;We changed the route.php content, moving the register route control to middleware; thus, we have the error msg." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/auth/consoleLogin.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="26" selection-start-line="0" selection-start-column="26" selection-end-line="0" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -834,26 +854,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layout/general.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.4583335">
-          <caret line="12" column="72" selection-start-line="12" selection-start-column="72" selection-end-line="12" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="26" />
           <folding />
         </state>
       </provider>
@@ -937,7 +941,7 @@
         <state vertical-scroll-proportion="-18.125">
           <caret line="29" column="50" selection-start-line="29" selection-start-column="50" selection-end-line="29" selection-end-column="50" />
           <folding>
-            <element signature="e#34#48#0#PHP" expanded="true" />
+            <element signature="e#34#48#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -958,48 +962,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/AddRegister.php">
+    <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.0">
-          <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Register/RegisterDetails.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.875">
-          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="15" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/register/register.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-25.083334">
-          <caret line="109" column="23" selection-start-line="109" selection-start-column="23" selection-end-line="109" selection-end-column="23" />
-          <folding>
-            <marker date="1451193117000" expanded="true" signature="4370:4583" placeholder="..." />
-            <marker date="1451193117000" expanded="true" signature="4384:4581" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Register/RegisterUsers.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.875">
-          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="16" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RegisterController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.4166667">
-          <caret line="37" column="31" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
-          <folding>
-            <element signature="e#128#150#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1007,14 +974,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.125">
           <caret line="16" column="78" selection-start-line="16" selection-start-column="78" selection-end-line="16" selection-end-column="78" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1029,8 +988,77 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.51861703">
-          <caret line="26" column="2" selection-start-line="26" selection-start-column="2" selection-end-line="26" selection-end-column="2" />
+        <state vertical-scroll-proportion="-20.625">
+          <caret line="33" column="60" selection-start-line="33" selection-start-column="60" selection-end-line="33" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Request.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/register/register.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="8.125">
+          <caret line="14" column="135" selection-start-line="14" selection-start-column="135" selection-end-line="14" selection-end-column="135" />
+          <folding>
+            <marker date="1451199790000" expanded="true" signature="5590:5803" placeholder="..." />
+            <marker date="1451199790000" expanded="true" signature="5604:5801" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RegisterController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.708333">
+          <caret line="37" column="31" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
+          <folding>
+            <element signature="e#128#150#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Register/RegisterUsers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.875">
+          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="16" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Register/RegisterDetails.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.875">
+          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="15" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/AddRegister.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.8333335">
+          <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-25.0">
+          <caret line="40" column="36" selection-start-line="40" selection-start-column="36" selection-end-line="40" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layout/general.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.67287236">
+          <caret line="43" column="185" selection-start-line="43" selection-start-column="185" selection-end-line="43" selection-end-column="185" />
           <folding />
         </state>
       </provider>
