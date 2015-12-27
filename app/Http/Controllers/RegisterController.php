@@ -27,25 +27,25 @@ class RegisterController extends Controller
 
     }
 
-    public function storePrimary (){
+    public function storePrimary (Requests\AddRegister $request){
 
 
         $input = new RegisterUsers();
 
-        $input->email = Request::get('email');
-        $input->pwd = Request::get('pwd');
-        $input->pid = Request::get('pid');
-        $input->type = 'junior';
+        $input->email = $request->get('email');
+        $input->pwd = $request->get('pwd');
+        $input->pid = $request->get('pid');
+        $input->type = 'primary';
         $input->reg_verify = 0;
         $input->reg_time = Carbon::now();
         $input->save();
 
         $input = new RegisterDetails();
 
-        $input->name = Request::get('name');
-        $input->gender = Request::get('gender');
-        $input->school = Request::get('school');
-        $input->phone = Request::get('phone');
+        $input->name = $request->get('name');
+        $input->gender = $request->get('gender');
+        $input->school = $request->get('school');
+        $input->phone = $request->get('phone');
         $input->save();
 
         //return $input;
@@ -56,13 +56,13 @@ class RegisterController extends Controller
 
     }
 
-    public function storeJunior (){
+    public function storeJunior (Requests\AddRegister $request){
 
         $input = new RegisterUsers();
 
-        $input->email = Request::get('email');
-        $input->pwd = Request::get('pwd');
-        $input->pid = Request::get('pid');
+        $input->email = $request->get('email');
+        $input->pwd = $request->get('pwd');
+        $input->pid = $request->get('pid');
         $input->type = 'junior';
         $input->reg_verify = 0;
         $input->reg_time = Carbon::now();
@@ -70,10 +70,10 @@ class RegisterController extends Controller
 
         $input = new RegisterDetails();
 
-        $input->name = Request::get('name');
-        $input->gender = Request::get('gender');
-        $input->school = Request::get('school');
-        $input->phone = Request::get('phone');
+        $input->name = $request->get('name');
+        $input->gender = $request->get('gender');
+        $input->school = $request->get('school');
+        $input->phone = $request->get('phone');
         $input->save();
 
         //return $input;

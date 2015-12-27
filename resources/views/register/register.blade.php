@@ -18,6 +18,7 @@
                                 {!! Form::label('email', 'E-Mail 帳號（您在本系統的登入帳號）') !!}
                                 {!! Form::text('email', null, ['placeholder' => 'Email', 'class' => 'form-control']) !!}
                                 <h5 class="text-muted">＊請輸入有效的E-Mail帳號，以便認證及啟用帳號</h5>
+
                             </div>
                             <div class="form-group">
                                 {!! Form::label('pwd', '密碼 （至少八個字元）') !!}
@@ -106,6 +107,7 @@
         </div>
 
     {!! Form::close() !!}
+    {{ var_dump($errors) }}
 
     @stop
 

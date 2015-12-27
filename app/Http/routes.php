@@ -3,13 +3,7 @@
 
 Route::get('/', function () {return view('index');});
 
-/* REG_PAGE -- Start of Registering Pages */
 
-Route::get('regPrimary', 'RegisterController@regPrimary');
-Route::get('regJunior', 'RegisterController@regJunior');
-
-Route::post('regPrimary', 'RegisterController@storePrimary');
-Route::post('regJunior', 'RegisterController@storeJunior');
 
 /* LOGIN_PAGE -- Start of Login Purpose Method */
 
@@ -33,5 +27,13 @@ Route::get('consoleLogin', 'LoginController@consoleLogin');
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+
+    /* REG_PAGE -- Start of Registering Pages */
+
+    Route::get('regPrimary', 'RegisterController@regPrimary');
+    Route::get('regJunior', 'RegisterController@regJunior');
+
+    Route::post('regPrimary', 'RegisterController@storePrimary');
+    Route::post('regJunior', 'RegisterController@storeJunior');
+
 });
