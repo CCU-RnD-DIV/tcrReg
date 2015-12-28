@@ -15,13 +15,13 @@
                 <td width="47%">
                     <h2 class="ui header">國小組</h2>
                     <br>
-                    <p><a class="btn btn-lg btn-success" href="regPrimary" role="button">報名</a></p>
+                    <p><a class="btn btn-lg btn-success" href="register-primary" role="button">報名</a></p>
                 </td>
                 <td width="2%">  </td>
                 <td width="47%">
                     <h2 class="ui header">國中組</h2>
                     <br>
-                    <p><a class="btn btn-lg btn-success" href="regJunior" role="button">報名</a></p>
+                    <p><a class="btn btn-lg btn-success" href="register-junior" role="button">報名</a></p>
                 </td>
                 <td width="2%">  </td>
             </tr>

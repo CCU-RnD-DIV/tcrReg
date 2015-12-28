@@ -30,10 +30,10 @@ Route::group(['middleware' => ['web']], function () {
 
     /* REG_PAGE -- Start of Registering Pages */
 
-    Route::get('regPrimary', 'RegisterController@regPrimary');
-    Route::get('regJunior', 'RegisterController@regJunior');
+    Route::get('register-primary', 'RegisterController@regPrimary');
+    Route::get('register-junior', 'RegisterController@regJunior');
 
-    Route::post('regPrimary', 'RegisterController@storePrimary');
-    Route::post('regJunior', 'RegisterController@storeJunior');
+    Route::post('register-primary', 'RegisterController@storePrimary');
+    Route::post('register-junior', 'RegisterController@storeJunior');
 
 });

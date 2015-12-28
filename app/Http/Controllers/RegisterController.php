@@ -15,14 +15,14 @@ class RegisterController extends Controller
 {
     public function regPrimary (){
 
-        return view('register.register', ['type' => 'Primary']);
+        return view('register.register', ['type' => 'primary']);
 
 
     }
 
     public function regJunior (){
 
-        return view('register.register', ['type' => 'Junior']);
+        return view('register.register', ['type' => 'junior']);
 
 
     }

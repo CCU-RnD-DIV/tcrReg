@@ -2,17 +2,17 @@
 
 @section('content')
 
-    {!! Form::open(['url'=> 'reg'.$type]) !!}
+    {!! Form::open(['url'=> 'register-'.$type]) !!}
         <div class="row">
             <div class="form-group">
                 <div class="col-lg-6">
                     <div class="panel panel-default">
                         <div class="panel-heading"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> 個人資料</div>
                         <div class="panel-body">
-                            @if($type == 'Primary')
-                                <div class="alert alert-warning"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 您現在填寫的是 國小教師 申請網頁 <a href="regJunior">帶我去國中申請頁面</a> </div>
-                            @elseif($type == 'Junior')
-                                <div class="alert alert-success"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 您現在填寫的是 國中教師 申請網頁 <a href="regPrimary">帶我去國小申請頁面</a></div>
+                            @if($type == 'primary')
+                                <div class="alert alert-warning"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 您現在填寫的是 國小教師 申請網頁 <a href="register-junior">帶我去國中申請頁面</a> </div>
+                            @elseif($type == 'junior')
+                                <div class="alert alert-success"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 您現在填寫的是 國中教師 申請網頁 <a href="register-primary">帶我去國小申請頁面</a></div>
                             @endif
                             <div class="form-group">
                                 {!! Form::label('email', 'E-Mail 帳號（您在本系統的登入帳號）') !!}
@@ -77,10 +77,10 @@
                         <div class="panel-heading">請您點選欲報名的領域</div>
                         <div class="panel-body">
                             <div class="form-group">
-                                @if($type == 'Primary')
+                                @if($type == 'primary')
                                     {!! Form::label('reg_subject', '請您點選欲報名的國小領域') !!}
                                     {!! Form::select('reg_subject', array('8' => '國語（中低年級）', '9' => '國語（高年級）', '10' => '英語', '11' => '數學（中低年級）', '12' => '數學（高年級）', '13' => '自然', '14' => '社會'), null, ['placeholder' => '請選擇', 'class' => 'form-control']) !!}
-                                @elseif($type == 'Junior')
+                                @elseif($type == 'junior')
                                     {!! Form::label('reg_subject', '請您點選欲報名的國中領域') !!}
                                     {!! Form::select('reg_subject', array('1' => '國語', '2' => '英語', '3' => '數學', '4' => '自然', '5' => '歷史', '6' => '地理', '7' => '公民'), null, ['placeholder' => '請選擇', 'class' => 'form-control']) !!}
                                 @endif
