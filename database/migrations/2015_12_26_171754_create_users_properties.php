@@ -14,7 +14,7 @@ class CreateUsersProperties extends Migration
     {
         Schema::create('tcr_properties', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('account_id');
+            $table->string('account_id')->unique();
             $table->integer('is_chief');
             $table->integer('chief_assigner');
             $table->integer('is_chicken');

@@ -14,8 +14,8 @@ class CreateUsersDetailsTable extends Migration
     {
         Schema::create('tcr_details', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('account_id');
-            $table->string('name')->unique();   // Teacher's Real Name
+            $table->string('account_id')->unique();
+            $table->string('name');   // Teacher's Real Name
             $table->string('gender');
             $table->string('school');    // Teacher's Classification (Primary or Junior)
             $table->string('phone');
