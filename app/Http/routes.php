@@ -1,14 +1,15 @@
 <?php
 
+/** @var Router $router */
 
-Route::get('/', function () {return view('index');});
+use Illuminate\Routing\Router;
 
-
+$router->get('/', function () {return view('index');});
 
 /* LOGIN_PAGE -- Start of Login Purpose Method */
 
-Route::get('generalLogin', 'LoginController@generalLogin');
-Route::get('consoleLogin', 'LoginController@consoleLogin');
+$router->get('generalLogin', 'LoginController@generalLogin');
+$router->get('consoleLogin', 'LoginController@consoleLogin');
 
 
 /* GENERAL_MEMBER -- Start of General Member System Method */
@@ -26,14 +27,14 @@ Route::get('consoleLogin', 'LoginController@consoleLogin');
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
+$router->group(['middleware' => ['web']], function (Router $router) {
 
     /* REG_PAGE -- Start of Registering Pages */
 
-    Route::get('register-primary', 'RegisterController@regPrimary');
-    Route::get('register-junior', 'RegisterController@regJunior');
+    $router->get('register-primary', 'RegisterController@regPrimary');
+    $router->get('register-junior', 'RegisterController@regJunior');
 
-    Route::post('register-primary', 'RegisterController@storePrimary');
-    Route::post('register-junior', 'RegisterController@storeJunior');
+    $router->post('register-primary', 'RegisterController@storePrimary');
+    $router->post('register-junior', 'RegisterController@storeJunior');
 
 });
