@@ -6,10 +6,6 @@ use Illuminate\Routing\Router;
 
 $router->get('/', function () {return view('index');});
 
-/* LOGIN_PAGE -- Start of Login Purpose Method */
-
-$router->get('generalLogin', 'LoginController@generalLogin');
-$router->get('consoleLogin', 'LoginController@consoleLogin');
 
 
 /* GENERAL_MEMBER -- Start of General Member System Method */
@@ -36,5 +32,11 @@ $router->group(['middleware' => ['web']], function (Router $router) {
 
     $router->post('register-primary', 'RegisterController@storePrimary');
     $router->post('register-junior', 'RegisterController@storeJunior');
+
+    /* LOGIN_PAGE -- Start of Login Purpose Method */
+
+    $router->get('generalLogin', 'LoginController@generalLogin');
+    $router->get('consoleLogin', 'LoginController@consoleLogin');
+
 
 });

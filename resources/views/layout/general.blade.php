@@ -41,7 +41,7 @@
             <h3 class="text-muted"><a href="index.php">105偏鄉教師寒假教學專業成長研習 線上報名系統</a></h3>
         </div>
 
-        <div style="width: 100%; background-image: url('http://dream.k12cc.tw/uploads/tad_themes/school2014/slide/slide_1_7.png'); background-repeat: no-repeat; background-size: 100%;">
+        <div style="width: 100%; background-image: url('/assets/images/banner.png'); background-repeat: no-repeat; background-size: 100%;">
             <div style="padding-top: 100px;padding-bottom: 80px;"></div>
         </div>
 
