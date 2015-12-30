@@ -38,5 +38,17 @@ $router->group(['middleware' => ['web']], function (Router $router) {
     $router->get('generalLogin', 'LoginController@generalLogin');
     $router->get('consoleLogin', 'LoginController@consoleLogin');
 
+    $router->post('generalLogin', 'LoginController@CheckGeneralLogin');
+    $router->post('consoleLogin', 'LoginController@CheckConsoleLogin');
+
+    $router->group(['prefix' => 'general', 'middleware' => 'auth'], function() {
+        Route::get('/', 'AdminController@General');
+        Route::get('/update', 'AdminController@Update');
+    });
+
+    $router->get('logout', 'LoginController@logout');
+
 
 });
+
+

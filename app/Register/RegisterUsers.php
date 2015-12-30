@@ -10,7 +10,7 @@ class RegisterUsers extends Model
 
     protected  $fillable = [
         'email',
-        'pwd',
+        'password',
         'pid',
         'type',
         'reg_verify',

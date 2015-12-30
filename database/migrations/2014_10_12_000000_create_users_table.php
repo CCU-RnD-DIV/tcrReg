@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
         Schema::create('tcr_users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('email')->unique();
-            $table->string('pwd', 60);
+            $table->string('password', 60);
             $table->string('pid')->unique();
             //$table->string('pwd_alter', 60);
             $table->string('type');

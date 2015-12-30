@@ -13,9 +13,9 @@
                 @if ($errors->has('email')) <h5 class="text-danger">{{ $errors->first('email') }}</h5> @endif
             </div>
             <div class="form-group">
-                {!! Form::label('pwd', '密碼') !!}
-                {!! Form::password('pwd', ['placeholder' => '您的密碼', 'class' => 'form-control']) !!}
-                @if ($errors->has('pwd')) <h5 class="text-danger">{{ $errors->first('pwd') }}</h5> @endif
+                {!! Form::label('password', '密碼') !!}
+                {!! Form::password('password', ['placeholder' => '您的密碼', 'class' => 'form-control']) !!}
+                @if ($errors->has('password')) <h5 class="text-danger">{{ $errors->first('password') }}</h5> @endif
             </div>
             <div class="form-group">
                 {!! Form::submit('登入', ['class' => 'form-control btn btn-primary']) !!}

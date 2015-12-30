@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use Hash;
 use App\Http\Requests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -26,6 +28,9 @@ class LoginController extends Controller {
 
     public function CheckGeneralLogin (Requests\LoginCheck $request){
 
+        if (Auth::attempt(['email' => $request->get('email'), 'password' => $request->get('password')])){
+            return redirect()->intended('/general');
+        }
         return view('auth.generalLogin');
 
     }
@@ -34,6 +39,11 @@ class LoginController extends Controller {
 
         return view('auth.consoleLogin');
 
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect()->intended('/');
     }
 
 }

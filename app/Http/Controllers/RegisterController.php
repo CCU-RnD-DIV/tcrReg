@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 //use Illuminate\Http\Request; ## NOTE: if use this, the Request::all(); will not work
 
+use Hash;
 use App\Http\Requests;
 use App\Register\RegisterUsers;
 use App\Register\RegisterDetails;
@@ -33,7 +34,7 @@ class RegisterController extends Controller
         $input = new RegisterUsers();
 
         $input->email = $request->get('email');
-        $input->pwd = $request->get('pwd');
+        $input->password = Hash::make($request->get('password'));
         $input->pid = $request->get('pid');
         $input->type = 'primary';
         $input->reg_verify = 0;
@@ -61,7 +62,7 @@ class RegisterController extends Controller
         $input = new RegisterUsers();
 
         $input->email = $request->get('email');
-        $input->pwd = $request->get('pwd');
+        $input->password = Hash::make($request->get('password'));
         $input->pid = $request->get('pid');
         $input->type = 'junior';
         $input->reg_verify = 0;

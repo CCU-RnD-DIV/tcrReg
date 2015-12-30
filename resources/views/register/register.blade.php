@@ -21,9 +21,9 @@
                                 @if ($errors->has('email')) <h5 class="text-danger">{{ $errors->first('email') }}</h5> @endif
                             </div>
                             <div class="form-group">
-                                {!! Form::label('pwd', '密碼 （至少八個字元）') !!}
-                                {!! Form::password('pwd', ['placeholder' => '密碼', 'class' => 'form-control']) !!}
-                                @if ($errors->has('pwd')) <h5 class="text-danger">{{ $errors->first('pwd') }}</h5> @endif
+                                {!! Form::label('password', '密碼 （至少八個字元）') !!}
+                                {!! Form::password('password', ['placeholder' => '密碼', 'class' => 'form-control']) !!}
+                                @if ($errors->has('password')) <h5 class="text-danger">{{ $errors->first('password') }}</h5> @endif
                             </div>
                             <div class="form-group">
                                 {!! Form::label('cmf_pwd', '確認密碼') !!}
