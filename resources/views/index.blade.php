@@ -2,26 +2,20 @@
 
 @section('content')
 
-    <div class="row marketing">
-        <div style="text-align: center;">
-            <h2>請選擇您的組別：</h2>
-        </div>
-    </div>
-    <br>
     <div class="row marketing" style="text-align: center;">
         <table border="0" width="100%" style="vertical-align: top;">
             <tr>
                 <td width="2%"></td>
                 <td width="47%">
-                    <h2 class="ui header">國小組</h2>
+                    <h2 class="ui header">若您是舊生</h2>
                     <br>
-                    <p><a class="btn btn-lg btn-success" href="register-primary" role="button">報名</a></p>
+                    <p><a class="btn btn-lg btn-success" href="generalLogin" role="button">登入</a></p>
                 </td>
                 <td width="2%">  </td>
                 <td width="47%">
-                    <h2 class="ui header">國中組</h2>
+                    <h2 class="ui header">若您是新生</h2>
                     <br>
-                    <p><a class="btn btn-lg btn-success" href="register-junior" role="button">報名</a></p>
+                    <p><a class="btn btn-lg btn-info" href="register" role="button">報名</a></p>
                 </td>
                 <td width="2%">  </td>
             </tr>
@@ -38,7 +32,7 @@
                         </div>
                         <div class="panel-body">
                             <br>
-                            嘟嚕嚕～敬請期待
+                            <img src="/assets/images/timeline.png" width="95%" height="95%" alt=""/>
                             <br><br>
                         </div>
                     </div>

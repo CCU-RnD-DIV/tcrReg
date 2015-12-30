@@ -27,11 +27,11 @@ $router->group(['middleware' => ['web']], function (Router $router) {
 
     /* REG_PAGE -- Start of Registering Pages */
 
-    $router->get('register-primary', 'RegisterController@regPrimary');
-    $router->get('register-junior', 'RegisterController@regJunior');
+    $router->get('register', 'RegisterController@reg');
+    $router->post('register', 'RegisterController@store');
 
-    $router->post('register-primary', 'RegisterController@storePrimary');
-    $router->post('register-junior', 'RegisterController@storeJunior');
+    $router->get('verify', 'RegisterController@verify');
+    $router->post('verify', 'RegisterController@verifyCheck');
 
     /* LOGIN_PAGE -- Start of Login Purpose Method */
 

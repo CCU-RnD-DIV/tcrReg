@@ -20,10 +20,14 @@
             <div class="form-group">
                 {!! Form::submit('登入', ['class' => 'form-control btn btn-primary']) !!}
             </div>
-
+            @if(isset($alert_failed))
+                <div class="alert alert-danger">
+                    帳號密碼錯誤或是帳戶尚未啟用
+                </div>
+            @endif
             <div class="form-group text-center">
                 <h5 class="text-muted">您忘記密碼嗎？<a href="#">按此重設</a> </h5>
-                <h5 class="text-muted">還沒有帳號嗎？<a href="register-primary">按此註冊</a></h5>
+                <h5 class="text-muted">還沒有帳號嗎？<a href="register">按此註冊</a></h5>
             </div>
 
         </div>

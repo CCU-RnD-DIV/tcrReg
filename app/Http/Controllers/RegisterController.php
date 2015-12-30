@@ -4,31 +4,27 @@ namespace App\Http\Controllers;
 
 //use Illuminate\Http\Request; ## NOTE: if use this, the Request::all(); will not work
 
+use App\User\UserDetails;
 use Hash;
 use App\Http\Requests;
 use App\Register\RegisterUsers;
 use App\Register\RegisterDetails;
+use App\Register\Verify;
 use Request;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 
 class RegisterController extends Controller
 {
-    public function regPrimary (){
 
-        return view('register.register', ['type' => 'primary']);
+    public function reg (){
 
-
-    }
-
-    public function regJunior (){
-
-        return view('register.register', ['type' => 'junior']);
+        return view('register.register');
 
 
     }
 
-    public function storePrimary (Requests\AddRegister $request){
+    public function store (Requests\AddRegister $request){
 
 
         $input = new RegisterUsers();
@@ -37,50 +33,65 @@ class RegisterController extends Controller
         $input->password = Hash::make($request->get('password'));
         $input->pid = $request->get('pid');
         $input->type = 'primary';
+        $input->verify_code = $rand = substr(md5(sha1( $request->get('email').$request->get('password'))),0,6);
         $input->reg_verify = 0;
         $input->reg_time = Carbon::now();
         $input->save();
 
+        $account_id = RegisterUsers::select('id')->where('email', $request->get('email'))->get();
+
         $input = new RegisterDetails();
 
+        $input->account_id = $account_id[0]->id; // 'Cause the variable account_id is a array.
         $input->name = $request->get('name');
         $input->gender = $request->get('gender');
         $input->school = $request->get('school');
         $input->phone = $request->get('phone');
         $input->save();
 
-        //return $input;
-        //Register::create($input);
+        /* Send the SMS to Users */
+        $date = date("YmdHis");
+        $pwd_file = fopen(public_path('msg_tmp/').$date.$rand.".txt","a");
+        $content = "ccucc,".$request->get('phone').",105偏鄉教師研習登入帳號：".$request->get('email')."；您的啟用碼：".$rand.",";
+        $content = iconv('UTF-8','Big5',$content);
+        fwrite($pwd_file, $content);
+        fclose($pwd_file);
+        $chk_file = fopen(public_path('msg_tmp/').$date.$rand.".chk","a");
+        fclose($chk_file);
 
-        return redirect('register/success');
+        $conn_id = ftp_connect("210.71.253.195");
+        $login_result = ftp_login($conn_id, "sms", "sms");
+        if ($login_result){
+            ftp_put($conn_id,$date.$rand.".txt",public_path('msg_tmp/').$date.$rand.".txt", FTP_ASCII);
+            ftp_put($conn_id,$date.$rand.".chk",public_path('msg_tmp/').$date.$rand.".chk", FTP_ASCII);
+        }
+
+        return redirect('verify');
 
 
     }
 
-    public function storeJunior (Requests\AddRegister $request){
+    public function verify (){
 
-        $input = new RegisterUsers();
+        return view('register.verify');
 
-        $input->email = $request->get('email');
-        $input->password = Hash::make($request->get('password'));
-        $input->pid = $request->get('pid');
-        $input->type = 'junior';
-        $input->reg_verify = 0;
-        $input->reg_time = Carbon::now();
-        $input->save();
+    }
 
-        $input = new RegisterDetails();
+    public function verifyCheck (Requests\Verify $request){
 
-        $input->name = $request->get('name');
-        $input->gender = $request->get('gender');
-        $input->school = $request->get('school');
-        $input->phone = $request->get('phone');
-        $input->save();
+        if (Verify::where('verify_code', $request->get('verify'))->count()){
 
-        //return $input;
-        //Register::create($input);
+            Verify::where('verify_code', $request->get('verify'))->update(['reg_verify' => 1]);
 
-        return redirect('register/success');
+            return redirect()->intended('generalLogin');
+
+        }else{ /* The Verify Code Not Found */
+
+            return view('register.verify')->with('alert_failed', true);
+
+        }
+
+
 
     }
 }
