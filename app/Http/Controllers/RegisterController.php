@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 //use Illuminate\Http\Request; ## NOTE: if use this, the Request::all(); will not work
 
+use App\Register\RegisterSubjects;
 use App\User\UserDetails;
 use Hash;
 use App\Http\Requests;
@@ -11,6 +12,7 @@ use App\Register\RegisterUsers;
 use App\Register\RegisterDetails;
 use App\Register\Verify;
 use Request;
+use Auth;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 
@@ -24,11 +26,9 @@ class RegisterController extends Controller
 
     }
 
-    public function store (Requests\AddRegister $request){
-
+    public function store (Requests\RegisterCheck $request){
 
         $input = new RegisterUsers();
-
         $input->email = $request->get('email');
         $input->password = Hash::make($request->get('password'));
         $input->pid = $request->get('pid');
@@ -38,14 +38,14 @@ class RegisterController extends Controller
         $input->reg_time = Carbon::now();
         $input->save();
 
-        $account_id = RegisterUsers::select('id')->where('email', $request->get('email'))->get();
+        $account_details = RegisterUsers::select('id')->where('email', $request->get('email'))->get();
 
         $input = new RegisterDetails();
 
-        $input->account_id = $account_id[0]->id; // 'Cause the variable account_id is a array.
+        $input->account_id = $account_details[0]->id; // 'Cause the variable account_id is a array.
         $input->name = $request->get('name');
         $input->gender = $request->get('gender');
-        $input->school = $request->get('school');
+        $input->school = 1;
         $input->phone = $request->get('phone');
         $input->save();
 
@@ -79,11 +79,18 @@ class RegisterController extends Controller
 
     public function verifyCheck (Requests\Verify $request){
 
-        if (Verify::where('verify_code', $request->get('verify'))->count()){
+        if (RegisterUsers::where('verify_code', $request->get('verify'))->count()){
 
-            Verify::where('verify_code', $request->get('verify'))->update(['reg_verify' => 1]);
+            $account_details = RegisterUsers::where('verify_code', $request->get('verify'))->get();
 
-            return redirect()->intended('generalLogin');
+            RegisterUsers::where('verify_code', $request->get('verify'))
+                ->where('reg_verify', 0)
+                ->update(['reg_verify' => 1]);
+
+            if (Auth::loginUsingId( $account_details[0]->id )){
+
+                return redirect()->intended('/general/select-subject');
+            }
 
         }else{ /* The Verify Code Not Found */
 
@@ -92,6 +99,31 @@ class RegisterController extends Controller
         }
 
 
+
+    }
+
+    public function selectSubject (){
+
+        return view('general.select-subject');
+
+    }
+
+    public function selectSubjectUpdate(Requests\SelectSubjectCheck $request){
+
+        $account_details = RegisterUsers::where('email', Auth::user()->email)->get();
+
+        $input = new RegisterSubjects();
+
+        $input->account_id = $account_details[0]->id; // 'Cause the variable account_id is a array.
+        $input->reg_subject_1 = $request->get('reg_subject_1');
+        $input->already_pick_1 = 0;
+        $input->reg_subject_2 = $request->get('reg_subject_2');
+        $input->already_pick_2 = 0;
+        $input->ps = 'NORMAL';
+        $input->priority = 0;
+        $input->save();
+
+        return redirect()->intended('/general');
 
     }
 }
