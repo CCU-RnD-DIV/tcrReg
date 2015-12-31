@@ -21,8 +21,8 @@ class Authenticate
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {
-                //return redirect()->guest('generalLogin')->with('alert_failed', 'true');
-                return view('auth.generalLogin')->with('alert_failed', true);
+                return redirect()->guest('generalLogin');
+                //return view('auth.generalLogin')->with('alert_failed', true);
             }
         }
 

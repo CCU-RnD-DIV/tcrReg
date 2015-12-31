@@ -14,6 +14,7 @@ class RegisterUsers extends Model
         'pid',
         'type',
         'reg_verify',
+        'verify_code',
         'reg_time'
     ];
 }

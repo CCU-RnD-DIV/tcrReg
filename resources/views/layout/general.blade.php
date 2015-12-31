@@ -35,7 +35,7 @@
                 <ul class="nav nav-pills pull-right">
                     <li role="presentation"><a href="http://dream.k12cc.tw">研習營首頁</a></li>
                     <li role="presentation"><a href="/">報名首頁</a></li>
-                    <li role="presentation"><a href="generalLogin">登入報名系統</a></li>
+                    <li role="presentation"><a href="general">登入報名系統</a></li>
                 </ul>
             </nav>
             <h3 class="text-muted"><a href="index.php">105偏鄉教師寒假教學專業成長研習 線上報名系統</a></h3>
@@ -44,6 +44,8 @@
         <div style="width: 100%; background-image: url('/assets/images/banner.png'); background-repeat: no-repeat; background-size: 100%;">
             <div style="padding-top: 100px;padding-bottom: 80px;"></div>
         </div>
+
+        <h4 class="text-danger text-center">若有相關帳戶問題請連絡 resttc@ccu.edu.tw</h4>
 
         <br>
 

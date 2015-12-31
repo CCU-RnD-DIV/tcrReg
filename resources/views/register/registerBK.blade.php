@@ -2,7 +2,7 @@
 
 @section('content')
 
-    {!! Form::open(['url'=> 'register']) !!}
+    {!! Form::open(['url'=> 'register-'.$type]) !!}
         <div class="row">
             <div class="form-group">
                 <div class="col-lg-6">
@@ -57,7 +57,7 @@
                                 @if ($errors->has('tc_class')) <h5 class="text-danger">{{ $errors->first('tc_class') }}</h5> @endif
                             </div>
                             <div class="form-group">
-                                {!! Form::label('phone', '手機號碼（純數字無連字符，如0912345678）') !!}
+                                {!! Form::label('phone', '手機號碼（純數字無連字符）') !!}
                                 {!! Form::text('phone', null, ['placeholder' => '請填寫您的手機號碼', 'class' => 'form-control']) !!}
                                 <h5 class="text-muted">＊請輸入有效手機號碼，以便認證及啟用帳號</h5>
                                 @if ($errors->has('phone')) <h5 class="text-danger">{{ $errors->first('phone') }}</h5> @endif
@@ -67,15 +67,30 @@
 
                 </div>
                 <div class="col-lg-6">
+                    <!--
+                    <div class="panel panel-default">
+                        <div class="panel-heading">請您點選欲報名的領域</div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                @if($type == 'primary')
+                                    {!! Form::label('reg_subject', '請您點選欲報名的國小領域') !!}
+                                    {!! Form::select('reg_subject', array('8' => '國語（中低年級）', '9' => '國語（高年級）', '10' => '英語', '11' => '數學（中低年級）', '12' => '數學（高年級）', '13' => '自然', '14' => '社會'), null, ['placeholder' => '請選擇', 'class' => 'form-control']) !!}
+                                @elseif($type == 'junior')
+                                    {!! Form::label('reg_subject', '請您點選欲報名的國中領域') !!}
+                                    {!! Form::select('reg_subject', array('1' => '國語', '2' => '英語', '3' => '數學', '4' => '自然', '5' => '歷史', '6' => '地理', '7' => '公民'), null, ['placeholder' => '請選擇', 'class' => 'form-control']) !!}
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    -->
 
                     <div class="panel panel-warning">
                         <div class="panel-heading">同意隱私權聲明</div>
                         <div class="panel-body">
                             <div class="form-group">
                                 {!! Form::checkbox('agree', '1') !!}
-                                {!! Form::label('agree', '我同意本網站之隱私權聲明') !!}
+                                {!! Form::label('reg_subject', '我同意本網站之隱私權聲明') !!}
                                 <h5 class="text-muted">＊您必須同意本網站之隱私權聲明才可繼續報名程序</h5>
-                                @if ($errors->has('agree')) <h5 class="text-danger">{{ $errors->first('agree') }}</h5> @endif
                             </div>
                         </div>
                     </div>

@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('pid')->unique();
             //$table->string('pwd_alter', 60);
             $table->string('type');
+            $table->string('verify_code', 6);
             $table->integer('reg_verify');
             $table->rememberToken();
             $table->timestamps();

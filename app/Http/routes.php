@@ -33,6 +33,8 @@ $router->group(['middleware' => ['web']], function (Router $router) {
     $router->get('verify', 'RegisterController@verify');
     $router->post('verify', 'RegisterController@verifyCheck');
 
+
+
     /* LOGIN_PAGE -- Start of Login Purpose Method */
 
     $router->get('generalLogin', 'LoginController@generalLogin');
@@ -43,7 +45,12 @@ $router->group(['middleware' => ['web']], function (Router $router) {
 
     $router->group(['prefix' => 'general', 'middleware' => 'auth'], function() {
         Route::get('/', 'AdminController@General');
+
         Route::get('/update', 'AdminController@Update');
+        Route::post('/update', 'AdminController@Update');
+
+        Route::get('/select-subject', 'RegisterController@selectSubject');
+        Route::post('/select-subject', 'RegisterController@selectSubjectUpdate');
     });
 
     $router->get('logout', 'LoginController@logout');

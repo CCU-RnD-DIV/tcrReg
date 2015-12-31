@@ -15,8 +15,10 @@ class CreateRegisterData extends Migration
         Schema::create('tcr_reg_subject', function (Blueprint $table) {
             $table->increments('id');
             $table->string('account_id');
-            $table->integer('reg_subject');
-            $table->integer('already_pick');
+            $table->integer('reg_subject_1');
+            $table->integer('already_pick_1');
+            $table->integer('reg_subject_2');
+            $table->integer('already_pick_2');
             $table->string('ps');
             $table->integer('priority');
             $table->rememberToken();
