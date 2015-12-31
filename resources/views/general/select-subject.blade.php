@@ -7,10 +7,10 @@
             <div class="form-group">
                 <div class="col-lg-4">
                     <div class="panel panel-success">
-                        <div class="panel-heading"><strong>105/01/31</strong> 場次活動報名</div>
+                        <div class="panel-heading"><h4><strong>105/01/31（第一天）</strong> 場次活動報名</h4></div>
                         <div class="panel-body">
                             <div class="form-group">
-                                @if ($errors->has('reg_subject_1')) <h5 class="text-danger">{{ $errors->first('reg_subject_1') }}</h5> @endif
+                                @if ($errors->has('reg_subject_1')) <h4 class="text-danger"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>{{ $errors->first('reg_subject_1') }}</h4> @endif
 
                                 {!! Form::label('reg_subject_1', '不報名') !!}
                                 {!! Form::radio('reg_subject_1', '0') !!}
@@ -45,10 +45,10 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="panel panel-warning">
-                        <div class="panel-heading"><strong>105/02/01</strong> 場次活動報名</div>
+                        <div class="panel-heading"><h4><strong>105/02/01 （第二天）</strong> 場次活動報名</h4></div>
                         <div class="panel-body">
                             <div class="form-group">
-                                @if ($errors->has('reg_subject_2')) <h5 class="text-danger">{{ $errors->first('reg_subject_2') }}</h5> @endif
+                                @if ($errors->has('reg_subject_2')) <h4 class="text-danger"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>{{ $errors->first('reg_subject_2') }}</h4> @endif
 
                                 {!! Form::label('reg_subject_2', '不報名') !!}
                                 {!! Form::radio('reg_subject_2', '0') !!}
