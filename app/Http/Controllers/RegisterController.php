@@ -160,6 +160,7 @@ class RegisterController extends Controller
             $input->already_pick_1 = 0;
             $input->ps = 'NORMAL';
             $input->priority = 0;
+            $input->reg_time = Carbon::Now();
             $input->save();
 
         }
@@ -189,6 +190,7 @@ class RegisterController extends Controller
             $input->already_pick_2 = 0;
             $input->ps = 'NORMAL';
             $input->priority = 0;
+            $input->reg_time = Carbon::Now();
             $input->save();
 
         }
@@ -212,12 +214,15 @@ class RegisterController extends Controller
 
         if(isset($user_habits[0])){
             $convert_meat_veg_displayName = ($user_habits[0]->meat_veg) ? '葷食' : '素食' ; /* meat_veg = 1 : Meat ; = 0 : Veg */
+            $convert_traffic_displayName = ($user_habits[0]->traffic) ? '是' : '否' ; /* traffic  = 1 : Yes ; = 0 : No */
+
         }else{
             $convert_meat_veg_displayName = '尚未選擇';
+            $convert_traffic_displayName = '尚未選擇';
         }
 
 
-        return view('general.select-habits', compact('user_habits', 'user_data', 'convert_meat_veg_displayName'));
+        return view('general.select-habits', compact('user_habits', 'user_data', 'convert_meat_veg_displayName', 'convert_traffic_displayName'));
 
     }
 
@@ -235,7 +240,8 @@ class RegisterController extends Controller
 
         if ($habit_exist == 1){
 
-            RegisterHabits::where('account_id', $account_details[0]->id)->update(['meat_veg' => $request->get('meat_veg')]);
+            RegisterHabits::where('account_id', $account_details[0]->id)
+                ->update(['meat_veg' => $request->get('meat_veg')]);
 
         }else if($habit_exist == 0){
 

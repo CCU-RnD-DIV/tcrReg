@@ -13,7 +13,8 @@ class RegisterSubjects extends Model
         'reg_subject_1',
         'already_pick_1',
         'ps',
-        'priority'
+        'priority',
+        'reg_time'
     ];
 
     public function sList()

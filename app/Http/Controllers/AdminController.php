@@ -56,10 +56,10 @@ class AdminController extends Controller
 
         $account_details = RegisterUsers::where('email', Auth::user()->email)->get();
 
-        if($request->get('pwd') != ''){
+        if($request->get('password') != ''){
             RegisterUsers::where('email', Auth::user()->email)
                 ->update([
-                    'pwd' => Hash::make($request->get('pwd'))
+                    'password' => Hash::make($request->get('password'))
                 ]);
         }
         RegisterDetails::where('account_id', $account_details[0]->id)

@@ -43,6 +43,12 @@ $router->group(['middleware' => ['web']], function (Router $router) {
     $router->post('generalLogin', 'LoginController@CheckGeneralLogin');
     $router->post('consoleLogin', 'LoginController@CheckConsoleLogin');
 
+    $router->get('reset-password', 'LoginController@reset');
+    $router->post('reset-password', 'LoginController@resetGenerate');
+
+    $router->get('reset-verify', 'LoginController@resetVerifyView');
+    $router->post('reset-verify', 'LoginController@resetVerify');
+
     $router->group(['prefix' => 'general', 'middleware' => 'auth'], function() {
         Route::get('/', 'AdminController@General');
 

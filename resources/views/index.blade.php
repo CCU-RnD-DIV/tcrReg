@@ -40,12 +40,12 @@
                         <strong>
                             1. 國小報名概況：
                         </strong>
-                        {{$primary_count}} 人，十分鐘統計一次
+                        {{isset($primary_count) ? $primary_count.' 人（十分鐘統計一次）' : '已更新數據，請重新整理'}}
                         <br><br>
                         <strong>
                             2. 國中報名概況：
                         </strong>
-                        {{$junior_count}} 人，十分鐘統計一次
+                        {{isset($junior_count) ? $junior_count.' 人（十分鐘統計一次）' : '已更新數據，請重新整理'}}
                     </div>
                 </td>
                 <td width="10%">  </td>

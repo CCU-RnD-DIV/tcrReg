@@ -19,7 +19,7 @@
                     <tbody>
                     <tr>
                         <td>
-                            <h4 class="text-danger"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>錄取結果將於 <strong>2016-01-10 10:00:00</strong> 公佈</h4>
+                            <h4 class="text-danger"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 尚未公佈錄取結果</h4>
                         </td>
                     </tr>
                     </tbody>
@@ -68,11 +68,14 @@
                     <tbody>
                     <tr>
                         <td>
-                            <h4 class="text-danger">第一天報名科目：{{isset($user_reg_subject_1_displayName[0]) ? $user_reg_subject_1_displayName[0]->subject_name : '未報名'}}，
-                                報名時間：{{isset($user_reg_subject_1[0]) ? $user_reg_subject_1[0]->updated_at : '未報名'}}</h4>
-                            <br>
-                            <h4 class="text-danger">第二天報名科目：{{isset($user_reg_subject_2_displayName[0]) ? $user_reg_subject_2_displayName[0]->subject_name : '未報名'}}，
-                                報名時間：{{isset($user_reg_subject_2[0]) ? $user_reg_subject_2[0]->updated_at : '未報名'}}</h4>
+                            <h4 class="text-danger">
+                                您所選的報名課程：
+                                <br> <br>
+                                {{isset($user_reg_subject_1_displayName[0]) ? '第一天報名科目：'.$user_reg_subject_1_displayName[0]->subject_name : ''}}
+                                {{isset($user_reg_subject_1[0]) ? '，報名時間：'.$user_reg_subject_1[0]->reg_time : ''}}</h4>
+                            <h4 class="text-danger">
+                                {{isset($user_reg_subject_2_displayName[0]) ? '第二天報名科目：'.$user_reg_subject_2_displayName[0]->subject_name : ''}}
+                                {{isset($user_reg_subject_2[0]) ? '，報名時間：'.$user_reg_subject_2[0]->reg_time : ''}}</h4>
                         </td>
                     </tr>
                     </tbody>

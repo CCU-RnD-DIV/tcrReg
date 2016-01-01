@@ -37,7 +37,7 @@ class IndexController extends Controller
             if($diffMinutes >= 10){
                 Cache::put('primary_count', RegisterUsers::where('type', 'primary')->count(), $expiresAt);
             }
-            $primary_count = Cache::get('primary_count');
+            $primary_count = Cache::get('primary_count', '請重新整理一次');
         }else{
             Cache::add('primary_count', RegisterUsers::where('type', 'primary')->count(), $expiresAt);
         }
@@ -46,7 +46,7 @@ class IndexController extends Controller
             if($diffMinutes >= 10){
                 Cache::put('junior_count', RegisterUsers::where('type', 'junior')->count(), $expiresAt);
             }
-            $junior_count = Cache::get('junior_count');
+            $junior_count = Cache::get('junior_count', '請重新整理一次');
         }else{
             Cache::add('junior_count', RegisterUsers::where('type', 'junior')->count(), $expiresAt);
         }
