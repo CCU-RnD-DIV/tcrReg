@@ -4,17 +4,19 @@ namespace App\Http\Controllers;
 
 //use Illuminate\Http\Request; ## NOTE: if use this, the Request::all(); will not work
 
-use App\Register\RegisterSubjects;
-use App\User\UserDetails;
+use Auth;
 use Hash;
-use App\Http\Requests;
+use Request;
+use Carbon\Carbon;
+
 use App\Register\RegisterUsers;
 use App\Register\RegisterDetails;
+use App\Register\RegisterSubjects;
+use App\Register\RegisterSubjects2;
+use App\User\UserDetails;
+use App\Http\Requests;
 use App\Register\Verify;
-use Request;
-use Auth;
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
 
 class RegisterController extends Controller
 {
@@ -104,7 +106,15 @@ class RegisterController extends Controller
 
     public function selectSubject (){
 
-        return view('general.select-subject');
+        $user_data = RegisterUsers::where('email', Auth::user()->email)->get();
+
+        $user_details = RegisterDetails::where('account_id', $user_data[0]->id)->get();
+
+        $user_reg_subject_1 = RegisterSubjects::where('account_id', $user_data[0]->id)->get();
+
+        $user_reg_subject_2 = RegisterSubjects2::where('account_id', $user_data[0]->id)->get();
+
+        return view('general.select-subject', compact('user_details', 'user_data', 'user_reg_subject_1', 'user_reg_subject_2'));
 
     }
 
@@ -112,16 +122,67 @@ class RegisterController extends Controller
 
         $account_details = RegisterUsers::where('email', Auth::user()->email)->get();
 
-        $input = new RegisterSubjects();
+        $first_day_data_exist = RegisterSubjects::where('account_id', $account_details[0]->id)->count();
 
-        $input->account_id = $account_details[0]->id; // 'Cause the variable account_id is a array.
-        $input->reg_subject_1 = $request->get('reg_subject_1');
-        $input->already_pick_1 = 0;
-        $input->reg_subject_2 = $request->get('reg_subject_2');
-        $input->already_pick_2 = 0;
-        $input->ps = 'NORMAL';
-        $input->priority = 0;
-        $input->save();
+        $second_day_data_exist = RegisterSubjects2::where('account_id', $account_details[0]->id)->count();
+
+        /* If User Doesn't Select the Subject, the Data Would Not Be Saved */
+        /* If User Has Filled the Form Before, We Will Update the Previous Data */
+        /* First Day Registration Data */
+
+
+
+        if ($first_day_data_exist == 1){
+
+            if($request->get('reg_subject_1') != 0){
+                RegisterSubjects::where('account_id', $account_details[0]->id)->update(['reg_subject_1' => $request->get('reg_subject_1')]);
+            }else{
+                RegisterSubjects::where('account_id', $account_details[0]->id)->delete();
+            }
+
+
+        }else if($first_day_data_exist == 0 && $request->get('reg_subject_1')){
+
+            $input = new RegisterSubjects();
+
+            $input->account_id = $account_details[0]->id; // 'Cause the variable account_id is a array.
+            $input->reg_subject_1 = $request->get('reg_subject_1');
+            $input->already_pick_1 = 0;
+            $input->ps = 'NORMAL';
+            $input->priority = 0;
+            $input->save();
+
+        }
+
+
+
+        /* If User Doesn't Select the Subject, the Data Would Not Be Saved */
+        /* If User Has Filled the Form Before, We Will Update the Previous Data */
+        /* Second Day Registration Data */
+
+
+
+        if ($second_day_data_exist == 1){
+
+            if($request->get('reg_subject_2') != 0){
+                RegisterSubjects2::where('account_id', $account_details[0]->id)->update(['reg_subject_2' => $request->get('reg_subject_2')]);
+            }else{
+                RegisterSubjects2::where('account_id', $account_details[0]->id)->delete();
+            }
+
+        }else if($second_day_data_exist == 0 && $request->get('reg_subject_2')){
+
+            $input = new RegisterSubjects2();
+
+            $input->account_id = $account_details[0]->id; // 'Cause the variable account_id is a array.
+            $input->reg_subject_2 = $request->get('reg_subject_2');
+            $input->already_pick_2 = 0;
+            $input->ps = 'NORMAL';
+            $input->priority = 0;
+            $input->save();
+
+        }
+
 
         return redirect()->intended('/general');
 

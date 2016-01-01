@@ -13,12 +13,12 @@
                                 @if ($errors->has('reg_subject_1')) <h4 class="text-danger"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>{{ $errors->first('reg_subject_1') }}</h4> @endif
 
                                 {!! Form::label('reg_subject_1', '不報名') !!}
-                                {!! Form::radio('reg_subject_1', '0') !!}
+                                {!! Form::radio('reg_subject_1', '0', ['select' => 'true']) !!}
                                 <br>
                                 {!! Form::label('reg_subject_1', '國中國文') !!}
                                 {!! Form::radio('reg_subject_1', '10001') !!}
                                 <br>
-                                {!! Form::label('reg_subject_1', '國小國文') !!}
+                                {!! Form::label('reg_subject_1', '國小國語') !!}
                                 {!! Form::radio('reg_subject_1', '10002') !!}
                                 <br>
                                 {!! Form::label('reg_subject_1', '國中自然') !!}
@@ -51,7 +51,8 @@
                                 @if ($errors->has('reg_subject_2')) <h4 class="text-danger"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>{{ $errors->first('reg_subject_2') }}</h4> @endif
 
                                 {!! Form::label('reg_subject_2', '不報名') !!}
-                                {!! Form::radio('reg_subject_2', '0') !!}
+                                {!! Form::radio('reg_subject_2', '0', true) !!}
+
                                 <br>
                                 {!! Form::label('reg_subject_2', '國中數學') !!}
                                 {!! Form::radio('reg_subject_2', '20001') !!}

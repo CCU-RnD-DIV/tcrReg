@@ -42,7 +42,7 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             {!! Form::label('email','E-Mail帳號：') !!}
-                            {{{ isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email }}}
+                            {{ isset(Auth::user()->name) ? Auth::user()->name : Auth::user()->email }}
                         </div>
                         <div class="form-group">
                             {!! Form::label('password', '修改密碼') !!}
