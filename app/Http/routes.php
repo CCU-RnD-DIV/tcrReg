@@ -4,7 +4,7 @@
 
 use Illuminate\Routing\Router;
 
-$router->get('/', function () {return view('index');});
+$router->get('/', 'IndexController@Index');
 
 
 
