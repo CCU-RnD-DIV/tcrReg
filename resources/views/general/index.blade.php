@@ -11,7 +11,7 @@
                     </h3>
                 </div>
                 <div class="panel panel-body">
-                    <a href="#" class="btn btn-warning">修改資料</a>
+                    <a href="/general/update" class="btn btn-warning">修改資料</a>
                     <br><br>
                     <a href="/general/select-subject" class="btn btn-success">修改報名科目</a>
                     <br><br>
