@@ -11,10 +11,11 @@
                     </h3>
                 </div>
                 <div class="panel panel-body">
-                    <!--<a href="/general/update" class="btn btn-success">修改資料</a>-->
-                    修改資料功能修改中
+                    <a href="#" class="btn btn-warning">修改資料</a>
                     <br><br>
-                    <a href="/general/select-subject" class="btn btn-danger">修改報名科目</a>
+                    <a href="/general/select-subject" class="btn btn-success">修改報名科目</a>
+                    <br><br>
+                    <a href="#" class="btn btn-success">修改葷素資訊</a>
                     <br><br>
                     <a href="/logout" class="btn btn-danger">登出系統</a>
                 </div>

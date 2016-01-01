@@ -46,7 +46,7 @@ $router->group(['middleware' => ['web']], function (Router $router) {
     $router->group(['prefix' => 'general', 'middleware' => 'auth'], function() {
         Route::get('/', 'AdminController@General');
 
-        Route::get('/update', 'AdminController@Update');
+        Route::get('/update', 'AdminController@UpdateView');
         Route::post('/update', 'AdminController@Update');
 
         Route::get('/select-subject', 'RegisterController@selectSubject');
