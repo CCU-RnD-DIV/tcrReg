@@ -19,7 +19,7 @@
             <div style="padding-top: 100px;padding-bottom: 80px;"></div>
         </div>
 
-        <h4 class="text-danger text-center">若有相關帳戶問題請連絡 resttc@ccu.edu.tw</h4>
+        <div class="alert alert-info text-center" role="alert"><strong><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> 若有相關帳戶問題請連絡</strong> resttc@ccu.edu.tw</div>
 
         @yield('content')
 

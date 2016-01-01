@@ -9,6 +9,7 @@ use Hash;
 use Request;
 use Carbon\Carbon;
 
+use App\Data\School;
 use App\Register\SubjectList;
 use App\Register\RegisterUsers;
 use App\Register\RegisterDetails;
@@ -25,7 +26,9 @@ class RegisterController extends Controller
 
     public function reg (){
 
-        return view('register.register');
+        $school_country = School::groupBy('country')->get();
+
+        return view('register.register', compact('school_country'));
 
 
     }
@@ -49,7 +52,7 @@ class RegisterController extends Controller
         $input->account_id = $account_details[0]->id; // 'Cause the variable account_id is a array.
         $input->name = $request->get('name');
         $input->gender = $request->get('gender');
-        $input->school = 1;
+        $input->school = $request->get('school');
         $input->phone = $request->get('phone');
         $input->save();
 

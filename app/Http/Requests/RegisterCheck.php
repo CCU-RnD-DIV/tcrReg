@@ -31,7 +31,7 @@ class RegisterCheck extends Request
             'pid' => 'required',
             'name' => 'required',
             'gender' => 'required',
-            //'school' =>'required',
+            'school' =>'required',
             'phone' => 'required|regex:/^09\d{2}?\d{3}?\d{3}$/',
             'agree' => 'required'
         ];
@@ -49,7 +49,7 @@ class RegisterCheck extends Request
             'pid.required' => '請填寫您的身分證字號',
             'name.required' => '請填寫您的真實姓名',
             'gender.required' => '請選擇您的性別',
-            //'school.required' => '請選擇您的學校',
+            'school.required' => '請選擇您服務的學校',
             'phone.required' => '請填寫您的手機號碼',
             'phone.regex' => '請填寫符合格式的手機號碼',
             'agree.required' => '您必須同意本網站之隱私權規則才能繼續註冊'

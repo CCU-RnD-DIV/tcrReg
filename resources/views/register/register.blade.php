@@ -2,6 +2,26 @@
 
 @section('content')
 
+    <script>
+        $(document).ready(function(){
+            $('#city').change(function(){
+                var country = $('#city').val();
+                if(country != 0)
+                {
+                    $.ajax({
+                        type:'post',
+                        url:'get-school',
+                        data:{id:country},
+                        cache:false,
+                        success: function(returndata){
+                            $('#school').html(returndata);
+                        }
+                    });
+                }
+            })
+        })
+    </script>
+
     {!! Form::open(['url'=> 'register']) !!}
         <div class="row">
             <div class="form-group">
@@ -55,6 +75,20 @@
                                 {!! Form::label('tc_class', '其他') !!}
                                 {!! Form::radio('tc_class', '4') !!}
                                 @if ($errors->has('tc_class')) <h5 class="text-danger">{{ $errors->first('tc_class') }}</h5> @endif
+                            </div>
+                            <div class="form-group">
+                                <label>所屬縣市及服務單位</label>
+                                <select id="city" name="city" class="form-control" required>
+                                    <option value="">請選擇所在縣市</option>
+                                    @foreach($school_country as $school_countries)
+                                    <option value="{{$school_countries->country}}" name="{{$school_countries->country}}>">{{$school_countries->country}}</option>
+                                    @endforeach
+                                </select>
+                                <select id="school" name="school" class="form-control" required>
+                                    <option value="">請先行選擇縣市</option>
+                                    <option></option>
+                                </select>
+                                @if ($errors->has('school')) <h5 class="text-danger">{{ $errors->first('school') }}</h5> @endif
                             </div>
                             <div class="form-group">
                                 {!! Form::label('phone', '手機號碼（純數字無連字符，如0912345678）') !!}

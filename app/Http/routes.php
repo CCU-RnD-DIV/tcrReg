@@ -8,8 +8,10 @@ $router->get('/', 'IndexController@Index');
 
 
 
-/* GENERAL_MEMBER -- Start of General Member System Method */
+/* Obtain Json Data */
 
+$router->post('get-school', ['uses' => 'DataController@getSchool']);
+$router->get('get-junior-school', 'DataController@getJuniorSchool');
 
 
 /*
@@ -49,6 +51,8 @@ $router->group(['middleware' => ['web']], function (Router $router) {
     $router->get('reset-verify', 'LoginController@resetVerifyView');
     $router->post('reset-verify', 'LoginController@resetVerify');
 
+    /* Under Auth Protection */
+
     $router->group(['prefix' => 'general', 'middleware' => 'auth'], function() {
         Route::get('/', 'AdminController@General');
 
@@ -63,6 +67,8 @@ $router->group(['middleware' => ['web']], function (Router $router) {
     });
 
     $router->get('logout', 'LoginController@logout');
+
+
 
 
 });
