@@ -86,7 +86,7 @@
                 </div>
             </div>
         </div>
-
+    {{ csrf_field() }}
     {!! Form::close() !!}
 
     @stop
