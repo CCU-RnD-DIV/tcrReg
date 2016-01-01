@@ -9,6 +9,7 @@ use Hash;
 use Request;
 use Carbon\Carbon;
 
+use App\Register\SubjectList;
 use App\Register\RegisterUsers;
 use App\Register\RegisterDetails;
 use App\Register\RegisterSubjects;
@@ -110,11 +111,19 @@ class RegisterController extends Controller
 
         $user_details = RegisterDetails::where('account_id', $user_data[0]->id)->get();
 
-        $user_reg_subject_1 = RegisterSubjects::where('account_id', $user_data[0]->id)->get();
+        $user_reg_subject_1 = RegisterSubjects::where('account_id', $user_data[0]->id)
+            ->get();
 
-        $user_reg_subject_2 = RegisterSubjects2::where('account_id', $user_data[0]->id)->get();
+        $user_reg_subject_1_displayName = SubjectList::where('subject_id', isset($user_reg_subject_1[0]) ? $user_reg_subject_1[0]->reg_subject_1 : 0)
+            ->get();
 
-        return view('general.select-subject', compact('user_details', 'user_data', 'user_reg_subject_1', 'user_reg_subject_2'));
+        $user_reg_subject_2 = RegisterSubjects2::where('account_id', $user_data[0]->id)
+            ->get();
+
+        $user_reg_subject_2_displayName = SubjectList::where('subject_id', isset($user_reg_subject_2[0]) ? $user_reg_subject_2[0]->reg_subject_2 : 0)
+            ->get();
+
+        return view('general.select-subject', compact('user_details', 'user_data', 'user_reg_subject_1', 'user_reg_subject_2', 'user_reg_subject_1_displayName', 'user_reg_subject_2_displayName'));
 
     }
 
