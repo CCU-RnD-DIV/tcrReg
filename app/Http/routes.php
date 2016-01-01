@@ -49,6 +49,9 @@ $router->group(['middleware' => ['web']], function (Router $router) {
         Route::get('/update', 'AdminController@UpdateView');
         Route::post('/update', 'AdminController@Update');
 
+        Route::get('/select-habits', 'RegisterController@selectHabits');
+        Route::post('/select-habits', 'RegisterController@selectHabitsUpdate');
+
         Route::get('/select-subject', 'RegisterController@selectSubject');
         Route::post('/select-subject', 'RegisterController@selectSubjectUpdate');
     });

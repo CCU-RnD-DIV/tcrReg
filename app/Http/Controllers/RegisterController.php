@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use App\Register\SubjectList;
 use App\Register\RegisterUsers;
 use App\Register\RegisterDetails;
+use App\Register\RegisterHabits;
 use App\Register\RegisterSubjects;
 use App\Register\RegisterSubjects2;
 use App\User\UserDetails;
@@ -188,6 +189,60 @@ class RegisterController extends Controller
             $input->already_pick_2 = 0;
             $input->ps = 'NORMAL';
             $input->priority = 0;
+            $input->save();
+
+        }
+
+        $user_habits_exist = RegisterHabits::where('account_id', $account_details[0]->id)->count();
+
+        if($user_habits_exist){
+            return redirect()->intended('/general');
+        }else{
+            return redirect()->intended('/general/select-habits');
+        }
+
+
+    }
+
+    public function selectHabits (){
+
+        $account_details = RegisterUsers::where('email', Auth::user()->email)->get();
+
+        $user_habits = RegisterHabits::where('account_id', $account_details[0]->id)->get();
+
+        if(isset($user_habits[0])){
+            $convert_meat_veg_displayName = ($user_habits[0]->meat_veg) ? '葷食' : '素食' ; /* meat_veg = 1 : Meat ; = 0 : Veg */
+        }else{
+            $convert_meat_veg_displayName = '尚未選擇';
+        }
+
+
+        return view('general.select-habits', compact('user_habits', 'user_data', 'convert_meat_veg_displayName'));
+
+    }
+
+    public function selectHabitsUpdate(Requests\HabitCheck $request){
+
+        $account_details = RegisterUsers::where('email', Auth::user()->email)->get();
+
+        $habit_exist = RegisterHabits::where('account_id', $account_details[0]->id)->count();
+
+        /* If User Doesn't Select the Subject, the Data Would Not Be Saved */
+        /* If User Has Filled the Form Before, We Will Update the Previous Data */
+        /* First Day Registration Data */
+
+
+
+        if ($habit_exist == 1){
+
+            RegisterHabits::where('account_id', $account_details[0]->id)->update(['meat_veg' => $request->get('meat_veg')]);
+
+        }else if($habit_exist == 0){
+
+            $input = new RegisterHabits();
+
+            $input->account_id = $account_details[0]->id; // 'Cause the variable account_id is a array.
+            $input->meat_veg = $request->get('meat_veg');
             $input->save();
 
         }

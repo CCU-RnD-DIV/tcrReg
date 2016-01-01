@@ -34,7 +34,7 @@
                         <br><br>
                         <a href="/general/select-subject" class="btn btn-success">修改報名科目</a>
                         <br><br>
-                        <a href="#" class="btn btn-success">修改葷素資訊</a>
+                        <a href="/general/select-habits" class="btn btn-success">修改葷素資訊</a>
                         <br><br>
                         <a href="/logout" class="btn btn-danger">登出系統</a>
                     </div>
