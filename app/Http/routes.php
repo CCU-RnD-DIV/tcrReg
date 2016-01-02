@@ -1,33 +1,17 @@
 <?php
 
 /** @var Router $router */
-;
+
 use Illuminate\Routing\Router;
-use App\Register\RegisterUsers;
 
 $router->get('/', 'IndexController@Index');
-
-
 
 /* Obtain Json Data */
 
 $router->post('get-school', ['uses' => 'DataController@getSchool']);
 $router->get('get-junior-school', 'DataController@getJuniorSchool');
 
-
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| This route group applies the "web" middleware group to every route
-| it contains. The "web" middleware group is defined in your HTTP
-| kernel and includes session state, CSRF protection, and more.
-|
-*/
-
 $router->group(['middleware' => ['web']], function (Router $router) {
-
     /* REG_PAGE -- Start of Registering Pages */
 
     $router->get('register', 'RegisterController@register');
@@ -37,8 +21,6 @@ $router->group(['middleware' => ['web']], function (Router $router) {
 
     $router->get('verify', 'RegisterController@verify');
     $router->post('verify', 'RegisterController@verifyCheck');
-
-
 
     /* LOGIN_PAGE -- Start of Login Purpose Method */
 
@@ -56,7 +38,8 @@ $router->group(['middleware' => ['web']], function (Router $router) {
 
     /* Under Auth Protection */
 
-    $router->group(['prefix' => 'general', 'middleware' => 'auth'], function() {
+<<<<<<< HEAD
+    $router->group(['prefix' => 'general', 'middleware' => 'authGeneral'], function() {
         Route::get('/', 'AdminController@General');
 
         Route::get('/update', 'AdminController@UpdateView');
@@ -65,27 +48,39 @@ $router->group(['middleware' => ['web']], function (Router $router) {
         Route::get('/select-habits', 'RegisterController@selectHabits');
         Route::post('/select-habits', 'RegisterController@selectHabitsUpdate');
 
+        Route::get('/select-traffic', 'RegisterController@selectTraffic');
+        Route::post('/select-traffic', 'RegisterController@selectTrafficUpdate');
+
         Route::get('/select-subject', 'RegisterController@selectSubject');
         Route::post('/select-subject', 'RegisterController@selectSubjectUpdate');
+=======
+    $router->group(['prefix' => 'general', 'middleware' => 'auth'], function(Router $router) {
+        $router->get('/', 'AdminController@General');
 
+        $router->get('/update', 'AdminController@UpdateView');
+        $router->post('/update', 'AdminController@Update');
+>>>>>>> origin/master
 
+        $router->get('/select-habits', 'RegisterController@selectHabits');
+        $router->post('/select-habits', 'RegisterController@selectHabitsUpdate');
+
+        $router->get('/select-subject', 'RegisterController@selectSubject');
+        $router->post('/select-subject', 'RegisterController@selectSubjectUpdate');
     });
 
+<<<<<<< HEAD
     $router->group(['prefix' => 'console', 'middleware' => 'authConsole'], function() {
 
+        Route::get('/', 'AdminController@Console');
 
-            Route::get('/', 'AdminController@Console');
+        Route::get('/system-config', 'AdminController@SystemConfigView');
+        Route::post('/system-config', 'AdminController@SystemConfigUpdate');
 
-
+=======
+    $router->group(['prefix' => 'console', 'middleware' => 'authConsole'], function(Router $router) {
+        $router->get('/', 'AdminController@Console');
+>>>>>>> origin/master
     });
 
-
-
     $router->get('logout', 'LoginController@logout');
-
-
-
-
 });
-
-

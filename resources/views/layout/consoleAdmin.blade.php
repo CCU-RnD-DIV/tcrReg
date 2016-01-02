@@ -9,7 +9,7 @@
                 <ul class="nav nav-pills pull-right">
                     <li role="presentation"><a href="http://dream.k12cc.tw">研習營首頁</a></li>
                     <li role="presentation"><a href="/">報名首頁</a></li>
-                    <li role="presentation"><a href="/general">{{isset(Auth::user()->email) ? Auth::user()->email : '報名管理'}}</a></li>
+                    <li role="presentation"><a href="/console">{{isset(Auth::user()->email) ? Auth::user()->email : '報名管理'}}</a></li>
                 </ul>
             </nav>
             <h3 class="text-muted"><a href="index.php">105偏鄉教師寒假教學專業成長研習 線上報名系統</a></h3>
@@ -28,12 +28,34 @@
             </span>
         </div>
 
-        @yield('content')
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="panel panel-info">
+                    <div class="panel panel-heading">
+                        <h3 class="panel-title">
+                            <span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span> 功能表
+                        </h3>
+                    </div>
+                    <div class="panel panel-body">
+                        <a href="/general/select-subject" class="btn btn-success">報名查詢</a>
+                        <br><br>
+                        <a href="/general/select-habits" class="btn btn-success">保障名額報名狀況</a>
+                        <br><br>
+                        <a href="/console/system-config" class="btn btn-warning">修改系統設定</a>
+                        <br><br>
+                        <a href="/logout" class="btn btn-danger">登出系統</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                @yield('right-content')
+            </div>
+
+        </div>
+
 
     </div>
 
     @yield('footer')
 
 @stop
-
-

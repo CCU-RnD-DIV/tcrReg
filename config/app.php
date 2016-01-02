@@ -161,6 +161,7 @@ return [
         /*
          * Package Service Providers
          */
+        Bepsvpt\LaravelSecurityHeader\SecurityHeaderServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
 
     ],

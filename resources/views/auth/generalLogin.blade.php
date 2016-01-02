@@ -26,13 +26,14 @@
                 </div>
             @endif
             <div class="form-group text-center">
-                <h5 class="text-muted">您忘記密碼嗎？<a href="reset-password">按此重設</a> </h5>
-                <h5 class="text-muted">還沒有帳號嗎？<a href="register">按此註冊</a></h5>
+                <h4 class="text-muted">您忘記密碼嗎？<a href="reset-password">按此重設</a> </h4>
+                <h4 class="text-muted">還沒有帳號嗎？<a href="register">按此註冊</a></h4>
             </div>
 
         </div>
         <div class="col-lg-4"></div>
     </div>
+    {{ csrf_field() }}
     {!! Form::close() !!}
 
     @stop

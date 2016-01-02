@@ -14,6 +14,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
+        \Bepsvpt\LaravelSecurityHeader\SecurityHeaderMiddleware::class,
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
     ];
 
@@ -45,7 +46,11 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
+<<<<<<< HEAD
+        'authGeneral' => \App\Http\Middleware\GeneralAuthorization::class,
         'authConsole' => \App\Http\Middleware\ConsoleAuthorization::class,
+=======
+>>>>>>> origin/master
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
