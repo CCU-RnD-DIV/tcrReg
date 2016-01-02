@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Data\School;
 use Auth;
 use Hash;
 use App\User\UserDetails;
@@ -35,11 +36,13 @@ class AdminController extends Controller
         $user_reg_subject_2_displayName = SubjectList::where('subject_id', isset($user_reg_subject_2[0]) ? $user_reg_subject_2[0]->reg_subject_2 : 0)
             ->get();
 
+        $user_school_displayName = School::select('country','school_name')->where('school_code', $user_details[0]->school)->get();
+
         if(!isset($user_reg_subject_1[0]) && !isset($user_reg_subject_2[0])){
             return redirect()->intended('/general/select-subject');
         }
 
-        return view('general.index', compact('user_details', 'user_data', 'user_reg_subject_1', 'user_reg_subject_2', 'user_reg_subject_1_displayName', 'user_reg_subject_2_displayName'));
+        return view('general.index', compact('user_details', 'user_data', 'user_reg_subject_1', 'user_reg_subject_2', 'user_reg_subject_1_displayName', 'user_reg_subject_2_displayName', 'user_school_displayName'));
 
     }
 
@@ -69,5 +72,14 @@ class AdminController extends Controller
             ]);
 
         return redirect()->intended('/general');
+    }
+
+    public function Console (){
+
+
+
+        return view('console.index');
+
+
     }
 }

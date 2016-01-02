@@ -8,6 +8,9 @@ use Cache;
 use Carbon\Carbon;
 use App\Register\RegisterUsers;
 use App\Register\RegisterDetails;
+use App\Register\RegisterSubjects;
+use App\Register\RegisterSubjects2;
+use App\Register\SubjectList;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -28,32 +31,42 @@ class IndexController extends Controller
 
         }else{
             Cache::add('TimeControlling', Carbon::now(), $expiresAt);
-            $previous_renew_time = Cache::get('TimeControlling');
+            $diffMinutes = 0;
         }
 
-
-
-        if (Cache::has('primary_count')) {
-            if($diffMinutes >= 10){
-                Cache::put('primary_count', RegisterUsers::where('type', 'primary')->count(), $expiresAt);
+        $subject_list_1 = SubjectList::where('subject_id', '<', 20000)->get();
+        
+        for($i = 0; $i < 9; $i ++){
+            if(Cache::has($subject_list_1[$i]->subject_id)){
+                if($diffMinutes >= 10){
+                    Cache::put($subject_list_1[$i]->subject_id, RegisterSubjects::where('reg_subject_1', $subject_list_1[$i]->subject_id)->count(), $expiresAt);
+                }
+                $subject_count_1[$subject_list_1[$i]->subject_id] = Cache::get($subject_list_1[$i]->subject_id, '請重新整理一次');
+            }else{
+                Cache::add($subject_list_1[$i]->subject_id, RegisterSubjects::where('reg_subject_1', $subject_list_1[$i]->subject_id)->count(), $expiresAt);
+                $subject_count_1[$subject_list_1[$i]->subject_id] = Cache::get($subject_list_1[$i]->subject_id, '請重新整理一次');
             }
-            $primary_count = Cache::get('primary_count', '請重新整理一次');
-        }else{
-            Cache::add('primary_count', RegisterUsers::where('type', 'primary')->count(), $expiresAt);
         }
 
-        if (Cache::has('junior_count')) {
-            if($diffMinutes >= 10){
-                Cache::put('junior_count', RegisterUsers::where('type', 'junior')->count(), $expiresAt);
+        $subject_list_2 = SubjectList::where('subject_id', '>', 20000)->get();
+
+        for($i = 0; $i < 5; $i ++){
+            if(Cache::has($subject_list_2[$i]->subject_id)){
+                if($diffMinutes >= 10){
+                    Cache::put($subject_list_2[$i]->subject_id, RegisterSubjects2::where('reg_subject_2', $subject_list_2[$i]->subject_id)->count(), $expiresAt);
+                }
+                $subject_count_2[$subject_list_2[$i]->subject_id] = Cache::get($subject_list_2[$i]->subject_id, '請重新整理一次');
+            }else{
+                Cache::add($subject_list_2[$i]->subject_id, RegisterSubjects2::where('reg_subject_2', $subject_list_2[$i]->subject_id)->count(), $expiresAt);
+                $subject_count_2[$subject_list_2[$i]->subject_id] = Cache::get($subject_list_2[$i]->subject_id, '請重新整理一次');
             }
-            $junior_count = Cache::get('junior_count', '請重新整理一次');
-        }else{
-            Cache::add('junior_count', RegisterUsers::where('type', 'junior')->count(), $expiresAt);
         }
 
 
 
-        return view('index', compact('primary_count', 'junior_count'));
+
+
+        return view('index', compact('subject_list_1', 'subject_list_2', 'subject_count_1', 'subject_count_2'));
 
     }
 }

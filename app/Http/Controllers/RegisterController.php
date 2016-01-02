@@ -24,11 +24,18 @@ use App\Http\Controllers\Controller;
 class RegisterController extends Controller
 {
 
-    public function reg (){
+    public function register (){
 
         $school_country = School::groupBy('country')->get();
 
         return view('register.register', compact('school_country'));
+
+
+    }
+
+    public function privacy (){
+
+        return view('register.privacy');
 
 
     }

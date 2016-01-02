@@ -9,44 +9,55 @@
                 <td width="35%">
                     <h2 class="ui header">夢一舊學員、或已註冊者</h2>
                     <br>
-                    <p><a class="btn btn-lg btn-success" href="/general" role="button">登入</a></p>
+                    <p><a class="btn btn-lg btn-success" href="/general" role="button"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> 登入</a></p>
                 </td>
                 <td width="10%">  </td>
                 <td width="35%">
                     <h2 class="ui header">若您尚未註冊</h2>
                     <br>
-                    <p><a class="btn btn-lg btn-info" href="register" role="button">註冊</a></p>
+                    <p><a class="btn btn-lg btn-info" href="register" role="button"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> 註冊</a></p>
                 </td>
                 <td width="10%">  </td>
             </tr>
             <tr>
                 <td width="10%"></td>
                 <td width="35%">
-                    <div class="alert alert-warning text-left" role="alert">
+                    <div class="alert alert-warning" role="alert">
                         <strong>
                             1. 曾報名暑期夢一研習者：
                         </strong>
-                        請用當時註冊的E-Mail帳號登入
+                        <br>請用當時註冊的E-Mail帳號登入
                         <br><br>
                         <strong>
                             2. 若您已經完成註冊程序：
                         </strong>
-                        請持方才註冊的帳密由此登入
+                        <br>請持方才註冊的帳密由此登入
                     </div>
                 </td>
                 <td width="10%">  </td>
                 <td width="35%">
-                    <div class="alert alert-warning text-left" role="alert">
-                        <strong>
-                            1. 國小報名概況：
-                        </strong>
-                        {{isset($primary_count) ? $primary_count.' 人（十分鐘統計一次）' : '已更新數據，請重新整理'}}
-                        <br><br>
-                        <strong>
-                            2. 國中報名概況：
-                        </strong>
-                        {{isset($junior_count) ? $junior_count.' 人（十分鐘統計一次）' : '已更新數據，請重新整理'}}
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="alert alert-warning text-left" role="alert">
+                                <strong class="text-info"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 01/31 第一天</strong><br>
+                                @for($i = 0; $i < 9; $i ++)
+                                    <strong>{{$subject_list_1[$i]->subject_name}}：</strong>{{$subject_count_1[$subject_list_1[$i]->subject_id]}} 人<br>
+                                @endfor
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="alert alert-warning text-left" role="alert">
+                                <strong class="text-info"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 02/01 第二天</strong><br>
+                                @for($i = 0; $i < 5; $i ++)
+                                    <strong>{{$subject_list_2[$i]->subject_name}}：</strong>{{$subject_count_2[$subject_list_2[$i]->subject_id]}} 人<br>
+                                @endfor
+                                <br><br>
+                                <strong class="text-success"><span class="glyphicon glyphicon-time" aria-hidden="true"></span> 十分鐘更新一次</strong>
+                                <br><br>
+                            </div>
+                        </div>
                     </div>
+
                 </td>
                 <td width="10%">  </td>
             </tr>
@@ -73,4 +84,4 @@
 
     </div>
 
-    @stop
+@stop

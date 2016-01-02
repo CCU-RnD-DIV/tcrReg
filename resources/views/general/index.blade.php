@@ -24,7 +24,7 @@
                     </tr>
                     </tbody>
                 </table>
-                <br><br>
+                <br>
                 <table class="table table-hover table-bordered">
                     <thead>
                     <tr class="info">
@@ -43,7 +43,7 @@
                     </tr>
                     </tbody>
                 </table>
-                <br><br>
+                <br>
                 <table class="table table-hover table-bordered">
                     <thead>
                     <tr class="info">
@@ -53,12 +53,12 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td>--</td>
+                        <td>{{isset($user_school_displayName[0]) ? $user_school_displayName[0]->country.$user_school_displayName[0]->school_name: 'NO DATA'}}</td>
                         <td>專任老師</td>
                     </tr>
                     </tbody>
                 </table>
-                <br><br>
+                <br>
                 <table class="table table-hover table-bordered">
                     <thead>
                     <tr class="info">

@@ -34,10 +34,6 @@ class LoginController extends Controller {
 
         if (Auth::attempt(['email' => $request->get('email'), 'password' => $request->get('password')])){
 
-            //$user_reg_data = RegisterUsers::where('email', $request->get('email'))->get();
-
-            //$user_details = RegisterDetails::where('account_id', $user_reg_data[0]->id)->get();
-            //return view('general.index', compact('user_details', 'user_reg_data'));
             return redirect()->intended('general');
         }
         return view('auth.generalLogin');
@@ -46,6 +42,10 @@ class LoginController extends Controller {
 
     public function CheckConsoleLogin (Requests\LoginCheck $request){
 
+        if (Auth::attempt(['email' => $request->get('email'), 'password' => $request->get('password')])){
+
+            return redirect()->intended('console');
+        }
         return view('auth.consoleLogin');
 
     }
@@ -64,19 +64,22 @@ class LoginController extends Controller {
 
     public function resetGenerate (Requests\ResetCheck $request){
 
-        $user_data = RegisterUsers::where('email', $request->get('email'))->get();
+        $user_data = RegisterUsers::where('email', $request->get('email'))
+            ->where('pid', $request->get('pid'))
+            ->get();
 
         $rand = substr(md5(sha1(rand(100000,999999))),0,6);
 
         if (isset($user_data[0])){
 
             RegisterUsers::where('email', $request->get('email'))
+                ->where('pid', $request->get('pid'))
                 ->update(['verify_code' => $rand , 'reg_verify' => 0]);
 
 
         }else { /* The Verify Code Not Found */
 
-            return view('auth.reset-password')->with('alert_failed', true);
+            return view('auth.reset')->with('alert_failed', true);
 
         }
 
@@ -100,7 +103,7 @@ class LoginController extends Controller {
             ftp_put($conn_id,$date.$user_data[0]->email.".chk",public_path('msg_tmp/').$date.$user_data[0]->email.".chk", FTP_ASCII);
         }
 
-        return redirect('reset-verify');
+        return redirect('reset-verify')->with('alert_failed', true);
     }
 
     public function resetVerify (Requests\Verify $request){
@@ -120,7 +123,7 @@ class LoginController extends Controller {
 
         }else{ /* The Verify Code Not Found */
 
-            return view('auth.reset-verify')->with('alert_failed', true);
+            return view('auth.resetVerify')->with('alert_failed', true);
 
         }
 

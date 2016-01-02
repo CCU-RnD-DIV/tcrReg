@@ -1,8 +1,9 @@
 <?php
 
 /** @var Router $router */
-
+;
 use Illuminate\Routing\Router;
+use App\Register\RegisterUsers;
 
 $router->get('/', 'IndexController@Index');
 
@@ -29,8 +30,10 @@ $router->group(['middleware' => ['web']], function (Router $router) {
 
     /* REG_PAGE -- Start of Registering Pages */
 
-    $router->get('register', 'RegisterController@reg');
+    $router->get('register', 'RegisterController@register');
     $router->post('register', 'RegisterController@store');
+
+    $router->get('privacy', 'RegisterController@privacy');
 
     $router->get('verify', 'RegisterController@verify');
     $router->post('verify', 'RegisterController@verifyCheck');
@@ -64,7 +67,19 @@ $router->group(['middleware' => ['web']], function (Router $router) {
 
         Route::get('/select-subject', 'RegisterController@selectSubject');
         Route::post('/select-subject', 'RegisterController@selectSubjectUpdate');
+
+
     });
+
+    $router->group(['prefix' => 'console', 'middleware' => 'authConsole'], function() {
+
+
+            Route::get('/', 'AdminController@Console');
+
+
+    });
+
+
 
     $router->get('logout', 'LoginController@logout');
 

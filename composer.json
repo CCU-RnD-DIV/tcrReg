@@ -12,7 +12,8 @@
         "nesbot/carbon": "~1.21",
         "predis/predis": "~1.0",
         "barryvdh/laravel-debugbar": "^2.1",
-        "guzzlehttp/guzzle": "^6.1"
+        "guzzlehttp/guzzle": "^6.1",
+        "greggilbert/recaptcha": "^2.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "~2.1",
