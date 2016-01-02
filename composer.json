@@ -8,7 +8,7 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
         "laravelcollective/html": "~5.2",
-        "bepsvpt/laravel-security-header": "~1.1",
+        "bepsvpt/laravel-security-header": "^1.1",
         "doctrine/dbal": "~2.5",
         "greggilbert/recaptcha": "~2.0",
         "guzzlehttp/guzzle": "~6.1",

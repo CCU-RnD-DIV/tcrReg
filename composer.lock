@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5a013a527f44efcedfb356dcf3ad72da",
-    "content-hash": "ac106e66613f0d5373ea2b1b83e69786",
+    "hash": "de2d9380eb3b661ba9d301a3cd05653e",
+    "content-hash": "ea43a9a9acc5a16b36b5276b048b891a",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -63,16 +63,16 @@
         },
         {
             "name": "bepsvpt/laravel-security-header",
-            "version": "1.1.1",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/BePsvPT/laravel-security-header.git",
-                "reference": "da675f5841d0a69df1b2ad1aab537540bfedefa3"
+                "reference": "4bad6401f610698a3403444d9a3e8dc349ef6f6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BePsvPT/laravel-security-header/zipball/da675f5841d0a69df1b2ad1aab537540bfedefa3",
-                "reference": "da675f5841d0a69df1b2ad1aab537540bfedefa3",
+                "url": "https://api.github.com/repos/BePsvPT/laravel-security-header/zipball/4bad6401f610698a3403444d9a3e8dc349ef6f6a",
+                "reference": "4bad6401f610698a3403444d9a3e8dc349ef6f6a",
                 "shasum": ""
             },
             "require": {
@@ -98,11 +98,14 @@
             "description": "Append security headers to response for laravel framework.",
             "keywords": [
                 "header",
+                "hpkp",
+                "hsts",
+                "https",
                 "laravel",
                 "middleware",
                 "security"
             ],
-            "time": "2015-12-22 05:26:09"
+            "time": "2016-01-02 11:44:23"
         },
         {
             "name": "classpreloader/classpreloader",

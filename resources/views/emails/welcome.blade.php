@@ -40,10 +40,16 @@
 <body>
 <div class="container">
     <div class="content">
-        <div class="title">您好！</div>
-        <div class="title">您的驗證碼為</div>
+        <div class="title">夥伴您好！</div>
+        <div class="title">歡迎參加偏鄉教師專業成長研習</div>
+        <div class="title">請依簡訊內驗證碼，填入系統送出，始完成註冊。</div>
+        <div class="title">並填報名資訊，始完成報名。</div>
+        <div class="title"></div>
+        <div class="title">願初春時分邀請您蒞臨。</div>
+        <div class="title">以下為本次的驗證碼</div>
         <div class="title">{{$code}}</div>
         <div class="title">驗證網頁：<a href="https://cycwww.ccu.edu.tw/verify">https://cycwww.ccu.edu.tw/verify</a> </div>
+        <div class="title">中正師培</div>
     </div>
 </div>
 </body>

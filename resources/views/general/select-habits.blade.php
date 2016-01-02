@@ -5,7 +5,7 @@
     {!! Form::open(['url'=> '/general/select-habits']) !!}
     <div class="row">
         <div class="form-group">
-            <div class="col-lg-4">
+            <div class="col-lg-8">
                 <div class="panel panel-success">
                     <div class="panel-heading"><h4><strong>葷素調查</strong></h4></div>
                     <div class="panel-body">
@@ -22,29 +22,6 @@
                             <br>
                             {!! Form::label('meat_veg', '素食') !!}
                             {!! Form::radio('meat_veg', '0') !!}
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="panel panel-warning">
-                    <div class="panel-heading"><h4><strong>接駁調查</strong></h4></div>
-                    <div class="panel-body">
-                        <div class="form-group">
-
-                            @if ($errors->has('traffic')) <h4 class="text-danger"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>{{ $errors->first('traffic') }}</h4> @endif
-
-                            @if (isset($user_habits[0]))
-                                <label>您目前交通選擇為：</label>
-                                <input type="radio" id="traffic" name="traffic" value="" checked/>
-                            @endif
-                            <br>
-                            {!! Form::label('traffic', '是') !!}
-                            {!! Form::radio('traffic', '1') !!}
-                            <br>
-                            {!! Form::label('traffic', '否') !!}
-                            {!! Form::radio('traffic', '0') !!}
 
                         </div>
                     </div>
