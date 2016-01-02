@@ -38,22 +38,33 @@ $router->group(['middleware' => ['web']], function (Router $router) {
 
     /* Under Auth Protection */
 
-    $router->group(['prefix' => 'general', 'middleware' => 'auth'], function(Router $router) {
-        $router->get('/', 'AdminController@General');
 
-        $router->get('/update', 'AdminController@UpdateView');
-        $router->post('/update', 'AdminController@Update');
+    $router->group(['prefix' => 'general', 'middleware' => 'authGeneral'], function() {
+        Route::get('/', 'AdminController@General');
 
-        $router->get('/select-habits', 'RegisterController@selectHabits');
-        $router->post('/select-habits', 'RegisterController@selectHabitsUpdate');
+        Route::get('/update', 'AdminController@UpdateView');
+        Route::post('/update', 'AdminController@Update');
 
-        $router->get('/select-subject', 'RegisterController@selectSubject');
-        $router->post('/select-subject', 'RegisterController@selectSubjectUpdate');
+        Route::get('/select-habits', 'RegisterController@selectHabits');
+        Route::post('/select-habits', 'RegisterController@selectHabitsUpdate');
+
+        Route::get('/select-traffic', 'RegisterController@selectTraffic');
+        Route::post('/select-traffic', 'RegisterController@selectTrafficUpdate');
+
+        Route::get('/select-subject', 'RegisterController@selectSubject');
+        Route::post('/select-subject', 'RegisterController@selectSubjectUpdate');
     });
 
-    $router->group(['prefix' => 'console', 'middleware' => 'authConsole'], function(Router $router) {
-        $router->get('/', 'AdminController@Console');
+
+    $router->group(['prefix' => 'console', 'middleware' => 'authConsole'], function() {
+
+        Route::get('/', 'AdminController@Console');
+
+        Route::get('/system-config', 'AdminController@SystemConfigView');
+        Route::post('/system-config', 'AdminController@SystemConfigUpdate');
+
     });
+
 
     $router->get('logout', 'LoginController@logout');
 });

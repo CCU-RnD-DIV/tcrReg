@@ -19,8 +19,14 @@
             <div style="padding-top: 100px;padding-bottom: 80px;"></div>
         </div>
 
-        <div class="alert alert-info text-center" role="alert"><strong><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> 若有相關帳戶問題請連絡</strong> resttc@ccu.edu.tw</div>
-
+        <div class="alert alert-info" role="alert">
+            <span class="text-left"><strong><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> 若有相關帳戶問題請連絡</strong> resttc@ccu.edu.tw</span>
+            <span class="pull-right">
+                <strong>
+                    <a href="/assets/file/method.pdf"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 按此查看報名教學</a>
+                </strong>
+            </span>
+        </div>
         <div class="row">
             <div class="col-lg-3">
                 <div class="panel panel-info">
@@ -30,24 +36,17 @@
                         </h3>
                     </div>
                     <div class="panel panel-body">
-                        <a href="/general/update" class="btn btn-warning">修改資料</a>
+                        <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 於報名截止前皆可修改報名科目
+                        <br><br>
+                        <a href="/general/update" class="btn btn-warning">修改個人資料</a>
                         <br><br>
                         <a href="/general/select-subject" class="btn btn-success">修改報名科目</a>
                         <br><br>
                         <a href="/general/select-habits" class="btn btn-success">修改葷素資訊</a>
                         <br><br>
+                        <a href="/general/select-traffic" class="btn btn-success">修改交通資訊</a>
+                        <br><br>
                         <a href="/logout" class="btn btn-danger">登出系統</a>
-                    </div>
-                </div>
-                <div class="panel panel-warning">
-                    <div class="panel panel-heading">
-                        <h3 class="panel-title">
-                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> 注意事項
-                        </h3>
-                    </div>
-                    <div class="panel panel-body">
-                        <p>除 E-Mail 帳號不得修改外，</p>
-                        <p>其餘資料可在 <strong>2016-01-08 22:00:00</strong> 前修改。</p>
                     </div>
                 </div>
             </div>

@@ -4,14 +4,15 @@
 
     <script>
         $(document).ready(function(){
-            $('#city').change(function(){
+            $('#city,#type').change(function(){
                 var country = $('#city').val();
+                var type = $('#type').val();
                 if(country != 0)
                 {
                     $.ajax({
                         type:'post',
                         url:'get-school',
-                        data:{id:country},
+                        data:{id:country, type:type},
                         cache:false,
                         success: function(returndata){
                             $('#school').html(returndata);
@@ -86,6 +87,11 @@
                             <div class="form-group">
                                 <span class="glyphicon glyphicon-home text-muted" aria-hidden="true"></span>
                                 <label> 所屬縣市及服務單位</label>
+                                <select id="type" name="type" class="form-control" required>
+                                    <option value="">您是國小或是國中老師？</option>
+                                    <option value="primary" name="primary">國小教師</option>
+                                    <option value="junior" name="junior">國中教師</option>
+                                </select>
                                 <select id="city" name="city" class="form-control" required>
                                     <option value="">請選擇所在縣市</option>
                                     @foreach($school_country as $school_countries)
@@ -93,7 +99,7 @@
                                     @endforeach
                                 </select>
                                 <select id="school" name="school" class="form-control" required>
-                                    <option value="">請先行選擇縣市</option>
+                                    <option value="">請先行選擇身份別及縣市</option>
                                     <option></option>
                                 </select>
                                 @if ($errors->has('school')) <h5 class="text-danger">{{ $errors->first('school') }}</h5> @endif

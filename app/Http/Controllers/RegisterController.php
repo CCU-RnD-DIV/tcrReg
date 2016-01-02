@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Hash;
+use Mail;
 use Request;
 use Carbon\Carbon;
 
@@ -46,7 +47,7 @@ class RegisterController extends Controller
         $input->email = $request->get('email');
         $input->password = Hash::make($request->get('password'));
         $input->pid = $request->get('pid');
-        $input->type = 'primary';
+        $input->type = $request->get('type');;
         $input->verify_code = $rand = substr(md5(sha1( $request->get('email').$request->get('password'))),0,6);
         $input->reg_verify = 0;
         $input->reg_time = Carbon::now();
@@ -79,6 +80,17 @@ class RegisterController extends Controller
             ftp_put($conn_id,$date.$rand.".txt",public_path('msg_tmp/').$date.$rand.".txt", FTP_ASCII);
             ftp_put($conn_id,$date.$rand.".chk",public_path('msg_tmp/').$date.$rand.".chk", FTP_ASCII);
         }
+
+        $email = $request->get('email');
+        $name = $request->get('name');
+
+        /* Send the Mail to Users */
+
+        Mail::send('emails.welcome', ['code' => $rand], function($message) use ($email, $name)
+        {
+            $message->from('k12cc@ccu.edu.tw', '105偏鄉教師寒假教學專業成長研習');
+            $message->to($email, $name)->subject('【驗證通知信】105偏鄉教師寒假教學專業成長研習');
+        });
 
         return redirect('verify');
 
@@ -242,12 +254,6 @@ class RegisterController extends Controller
 
         $habit_exist = RegisterHabits::where('account_id', $account_details[0]->id)->count();
 
-        /* If User Doesn't Select the Subject, the Data Would Not Be Saved */
-        /* If User Has Filled the Form Before, We Will Update the Previous Data */
-        /* First Day Registration Data */
-
-
-
         if ($habit_exist == 1){
 
             RegisterHabits::where('account_id', $account_details[0]->id)
@@ -259,6 +265,52 @@ class RegisterController extends Controller
 
             $input->account_id = $account_details[0]->id; // 'Cause the variable account_id is a array.
             $input->meat_veg = $request->get('meat_veg');
+            $input->save();
+
+        }
+
+
+        return redirect()->intended('/general');
+
+    }
+
+    public function selectTraffic (){
+
+        $account_details = RegisterUsers::where('email', Auth::user()->email)->get();
+
+        $user_habits = RegisterHabits::where('account_id', $account_details[0]->id)->get();
+
+        if(isset($user_habits[0])){
+            $convert_meat_veg_displayName = ($user_habits[0]->meat_veg) ? '葷食' : '素食' ; /* meat_veg = 1 : Meat ; = 0 : Veg */
+            $convert_traffic_displayName = ($user_habits[0]->traffic) ? '是' : '否' ; /* traffic  = 1 : Yes ; = 0 : No */
+
+        }else{
+            $convert_meat_veg_displayName = '尚未選擇';
+            $convert_traffic_displayName = '尚未選擇';
+        }
+
+
+        return view('general.select-habits', compact('user_habits', 'user_data', 'convert_meat_veg_displayName', 'convert_traffic_displayName'));
+
+    }
+
+    public function selectTrafficUpdate(Requests\HabitCheck $request){
+
+        $account_details = RegisterUsers::where('email', Auth::user()->email)->get();
+
+        $habit_exist = RegisterHabits::where('account_id', $account_details[0]->id)->count();
+
+        if ($habit_exist == 1){
+
+            RegisterHabits::where('account_id', $account_details[0]->id)
+                ->update(['traffic' => $request->get('traffic')]);
+
+        }else if($habit_exist == 0){
+
+            $input = new RegisterHabits();
+
+            $input->account_id = $account_details[0]->id; // 'Cause the variable account_id is a array.
+            $input->traffic = $request->get('traffic');
             $input->save();
 
         }
