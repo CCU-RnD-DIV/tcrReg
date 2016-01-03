@@ -13,9 +13,13 @@
                 </td>
                 <td width="10%">  </td>
                 <td width="35%">
-                    <h2 class="ui header">若您尚未註冊</h2>
-                    <br>
-                    <p><a class="btn btn-lg btn-info" href="register" role="button"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> 註冊</a></p>
+                    @if($settings_value[0]->value <= \Carbon\Carbon::now() && $settings_value[1]->value >= \Carbon\Carbon::now())
+                        <h2 class="ui header">若您尚未註冊</h2>
+                        <br>
+                        <p><a class="btn btn-lg btn-info" href="register" role="button"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> 註冊</a></p>
+                    @else
+                        <h2 class="ui header"><span class="glyphicon glyphicon-exclamation-sign"></span> 非報名時段</h2>
+                    @endif
                 </td>
                 <td width="10%">  </td>
             </tr>

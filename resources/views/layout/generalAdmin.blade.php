@@ -10,6 +10,9 @@
                     <li role="presentation"><a href="http://dream.k12cc.tw">研習營首頁</a></li>
                     <li role="presentation"><a href="/">報名首頁</a></li>
                     <li role="presentation"><a href="/general">{{isset(Auth::user()->email) ? Auth::user()->email : '報名管理'}}</a></li>
+                    @if(isset(Auth::user()->email))
+                        <li role="presentation"><a href="/logout">登出</a></li>
+                    @endif
                 </ul>
             </nav>
             <h3 class="text-muted"><a href="index.php">105偏鄉教師寒假教學專業成長研習 線上報名系統</a></h3>
@@ -40,14 +43,14 @@
                         <br><br>
                         <a href="/general/update" class="btn btn-warning">修改個人資料</a>
                         @if ($settings_value[1]->value>\Carbon\Carbon::now())
-                        <br><br>
-                        <a href="/general/select-subject" class="btn btn-success">修改報名科目</a>
+                            <br><br>
+                            <a href="/general/select-subject" class="btn btn-success">修改報名科目</a>
                         @endif
                         <br><br>
                         <a href="/general/select-habits" class="btn btn-success">修改葷素資訊</a>
                         @if ($settings_value[2]->value<\Carbon\Carbon::now() && $settings_value[3]->value>\Carbon\Carbon::now())
-                        <br><br>
-                        <a href="/general/select-traffic" class="btn btn-success">修改交通資訊</a>
+                            <br><br>
+                            <a href="/general/select-traffic" class="btn btn-success">修改交通資訊</a>
                         @endif
                         <br><br>
                         <a href="/logout" class="btn btn-danger">登出系統</a>

@@ -66,9 +66,9 @@
                                 <span class="glyphicon glyphicon-certificate text-muted" aria-hidden="true"></span>
                                 {!! Form::label('gender', ' 性別') !!}
                                 {!! Form::label('gender', '男') !!}
-                                {!! Form::radio('gender', '0') !!}
-                                {!! Form::label('gender', '女') !!}
                                 {!! Form::radio('gender', '1') !!}
+                                {!! Form::label('gender', '女') !!}
+                                {!! Form::radio('gender', '0') !!}
                                 @if ($errors->has('gender')) <h5 class="text-danger">{{ $errors->first('gender') }}</h5> @endif
                             </div>
                             <div class="form-group">

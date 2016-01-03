@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Hamcrest\Core\Set;
 use Illuminate\Http\Request;
 
 use Cache;
@@ -11,12 +12,15 @@ use App\Register\RegisterDetails;
 use App\Register\RegisterSubjects;
 use App\Register\RegisterSubjects2;
 use App\Register\SubjectList;
+use App\Settings\Settings;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class IndexController extends Controller
 {
     public function Index (){
+
+        $settings_value = Settings::all();
 
         $expiresAt = Carbon::now()->addMinutes(10);
 
@@ -66,7 +70,7 @@ class IndexController extends Controller
 
 
 
-        return view('index', compact('subject_list_1', 'subject_list_2', 'subject_count_1', 'subject_count_2'));
+        return view('index', compact('subject_list_1', 'subject_list_2', 'subject_count_1', 'subject_count_2', 'settings_value'));
 
     }
 }

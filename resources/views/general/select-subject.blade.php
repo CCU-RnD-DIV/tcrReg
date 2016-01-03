@@ -20,7 +20,7 @@
                                 {!! Form::radio('reg_subject_1', '0') !!}
                             @else
                                 {!! Form::label('reg_subject_1', '不報名') !!}
-                                {!! Form::radio('reg_subject_1', '0') !!}
+                                {!! Form::radio('reg_subject_1', '0', true) !!}
                             @endif
                             <br>
                             {!! Form::label('reg_subject_1', '國中國文') !!}
@@ -69,7 +69,7 @@
                                 {!! Form::radio('reg_subject_2', '0') !!}
                             @else
                                 {!! Form::label('reg_subject_2', '不報名') !!}
-                                {!! Form::radio('reg_subject_2', '0') !!}
+                                {!! Form::radio('reg_subject_2', '0', true) !!}
                             @endif
 
 
@@ -101,7 +101,9 @@
                     <div class="panel-body">
                         <div class="form-group">
                             <h5 class="text-muted">＊請核對填寫是否有誤，若無誤請確認送出。</h5>
-                            <h5 class="text-danger">＊送出始完成整個報名程序。</h5>
+                            @if (!isset($user_reg_subject_1_displayName[0]))
+                                <h5 class="text-danger">＊送出始完成整個報名程序。</h5>
+                            @endif
                             {!! Form::submit('確認送出', ['class' => 'btn btn-primary form-control']) !!}
                         </div>
                     </div>

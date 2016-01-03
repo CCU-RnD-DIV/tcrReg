@@ -34,7 +34,9 @@
                     <div class="panel-body">
                         <div class="form-group">
                             <h5 class="text-muted">＊請核對填寫是否有誤，若無誤請確認送出。</h5>
-                            <h5 class="text-danger">＊送出始完成整個報名程序。</h5>
+                            @if (!isset($user_habits[0]))
+                                <h5 class="text-danger">＊送出始完成整個報名程序。</h5>
+                            @endif
                             {!! Form::submit('確認送出', ['class' => 'btn btn-primary form-control']) !!}
                         </div>
                     </div>

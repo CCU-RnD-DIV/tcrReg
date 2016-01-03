@@ -36,17 +36,23 @@ class LoginController extends Controller {
 
             return redirect()->intended('/general');
         }
-        return view('auth.generalLogin');
+
+        $loginFailed = true;
+
+        return view('auth.generalLogin', compact('loginFailed'));
 
     }
 
-    public function CheckConsoleLogin (Requests\LoginCheck $request){
+    public function CheckConsoleLogin (Requests\ConsoleLoginCheck $request){
 
-        if (Auth::attempt(['email' => $request->get('email'), 'password' => $request->get('password')])){
+        if (Auth::attempt(['email' => $request->get('account'), 'password' => $request->get('password')])){
 
             return redirect()->intended('/console');
         }
-        return view('auth.consoleLogin');
+
+        $loginFailed = true;
+
+        return view('auth.consoleLogin', compact('loginFailed'));
 
     }
 
@@ -89,7 +95,7 @@ class LoginController extends Controller {
         /* Send the SMS to Users */
         $date = date("YmdHis");
         $pwd_file = fopen(public_path('msg_tmp/').$date.$user_data[0]->email.".txt","a");
-        $content = "ccucc,".$user_details[0]->phone.",105偏鄉教師研習登入帳號：".$user_data[0]->email."；您的臨時密碼：".$rand.",";
+        $content = "ccucc,".$user_details[0]->phone.",105偏鄉教師研習登入帳號：".$user_data[0]->email."；您的臨時密碼：".$rand.",臨時密碼登入：https://cycwww.ccu.edu.tw/verify";
         $content = iconv('UTF-8','Big5',$content);
         fwrite($pwd_file, $content);
         fclose($pwd_file);
@@ -102,6 +108,17 @@ class LoginController extends Controller {
             ftp_put($conn_id,$date.$user_data[0]->email.".txt",public_path('msg_tmp/').$date.$user_data[0]->email.".txt", FTP_ASCII);
             ftp_put($conn_id,$date.$user_data[0]->email.".chk",public_path('msg_tmp/').$date.$user_data[0]->email.".chk", FTP_ASCII);
         }
+
+        $email = $request->get('email');
+        $name = $request->get('name');
+
+        /* Send the Mail to Users */
+
+        Mail::send('forget.welcome', ['code' => $rand], function($message) use ($email, $name)
+        {
+            $message->from('k12cc@ccu.edu.tw', '105偏鄉教師寒假教學專業成長研習');
+            $message->to($email, $name)->subject('【臨時密碼通知信】105偏鄉教師寒假教學專業成長研習');
+        });
 
         return redirect('reset-verify')->with('alert_failed', true);
     }

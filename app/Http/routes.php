@@ -11,6 +11,10 @@ $router->get('/', 'IndexController@Index');
 $router->post('get-school', ['uses' => 'DataController@getSchool']);
 $router->get('get-junior-school', 'DataController@getJuniorSchool');
 
+/* Dangerous Toolbox */
+
+$router->get('set-bcrypt', 'ToolController@setBcrypt');
+
 $router->group(['middleware' => ['web']], function (Router $router) {
     /* REG_PAGE -- Start of Registering Pages */
 
@@ -64,6 +68,7 @@ $router->group(['middleware' => ['web']], function (Router $router) {
         Route::post('/system-config', 'AdminController@SystemConfigUpdate');
 
         Route::get('/member-query', 'AdminController@MemberQuery');
+        Route::get('/old-member-query', 'AdminController@OldMemberQuery');
 
     });
 

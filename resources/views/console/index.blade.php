@@ -17,12 +17,12 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="alert alert-info text-center" role="alert">
-                            <strong class="text-info"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 總註冊人數</strong><br>
+                            <strong class="text-info"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 總註冊人數（含夢一）</strong><br>
                             <h1>{{$total_count}}</h1>
                         </div>
                         <div class="alert alert-info text-center" role="alert">
                             <strong class="text-info"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 保障名額報名人數</strong><br>
-                            <h1>{{$total_count}}</h1>
+                            <h1>無資料</h1>
                         </div>
                     </div>
                     <div class="col-lg-4">

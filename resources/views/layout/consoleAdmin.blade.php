@@ -10,6 +10,9 @@
                     <li role="presentation"><a href="http://dream.k12cc.tw">研習營首頁</a></li>
                     <li role="presentation"><a href="/">報名首頁</a></li>
                     <li role="presentation"><a href="/console">{{isset(Auth::user()->email) ? Auth::user()->email : '報名管理'}}</a></li>
+                    @if(isset(Auth::user()->email))
+                        <li role="presentation"><a href="/logout">登出</a></li>
+                    @endif
                 </ul>
             </nav>
             <h3 class="text-muted"><a href="index.php">105偏鄉教師寒假教學專業成長研習 線上報名系統</a></h3>
@@ -39,7 +42,7 @@
                     <div class="panel panel-body">
                         <a href="/console/member-query" class="btn btn-success">報名查詢</a>
                         <br><br>
-                        <a href="/general/select-habits" class="btn btn-success">保障名額報名狀況</a>
+                        <a href="#" class="btn btn-success">保障名額報名狀況</a>
                         <br><br>
                         <a href="/console/system-config" class="btn btn-warning">修改系統設定</a>
                         <br><br>

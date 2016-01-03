@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>【驗證通知信】105偏鄉教師寒假教學專業成長研習</title>
+    <title>【臨時密碼通知信】105偏鄉教師寒假教學專業成長研習</title>
 
     <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
@@ -41,14 +41,12 @@
 <div class="container">
     <div class="content">
         <div class="title">夥伴您好！</div>
-        <div class="title">歡迎參加偏鄉教師專業成長研習</div>
-        <div class="title">請依信件內驗證碼，填入系統送出，始完成註冊。</div>
-        <div class="title">並填報名資訊，始完成報名。</div>
+        <div class="title">您剛剛發出忘記密碼的要求</div>
+        <div class="title">請依信件內驗證碼，填入系統送出，即可臨時登入。</div>
         <div class="title"></div>
-        <div class="title">願初春時分邀請您蒞臨。</div>
         <div class="title">以下為本次的驗證碼</div>
         <div class="title">{{$code}}</div>
-        <div class="title">驗證網頁：<a href="https://cycwww.ccu.edu.tw/verify">https://cycwww.ccu.edu.tw/verify</a> </div>
+        <div class="title">臨時密碼登入：<a href="https://cycwww.ccu.edu.tw/reset-verify">https://cycwww.ccu.edu.tw/verify</a> </div>
         <div class="title">中正師培</div>
     </div>
 </div>
