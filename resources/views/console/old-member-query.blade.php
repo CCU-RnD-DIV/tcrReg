@@ -21,11 +21,11 @@
             @foreach($user_details as $users_details)
                 <tr>
                     <th scope="row">{{$users_details->id}}</th>
-                    <td class="name">{{$users_details->name}}</td>
-                    <td class="gender">{{($users_details->gender) ? '男' : '女'}}</td>
-                    <td class="email">{{$users_details->users->email}}</td>
-                    <td class="phone">{{$users_details->phone}}</td>
-                    <td class="school">{{$users_details->schools->school_name}}</td>
+                    <td class="name">{{$users_details->details->name}}</td>
+                    <td class="gender">{{($users_details->details->gender) ? '男' : '女'}}</td>
+                    <td class="email">{{$users_details->email}}</td>
+                    <td class="phone">{{$users_details->details->phone}}</td>
+                    <td class="school">{{$users_details->details->schools->school_name}}</td>
                     <td></td>
                 </tr>
             @endforeach

@@ -7,8 +7,11 @@ use App\Register\RegisterUsers;
 use App\Register\RegisterDetails;
 use Auth;
 use Hash;
+use Mail;
+use Cache;
 use App\Http\Requests;
 use App\Http\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -70,23 +73,41 @@ class LoginController extends Controller {
 
     public function resetGenerate (Requests\ResetCheck $request){
 
+        $expiresAt = Carbon::now()->addMinutes(10);
+
+        if(Cache::has($request->get('email').'SMSControl')){
+            $previous_renew_time = Cache::get($request->get('email').'SMSControl');
+
+            $diffMinutes = $previous_renew_time->diffInMinutes();
+
+            if($diffMinutes >= 10){
+                Cache::pull($request->get('email').'SMSControl');
+            }
+
+        }else{
+            Cache::add($request->get('email').'SMSControl', Carbon::now(), $expiresAt);
+            $diffMinutes = 0;
+        }
+
         $user_data = RegisterUsers::where('email', $request->get('email'))
             ->where('pid', $request->get('pid'))
             ->get();
 
         $rand = substr(md5(sha1(rand(100000,999999))),0,6);
 
-        if (isset($user_data[0])){
+        if (isset($user_data[0]) && !Cache::has($request->get('email').'SMSControl')){
 
             RegisterUsers::where('email', $request->get('email'))
                 ->where('pid', $request->get('pid'))
-                ->update(['verify_code' => $rand , 'reg_verify' => 0]);
+                ->update(['verify_code' => $rand , 'reg_verify' => 2]);
 
 
-        }else { /* The Verify Code Not Found */
+        }elseif(Cache::has($request->get('email').'SMSControl')) { /* The Verify Code Not Found */
 
+            return view('auth.reset')->with('SMS_failed', true);
+
+        }else{
             return view('auth.reset')->with('alert_failed', true);
-
         }
 
 
@@ -95,7 +116,7 @@ class LoginController extends Controller {
         /* Send the SMS to Users */
         $date = date("YmdHis");
         $pwd_file = fopen(public_path('msg_tmp/').$date.$user_data[0]->email.".txt","a");
-        $content = "ccucc,".$user_details[0]->phone.",105偏鄉教師研習登入帳號：".$user_data[0]->email."；您的臨時密碼：".$rand.",臨時密碼登入：https://cycwww.ccu.edu.tw/verify";
+        $content = "ccucc,".$user_details[0]->phone.",105偏鄉教師研習系統通知；臨時密碼為：".$rand."，登入請至：https://cycwww.ccu.edu.tw/reset-verify,";
         $content = iconv('UTF-8','Big5',$content);
         fwrite($pwd_file, $content);
         fclose($pwd_file);
@@ -114,7 +135,7 @@ class LoginController extends Controller {
 
         /* Send the Mail to Users */
 
-        Mail::send('forget.welcome', ['code' => $rand], function($message) use ($email, $name)
+        Mail::send('emails.forget', ['code' => $rand], function($message) use ($email, $name)
         {
             $message->from('k12cc@ccu.edu.tw', '105偏鄉教師寒假教學專業成長研習');
             $message->to($email, $name)->subject('【臨時密碼通知信】105偏鄉教師寒假教學專業成長研習');
@@ -125,12 +146,12 @@ class LoginController extends Controller {
 
     public function resetVerify (Requests\Verify $request){
 
-        if (RegisterUsers::where('verify_code', $request->get('verify'))->where('reg_verify', 0)->count()){
+        if (RegisterUsers::where('verify_code', $request->get('verify'))->where('reg_verify', 2)->count()){
 
             $account_details = RegisterUsers::where('verify_code', $request->get('verify'))->get();
 
             RegisterUsers::where('verify_code', $request->get('verify'))
-                ->where('reg_verify', 0)
+                ->where('reg_verify', 2)
                 ->update(['reg_verify' => 1]);
 
             if (Auth::loginUsingId( $account_details[0]->id )){

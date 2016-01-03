@@ -41,25 +41,29 @@
                 <td width="10%">  </td>
                 <td width="35%">
                     <div class="row">
-                        <div class="col-lg-6">
-                            <div class="alert alert-warning text-left" role="alert">
-                                <strong class="text-info"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 01/31 第一天</strong><br>
-                                @for($i = 0; $i < 9; $i ++)
-                                    <strong>{{$subject_list_1[$i]->subject_name}}：</strong>{{$subject_count_1[$subject_list_1[$i]->subject_id]}} 人<br>
-                                @endfor
+                        @if($settings_value[0]->value <= \Carbon\Carbon::now() && $settings_value[1]->value >= \Carbon\Carbon::now())
+                            <div class="col-lg-6">
+                                <div class="alert alert-warning text-left" role="alert">
+                                    <strong class="text-info"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 01/31 第一天</strong><br>
+                                    @for($i = 0; $i < 9; $i ++)
+                                        <strong>{{$subject_list_1[$i]->subject_name}}：</strong>{{$subject_count_1[$subject_list_1[$i]->subject_id]}} 人<br>
+                                    @endfor
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="alert alert-warning text-left" role="alert">
-                                <strong class="text-info"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 02/01 第二天</strong><br>
-                                @for($i = 0; $i < 5; $i ++)
-                                    <strong>{{$subject_list_2[$i]->subject_name}}：</strong>{{$subject_count_2[$subject_list_2[$i]->subject_id]}} 人<br>
-                                @endfor
-                                <br><br>
-                                <strong class="text-success"><span class="glyphicon glyphicon-time" aria-hidden="true"></span> 十分鐘更新一次</strong>
-                                <br><br>
+                            <div class="col-lg-6">
+                                <div class="alert alert-warning text-left" role="alert">
+                                    <strong class="text-info"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 02/01 第二天</strong><br>
+                                    @for($i = 0; $i < 5; $i ++)
+                                        <strong>{{$subject_list_2[$i]->subject_name}}：</strong>{{$subject_count_2[$subject_list_2[$i]->subject_id]}} 人<br>
+                                    @endfor
+                                    <br><br>
+                                    <strong class="text-success"><span class="glyphicon glyphicon-time" aria-hidden="true"></span> 十分鐘更新一次</strong>
+                                    <br><br>
+                                </div>
                             </div>
-                        </div>
+                            @else
+                            <h4 class="text-muted">請於正常時間內進行報名</h4>
+                        @endif
                     </div>
 
                 </td>

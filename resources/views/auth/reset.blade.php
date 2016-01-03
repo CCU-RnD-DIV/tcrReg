@@ -15,6 +15,7 @@
                     @if ($errors->has('email')) <h5 class="text-danger">{{ $errors->first('email') }}</h5> @endif
                     @if ($errors->has('pid')) <h5 class="text-danger">{{ $errors->first('pid') }}</h5> @endif
                     @if (isset($alert_failed)) <h5 class="text-danger">此帳號或身分證字號不存在</h5> @endif
+                    @if (isset($SMS_failed)) <h5 class="text-danger">本帳號請十分鐘後再試</h5> @endif
                 </div>
                 <div class="form-group">
                     {!! Form::submit('確認送出', ['class' => 'btn btn-primary']) !!}

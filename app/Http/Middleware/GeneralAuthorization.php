@@ -26,6 +26,22 @@ class GeneralAuthorization
 
             return redirect()->guest('generalLogin');
 
+        }elseif (Auth::user()->reg_verify == 0) {
+
+            /*
+             * If they haven't finished their Verification
+             */
+
+            return redirect()->guest('/verify');
+
+        }elseif (Auth::user()->reg_verify == 2) {
+
+            /*
+             * If they forgot their Password
+             */
+
+            return redirect()->guest('/reset-verify');
+
         }else{
 
             return $next($request);

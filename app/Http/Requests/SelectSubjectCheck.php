@@ -24,8 +24,8 @@ class SelectSubjectCheck extends Request
     public function rules()
     {
         return [
-            'reg_subject_1' => 'required|different:reg_subject_2',
-            'reg_subject_2' => 'required|different:reg_subject_1'
+            'reg_subject_1' => 'required|different:reg_subject_2|exists:tcr_subject,subject_id',
+            'reg_subject_2' => 'required|different:reg_subject_1|exists:tcr_subject,subject_id'
         ];
     }
 

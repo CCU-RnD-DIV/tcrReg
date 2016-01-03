@@ -24,6 +24,10 @@
                             <strong class="text-info"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 保障名額報名人數</strong><br>
                             <h1>無資料</h1>
                         </div>
+                        <div class="alert alert-info text-center" role="alert">
+                            <strong class="text-info"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 葷/素統計</strong><br>
+                            <h1>{{$meat_count."/".$veg_count}}</h1>
+                        </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="alert alert-warning text-left" role="alert">

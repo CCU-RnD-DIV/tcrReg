@@ -9,7 +9,7 @@
                 <ul class="nav nav-pills pull-right">
                     <li role="presentation"><a href="http://dream.k12cc.tw">研習營首頁</a></li>
                     <li role="presentation"><a href="/">報名首頁</a></li>
-                    <li role="presentation"><a href="/general">{{isset(Auth::user()->email) ? Auth::user()->email : '報名管理'}}</a></li>
+                    <li role="presentation"><a href="/console">{{isset(Auth::user()->email) ? Auth::user()->email : '報名管理'}}</a></li>
                     @if(isset(Auth::user()->email))
                         <li role="presentation"><a href="/logout">登出</a></li>
                     @endif

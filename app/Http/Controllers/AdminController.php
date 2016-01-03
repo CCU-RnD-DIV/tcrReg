@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Data\School;
+use App\Register\RegisterHabits;
 use Auth;
+use Carbon\Carbon;
 use Hash;
 use App\Settings\Settings;
 use App\Register\RegisterUsers;
@@ -56,11 +58,13 @@ class AdminController extends Controller
 
     public function UpdateView (){
 
+        $settings_value = Settings::all();
+
         $user_data = RegisterUsers::where('email', Auth::user()->email)->get();
 
         $user_details = RegisterDetails::where('account_id', $user_data[0]->id)->get();
 
-        return view('general.update', compact('user_details', 'user_data'));
+        return view('general.update', compact('user_details', 'user_data', 'settings_value'));
     }
 
     public function Update (Requests\UpdateCheck $request) {
@@ -111,11 +115,14 @@ class AdminController extends Controller
 
         }
 
+        $meat_count = RegisterHabits::where('meat_veg', 1)->count();
+        $veg_count = RegisterHabits::where('meat_veg', 0)->count();
+
         $total_count = RegisterUsers::where('type','<>','super')->count();
 
         $settings_value = Settings::all();
 
-        return view('console.index', compact('settings_value', 'subject_list_1', 'subject_list_2', 'subject_count_1', 'subject_count_2', 'total_count'));
+        return view('console.index', compact('settings_value', 'meat_count', 'veg_count', 'subject_list_1', 'subject_list_2', 'subject_count_1', 'subject_count_2', 'total_count'));
 
     }
 
@@ -143,9 +150,20 @@ class AdminController extends Controller
 
     public function MemberQuery (){
 
-        $user_details = RegisterDetails::all();
+        $reg_start = Settings::where('id', 1)->get();
+
+        $user_details = RegisterUsers::where('reg_time' , '>' , $reg_start[0]->value)->get();
 
         return view('console.member-query', compact('user_details'));
+
+    }
+
+    public function OldMemberQuery (){
+
+        $reg_start = Settings::where('id', 1)->get();
+        $user_details = RegisterUsers::where('reg_time' , '<' , $reg_start[0]->value)->get();
+
+        return view('console.old-member-query', compact('user_details'));
 
     }
 }

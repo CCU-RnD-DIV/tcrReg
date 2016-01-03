@@ -4,7 +4,7 @@
 
     <script>
         $(document).ready(function(){
-            $('#city,#type').change(function(){
+            $('#city,#type').click(function(){
                 var country = $('#city').val();
                 var type = $('#type').val();
                 if(country != 0)

@@ -15,7 +15,7 @@
                     @endif
                 </ul>
             </nav>
-            <h3 class="text-muted"><a href="index.php">105偏鄉教師寒假教學專業成長研習 線上報名系統</a></h3>
+            <h3 class="text-muted"><a href="/">105偏鄉教師寒假教學專業成長研習 線上報名系統</a></h3>
         </div>
 
         <div style="width: 100%; background-image: url('/assets/images/banner.png'); background-repeat: no-repeat; background-size: 100%;">
@@ -41,6 +41,8 @@
                     </div>
                     <div class="panel panel-body">
                         <a href="/console/member-query" class="btn btn-success">報名查詢</a>
+                        <br><br>
+                        <a href="/console/old-member-query" class="btn btn-success">夢一舊檔查詢</a>
                         <br><br>
                         <a href="#" class="btn btn-success">保障名額報名狀況</a>
                         <br><br>

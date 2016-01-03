@@ -46,7 +46,7 @@
         <div class="title"></div>
         <div class="title">以下為本次的驗證碼</div>
         <div class="title">{{$code}}</div>
-        <div class="title">臨時密碼登入：<a href="https://cycwww.ccu.edu.tw/reset-verify">https://cycwww.ccu.edu.tw/verify</a> </div>
+        <div class="title">臨時密碼登入：<a href="https://cycwww.ccu.edu.tw/reset-verify">https://cycwww.ccu.edu.tw/reset-verify</a> </div>
         <div class="title">中正師培</div>
     </div>
 </div>

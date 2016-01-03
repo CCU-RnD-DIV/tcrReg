@@ -67,7 +67,7 @@ class RegisterController extends Controller
         /* Send the SMS to Users */
         $date = date("YmdHis");
         $pwd_file = fopen(public_path('msg_tmp/').$date.$rand.".txt","a");
-        $content = "ccucc,".$request->get('phone').",".$request->get('name')."夥伴您好：請將驗證碼填入偏鄉教師研習系統送出，始完成註冊。並填報名資訊，始完成報名。本次驗證碼為：".$rand."願初春時分邀請您蒞臨！驗證網站為：https://cycwww.ccu.edu.tw/verify 中正師培,";
+        $content = "ccucc,".$request->get('phone').",夥伴您好：驗證碼：".$rand."請填入系統送出註冊並填報名資訊，始完成報名。驗證網站：https://goo.gl/kfvpCT,";
         $content = iconv('UTF-8','Big5',$content);
         fwrite($pwd_file, $content);
         fclose($pwd_file);

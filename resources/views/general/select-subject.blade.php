@@ -16,7 +16,7 @@
                                 <label>您目前報名科目為：{{$user_reg_subject_1_displayName[0]->subject_name}}</label>
                                 <input type="radio" id="reg_subject_1" name="reg_subject_1" value="{{$user_reg_subject_1_displayName[0]->subject_id}}" checked/>
                                 <br>
-                                {!! Form::label('reg_subject_1', '撤銷報名', ['class' => 'text-danger']) !!}
+                                {!! Form::label('reg_subject_1', '不報名', ['class' => 'text-danger']) !!}
                                 {!! Form::radio('reg_subject_1', '0') !!}
                             @else
                                 {!! Form::label('reg_subject_1', '不報名') !!}
@@ -65,7 +65,7 @@
                                 <label>您目前報名科目為：{{$user_reg_subject_2_displayName[0]->subject_name}}</label>
                                 <input type="radio" id="reg_subject_2" name="reg_subject_2" value="{{$user_reg_subject_2_displayName[0]->subject_id}}" checked/>
                                 <br>
-                                {!! Form::label('reg_subject_2', '撤銷報名', ['class' => 'text-danger']) !!}
+                                {!! Form::label('reg_subject_2', '不報名', ['class' => 'text-danger']) !!}
                                 {!! Form::radio('reg_subject_2', '0') !!}
                             @else
                                 {!! Form::label('reg_subject_2', '不報名') !!}

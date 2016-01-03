@@ -25,7 +25,7 @@ class HabitCheck extends Request
     {
 
         return [
-            'meat_veg' => 'required'
+            'meat_veg' => 'required|boolean'
         ];
     }
 
