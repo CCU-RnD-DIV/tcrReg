@@ -26,7 +26,8 @@ class ResetCheck extends Request
 
         return [
             'email' => 'required|email',
-            'pid' => 'required'
+            'pid' => 'required',
+            'g-recaptcha-response' => 'required|recaptcha',
         ];
     }
 
@@ -35,7 +36,9 @@ class ResetCheck extends Request
         return [
             'email.required' => '請填寫您的電子郵件帳號',
             'email.email' => '請填寫正確的E-Mail格式',
-            'pid.required' => '請填寫身分證字號'
+            'pid.required' => '請填寫身分證字號',
+            'g-recaptcha-response.required' => '您必須進行驗證才能繼續',
+            'g-recaptcha-response.recaptcha' => '您必須驗證成功才能繼續'
         ];
     }
 }

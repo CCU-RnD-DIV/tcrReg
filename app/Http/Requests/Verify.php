@@ -25,15 +25,18 @@ class Verify extends Request
     {
 
         return [
-            'verify' => 'required|min:6'
+            'verify' => 'required|min:6',
+            'g-recaptcha-response' => 'required|recaptcha',
         ];
     }
 
     public function messages()
     {
         return [
-            'verify.required' => '請填寫您收到的驗證碼',
-            'verify.min' => '驗證碼最少為六個字'
+            'verify.required' => '請填寫欄位',
+            'verify.min' => '欄位最少為六個字',
+            'g-recaptcha-response.required' => '您必須進行驗證才能繼續',
+            'g-recaptcha-response.recaptcha' => '您必須驗證成功才能繼續'
         ];
     }
 }

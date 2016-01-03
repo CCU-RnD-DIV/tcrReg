@@ -73,21 +73,7 @@ class LoginController extends Controller {
 
     public function resetGenerate (Requests\ResetCheck $request){
 
-        $expiresAt = Carbon::now()->addMinutes(10);
 
-        if(Cache::has($request->get('email').'SMSControl')){
-            $previous_renew_time = Cache::get($request->get('email').'SMSControl');
-
-            $diffMinutes = $previous_renew_time->diffInMinutes();
-
-            if($diffMinutes >= 10){
-                Cache::pull($request->get('email').'SMSControl');
-            }
-
-        }else{
-            Cache::add($request->get('email').'SMSControl', Carbon::now(), $expiresAt);
-            $diffMinutes = 0;
-        }
 
         $user_data = RegisterUsers::where('email', $request->get('email'))
             ->where('pid', $request->get('pid'))
@@ -95,16 +81,12 @@ class LoginController extends Controller {
 
         $rand = substr(md5(sha1(rand(100000,999999))),0,6);
 
-        if (isset($user_data[0]) && !Cache::has($request->get('email').'SMSControl')){
+        if (isset($user_data[0])){
 
             RegisterUsers::where('email', $request->get('email'))
                 ->where('pid', $request->get('pid'))
                 ->update(['verify_code' => $rand , 'reg_verify' => 2]);
 
-
-        }elseif(Cache::has($request->get('email').'SMSControl')) { /* The Verify Code Not Found */
-
-            return view('auth.reset')->with('SMS_failed', true);
 
         }else{
             return view('auth.reset')->with('alert_failed', true);
