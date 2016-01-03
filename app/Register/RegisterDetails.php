@@ -15,4 +15,16 @@ class RegisterDetails extends Model
         'school',
         'phone'
     ];
+
+    public function users()
+    {
+        return $this->belongsTo('App\Register\RegisterUsers', 'account_id');
+    }
+
+    public function schools()
+    {
+        return $this->hasOne('App\Data\School', 'school_code', 'school');
+    }
+
+
 }

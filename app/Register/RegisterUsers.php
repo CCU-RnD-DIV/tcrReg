@@ -17,4 +17,9 @@ class RegisterUsers extends Model
         'verify_code',
         'reg_time'
     ];
+
+    public function details()
+    {
+        return $this->hasOne('App\Register\RegisterDetails', 'account_id', 'id');
+    }
 }

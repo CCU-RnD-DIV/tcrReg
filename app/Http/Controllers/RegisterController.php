@@ -67,7 +67,7 @@ class RegisterController extends Controller
         /* Send the SMS to Users */
         $date = date("YmdHis");
         $pwd_file = fopen(public_path('msg_tmp/').$date.$rand.".txt","a");
-        $content = "ccucc,".$request->get('phone').",".$request->get('name')."夥伴您好：歡迎參加偏鄉教師專業成長研習，請依簡訊內驗證碼，填入系統送出，始完成註冊；並填報名資訊，始完成報名。本次驗證碼為：".$rand."願初春時分邀請您蒞臨! 驗證網站為：https://cycwww.ccu.edu.tw/verify 中正師培,";
+        $content = "ccucc,".$request->get('phone').",".$request->get('name')."夥伴您好：請將驗證碼填入偏鄉教師研習系統送出，始完成註冊。並填報名資訊，始完成報名。本次驗證碼為：".$rand."願初春時分邀請您蒞臨！驗證網站為：https://cycwww.ccu.edu.tw/verify 中正師培,";
         $content = iconv('UTF-8','Big5',$content);
         fwrite($pwd_file, $content);
         fclose($pwd_file);
@@ -236,15 +236,13 @@ class RegisterController extends Controller
 
         if(isset($user_habits[0])){
             $convert_meat_veg_displayName = ($user_habits[0]->meat_veg) ? '葷食' : '素食' ; /* meat_veg = 1 : Meat ; = 0 : Veg */
-            $convert_traffic_displayName = ($user_habits[0]->traffic) ? '是' : '否' ; /* traffic  = 1 : Yes ; = 0 : No */
 
         }else{
             $convert_meat_veg_displayName = '尚未選擇';
-            $convert_traffic_displayName = '尚未選擇';
         }
 
 
-        return view('general.select-habits', compact('user_habits', 'user_data', 'convert_meat_veg_displayName', 'convert_traffic_displayName'));
+        return view('general.select-habits', compact('user_habits', 'user_data', 'convert_meat_veg_displayName'));
 
     }
 
@@ -281,20 +279,28 @@ class RegisterController extends Controller
         $user_habits = RegisterHabits::where('account_id', $account_details[0]->id)->get();
 
         if(isset($user_habits[0])){
-            $convert_meat_veg_displayName = ($user_habits[0]->meat_veg) ? '葷食' : '素食' ; /* meat_veg = 1 : Meat ; = 0 : Veg */
             $convert_traffic_displayName = ($user_habits[0]->traffic) ? '是' : '否' ; /* traffic  = 1 : Yes ; = 0 : No */
 
+            if($user_habits[0]->traffic == 3){
+                $convert_traffic_displayName = '是，需於【台鐵嘉義站後站】搭乘接駁車';
+            }elseif($user_habits[0]->traffic == 2){
+                $convert_traffic_displayName = '是，需於【嘉義高鐵站二號出口處】搭乘接駁車';
+            }elseif($user_habits[0]->traffic == 1){
+                $convert_traffic_displayName = '否，我將自行開車前往中正大學';
+            }elseif($user_habits[0]->traffic == 0){
+                $convert_traffic_displayName = '否，我會自行抵達中正大學';
+            }
+
         }else{
-            $convert_meat_veg_displayName = '尚未選擇';
             $convert_traffic_displayName = '尚未選擇';
         }
 
 
-        return view('general.select-habits', compact('user_habits', 'user_data', 'convert_meat_veg_displayName', 'convert_traffic_displayName'));
+        return view('general.select-traffic', compact('user_habits', 'user_data', 'convert_traffic_displayName'));
 
     }
 
-    public function selectTrafficUpdate(Requests\HabitCheck $request){
+    public function selectTrafficUpdate(Requests\TrafficCheck $request){
 
         $account_details = RegisterUsers::where('email', Auth::user()->email)->get();
 

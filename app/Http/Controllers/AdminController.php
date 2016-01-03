@@ -91,7 +91,31 @@ class AdminController extends Controller
 
     public function Console (){
 
-        return view('console.index');
+        $subject_list_1 = SubjectList::where('subject_id', '<', 20000)->get();
+
+        for($i = 0; $i < 9; $i ++){
+
+            $subject_count_1[$subject_list_1[$i]->subject_id] = RegisterSubjects::where('reg_subject_1', $subject_list_1[$i]->subject_id)->count();
+
+            $subject_count_1[$subject_list_1[$i]->subject_id] = RegisterSubjects::where('reg_subject_1', $subject_list_1[$i]->subject_id)->count();
+
+        }
+
+        $subject_list_2 = SubjectList::where('subject_id', '>', 20000)->get();
+
+        for($i = 0; $i < 5; $i ++){
+
+            $subject_count_2[$subject_list_2[$i]->subject_id] = RegisterSubjects2::where('reg_subject_2', $subject_list_2[$i]->subject_id)->count();
+
+            $subject_count_2[$subject_list_2[$i]->subject_id] = RegisterSubjects2::where('reg_subject_2', $subject_list_2[$i]->subject_id)->count();
+
+        }
+
+        $total_count = RegisterUsers::where('type','<>','super')->count();
+
+        $settings_value = Settings::all();
+
+        return view('console.index', compact('settings_value', 'subject_list_1', 'subject_list_2', 'subject_count_1', 'subject_count_2', 'total_count'));
 
     }
 
@@ -105,9 +129,23 @@ class AdminController extends Controller
 
     }
 
-    public function SystemConfigUpdate (){
+    public function SystemConfigUpdate (Requests\SystemConfigCheck $request){
 
-        return view('console.system-config');
+        Settings::where('id', 1)->update(['value' => $request->get('start_reg')]);
+        Settings::where('id', 2)->update(['value' => $request->get('end_reg')]);
+        Settings::where('id', 3)->update(['value' => $request->get('start_survey')]);
+        Settings::where('id', 4)->update(['value' => $request->get('end_survey')]);
+        Settings::where('id', 5)->update(['value' => $request->get('final_out')]);
+
+        return redirect()->intended('/console');
+
+    }
+
+    public function MemberQuery (){
+
+        $user_details = RegisterDetails::all();
+
+        return view('console.member-query', compact('user_details'));
 
     }
 }

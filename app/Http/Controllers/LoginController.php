@@ -34,7 +34,7 @@ class LoginController extends Controller {
 
         if (Auth::attempt(['email' => $request->get('email'), 'password' => $request->get('password')])){
 
-            return redirect()->intended('general');
+            return redirect()->intended('/general');
         }
         return view('auth.generalLogin');
 
@@ -44,7 +44,7 @@ class LoginController extends Controller {
 
         if (Auth::attempt(['email' => $request->get('email'), 'password' => $request->get('password')])){
 
-            return redirect()->intended('console');
+            return redirect()->intended('/console');
         }
         return view('auth.consoleLogin');
 

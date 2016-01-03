@@ -63,6 +63,8 @@ $router->group(['middleware' => ['web']], function (Router $router) {
         Route::get('/system-config', 'AdminController@SystemConfigView');
         Route::post('/system-config', 'AdminController@SystemConfigUpdate');
 
+        Route::get('/member-query', 'AdminController@MemberQuery');
+
     });
 
 

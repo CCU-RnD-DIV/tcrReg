@@ -39,12 +39,16 @@
                         <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 於報名截止前皆可修改報名科目
                         <br><br>
                         <a href="/general/update" class="btn btn-warning">修改個人資料</a>
+                        @if ($settings_value[1]->value>\Carbon\Carbon::now())
                         <br><br>
                         <a href="/general/select-subject" class="btn btn-success">修改報名科目</a>
+                        @endif
                         <br><br>
                         <a href="/general/select-habits" class="btn btn-success">修改葷素資訊</a>
+                        @if ($settings_value[2]->value<\Carbon\Carbon::now() && $settings_value[3]->value>\Carbon\Carbon::now())
                         <br><br>
                         <a href="/general/select-traffic" class="btn btn-success">修改交通資訊</a>
+                        @endif
                         <br><br>
                         <a href="/logout" class="btn btn-danger">登出系統</a>
                     </div>
