@@ -75,9 +75,9 @@
                                 <span class="glyphicon glyphicon-bullhorn text-muted" aria-hidden="true"></span>
                                 {!! Form::label('tc_class', ' 教師身份') !!}
                                 {!! Form::label('tc_class', '專任') !!}
-                                {!! Form::radio('tc_class', '0') !!}
-                                {!! Form::label('tc_class', '代理') !!}
                                 {!! Form::radio('tc_class', '1') !!}
+                                {!! Form::label('tc_class', '代理') !!}
+                                {!! Form::radio('tc_class', '2') !!}
                                 {!! Form::label('tc_class', '代課') !!}
                                 {!! Form::radio('tc_class', '3') !!}
                                 {!! Form::label('tc_class', '其他') !!}

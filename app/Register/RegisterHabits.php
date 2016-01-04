@@ -13,4 +13,13 @@ class RegisterHabits extends Model
         'meat_veg',
         'traffic'
     ];
+
+    public function users()
+    {
+        return $this->belongsTo('App\Register\RegisterUsers', 'account_id');
+    }
+    public function details()
+    {
+        return $this->belongsTo('App\Register\RegisterDetails', 'account_id');
+    }
 }

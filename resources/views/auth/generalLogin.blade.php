@@ -13,7 +13,7 @@
                 @if ($errors->has('email')) <h5 class="text-danger">{{ $errors->first('email') }}</h5> @endif
             </div>
             <div class="form-group">
-                {!! Form::label('password', '密碼') !!}
+                {!! Form::label('password', '密碼（臨時密碼請由下方臨時登入）') !!}
                 {!! Form::password('password', ['placeholder' => '您的密碼', 'class' => 'form-control']) !!}
                 @if ($errors->has('password')) <h5 class="text-danger">{{ $errors->first('password') }}</h5> @endif
             </div>
@@ -26,8 +26,8 @@
                 </div>
             @endif
             <div class="form-group text-center">
+                <div class="alert alert-info"><strong>如您持有臨時密碼，<a href="reset-verify">請由此臨時登入</a></strong></div>
                 <h4 class="text-muted">您忘記密碼嗎？<a href="reset-password">按此重設</a></h4>
-                <h4 class="text-muted">臨時密碼登入：<a href="reset-verify">按此臨時登入</a> </h4>
                 <h4 class="text-muted">還沒有驗證嗎？<a href="verify">按此驗證</a></h4>
                 <h4 class="text-muted">還沒有帳號嗎？<a href="register">按此註冊</a></h4>
             </div>

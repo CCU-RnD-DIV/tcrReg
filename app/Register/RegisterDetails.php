@@ -21,6 +21,11 @@ class RegisterDetails extends Model
         return $this->belongsTo('App\Register\RegisterUsers', 'account_id');
     }
 
+    public function habits()
+    {
+        return $this->hasOne('App\Register\RegisterHabits', 'account_id', 'account_id');
+    }
+
     public function schools()
     {
         return $this->hasOne('App\Data\School', 'school_code', 'school');

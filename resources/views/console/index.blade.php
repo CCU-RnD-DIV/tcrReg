@@ -17,12 +17,12 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="alert alert-info text-center" role="alert">
-                            <strong class="text-info"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 總註冊人數（含夢一）</strong><br>
-                            <h1>{{$total_count}}</h1>
+                            <strong class="text-info"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 總註冊人數（不含夢一）</strong><br>
+                            <h1>{{$total_count-1508}}</h1>
                         </div>
                         <div class="alert alert-info text-center" role="alert">
-                            <strong class="text-info"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 保障名額報名人數</strong><br>
-                            <h1>無資料</h1>
+                            <strong class="text-info"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 總註冊人數（含夢一）</strong><br>
+                            <h1>{{$total_count}}</h1>
                         </div>
                         <div class="alert alert-info text-center" role="alert">
                             <strong class="text-info"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 葷/素統計</strong><br>
@@ -32,20 +32,34 @@
                     <div class="col-lg-4">
                         <div class="alert alert-warning text-left" role="alert">
                             <strong class="text-info"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 01/31 第一天</strong><br>
+                            <?php $count_1 = 0; ?>
                             @for($i = 0; $i < 9; $i ++)
                                 <strong>{{$subject_list_1[$i]->subject_name}}：</strong>{{$subject_count_1[$subject_list_1[$i]->subject_id]}} 人<br>
+                                <?php $count_1 += $subject_count_1[$subject_list_1[$i]->subject_id];?>
                             @endfor
+                            <strong>共 <?= $count_1;?> 人</strong>
+                        </div>
+                        <div class="alert alert-danger text-center" role="alert">
+                            <strong class="text-danger"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 完成報名人數</strong><br>
+                            <h1>{{isset($total_count_with_reg_complete) ? $total_count_with_reg_complete : ''}}</h1>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="alert alert-warning text-left" role="alert">
                             <strong class="text-info"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 02/01 第二天</strong><br>
+                            <?php $count_2 = 0; ?>
                             @for($i = 0; $i < 5; $i ++)
                                 <strong>{{$subject_list_2[$i]->subject_name}}：</strong>{{$subject_count_2[$subject_list_2[$i]->subject_id]}} 人<br>
+                                <?php $count_2 += $subject_count_2[$subject_list_2[$i]->subject_id];?>
                             @endfor
+                            <strong>共 <?= $count_2;?> 人</strong>
                             <br><br>
                             <strong class="text-success"><span class="glyphicon glyphicon-time" aria-hidden="true"></span> 即時更新</strong>
                             <br><br>
+                        </div>
+                        <div class="alert alert-info text-center" role="alert">
+                            <strong class="text-info"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 保障名額報名人數</strong><br>
+                            <h1>無資料</h1>
                         </div>
                     </div>
                 </div>

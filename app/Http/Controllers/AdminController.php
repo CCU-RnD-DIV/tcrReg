@@ -52,11 +52,22 @@ class AdminController extends Controller
             return redirect()->intended('/general/select-subject');
         }
 
+        if($user_details[0]->phone == ''){
+            return redirect()->intended('/general/update');
+        }
+
+        if($user_details[0]->tc_class == 0){
+            return redirect()->intended('/general/update');
+        }
+
+
         return view('general.index', compact('user_details', 'user_data', 'settings_value', 'user_reg_subject_1', 'user_reg_subject_2', 'user_reg_subject_1_displayName', 'user_reg_subject_2_displayName', 'user_school_displayName'));
 
     }
 
     public function UpdateView (){
+
+        $school_country = School::groupBy('country')->get();
 
         $settings_value = Settings::all();
 
@@ -64,7 +75,7 @@ class AdminController extends Controller
 
         $user_details = RegisterDetails::where('account_id', $user_data[0]->id)->get();
 
-        return view('general.update', compact('user_details', 'user_data', 'settings_value'));
+        return view('general.update', compact('user_details', 'user_data', 'settings_value', 'school_country'));
     }
 
     public function Update (Requests\UpdateCheck $request) {
@@ -77,10 +88,16 @@ class AdminController extends Controller
                     'password' => Hash::make($request->get('password'))
                 ]);
         }
+        RegisterUsers::where('email', Auth::user()->email)
+            ->update([
+                'type' => $request->get('type')
+            ]);
         RegisterDetails::where('account_id', $account_details[0]->id)
             ->update([
                 'name' => $request->get('name'),
-                'phone' => $request->get('phone')
+                'phone' => $request->get('phone'),
+                'tc_class' => $request->get('tc_class'),
+                'school' => $request->get('school')
             ]);
 
         return redirect()->intended('/general');
@@ -120,9 +137,11 @@ class AdminController extends Controller
 
         $total_count = RegisterUsers::where('type','<>','super')->count();
 
+        $total_count_with_reg_complete = RegisterDetails::where('phone','!=','')->count()-1;
+
         $settings_value = Settings::all();
 
-        return view('console.index', compact('settings_value', 'meat_count', 'veg_count', 'subject_list_1', 'subject_list_2', 'subject_count_1', 'subject_count_2', 'total_count'));
+        return view('console.index', compact('settings_value', 'total_count_with_reg_complete', 'meat_count', 'veg_count', 'subject_list_1', 'subject_list_2', 'subject_count_1', 'subject_count_2', 'total_count'));
 
     }
 
@@ -152,7 +171,7 @@ class AdminController extends Controller
 
         $reg_start = Settings::where('id', 1)->get();
 
-        $user_details = RegisterUsers::where('reg_time' , '>' , $reg_start[0]->value)->get();
+        $user_details = RegisterDetails::where('phone' , '<>' , '')->get();
 
         return view('console.member-query', compact('user_details'));
 
@@ -161,6 +180,7 @@ class AdminController extends Controller
     public function OldMemberQuery (){
 
         $reg_start = Settings::where('id', 1)->get();
+
         $user_details = RegisterUsers::where('reg_time' , '<' , $reg_start[0]->value)->get();
 
         return view('console.old-member-query', compact('user_details'));

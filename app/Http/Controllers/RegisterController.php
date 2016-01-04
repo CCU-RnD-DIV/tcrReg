@@ -62,6 +62,7 @@ class RegisterController extends Controller
         $input->gender = $request->get('gender');
         $input->school = $request->get('school');
         $input->phone = $request->get('phone');
+        $input->tc_class = $request->get('tc_class');
         $input->save();
 
         /* Send the SMS to Users */

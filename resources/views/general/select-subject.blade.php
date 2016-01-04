@@ -26,10 +26,10 @@
                             {!! Form::label('reg_subject_1', '國中國文') !!}
                             {!! Form::radio('reg_subject_1', '10001') !!}
                             <br>
-                            {!! Form::label('reg_subject_1', '國小國語A') !!}
+                            {!! Form::label('reg_subject_1', '國小國語A（高年級）') !!}
                             {!! Form::radio('reg_subject_1', '10002') !!}
                             <br>
-                            {!! Form::label('reg_subject_1', '國小國語B') !!}
+                            {!! Form::label('reg_subject_1', '國小國語B（中低年級）') !!}
                             {!! Form::radio('reg_subject_1', '10003') !!}
                             <br>
                             {!! Form::label('reg_subject_1', '國中自然') !!}
@@ -77,10 +77,10 @@
                             {!! Form::label('reg_subject_2', '國中數學') !!}
                             {!! Form::radio('reg_subject_2', '20001') !!}
                             <br>
-                            {!! Form::label('reg_subject_2', '國小數學A') !!}
+                            {!! Form::label('reg_subject_2', '國小數學A（高年級）') !!}
                             {!! Form::radio('reg_subject_2', '20002') !!}
                             <br>
-                            {!! Form::label('reg_subject_2', '國小數學B') !!}
+                            {!! Form::label('reg_subject_2', '國小數學B（中低年級）') !!}
                             {!! Form::radio('reg_subject_2', '20003') !!}
                             <br>
                             {!! Form::label('reg_subject_2', '國中英文') !!}

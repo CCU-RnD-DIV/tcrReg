@@ -48,13 +48,11 @@
                     <thead>
                     <tr class="info">
                         <th><span class="glyphicon glyphicon-home" aria-hidden="true"></span> 所屬學校</th>
-                        <th><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 教師身份別</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td>{{isset($user_school_displayName[0]) ? $user_school_displayName[0]->country.$user_school_displayName[0]->school_name: 'NO DATA'}}</td>
-                        <td>專任老師</td>
                     </tr>
                     </tbody>
                 </table>

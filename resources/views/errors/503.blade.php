@@ -48,7 +48,6 @@
                 <div class="title">網站更新維護中</div>
                 <div class="title">Be right back.</div>
                 <div class="inlineWord">木魚掉到水裡會變虱目魚。</div>
-                <div class="content">偏鄉報名系統關心您的笑點不夠低</div>
             </div>
         </div>
     </body>
