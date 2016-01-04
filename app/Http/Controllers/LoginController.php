@@ -37,7 +37,7 @@ class LoginController extends Controller {
 
         if (Auth::attempt(['email' => $request->get('email'), 'password' => $request->get('password')])){
 
-            return redirect()->intended('/general');
+            return redirect('/general');
         }
 
         $loginFailed = true;
@@ -50,7 +50,7 @@ class LoginController extends Controller {
 
         if (Auth::attempt(['email' => $request->get('account'), 'password' => $request->get('password')])){
 
-            return redirect()->intended('/console');
+            return redirect('/console');
         }
 
         $loginFailed = true;
@@ -148,6 +148,62 @@ class LoginController extends Controller {
         }
 
 
+
+    }
+
+    public function resendVerifyView (){
+
+        return view('auth.resend-verify');
+
+    }
+
+    public function resendVerify (Requests\ResetCheck $request){
+
+        $user_data = RegisterUsers::where('email', $request->get('email'))
+            ->where('pid', $request->get('pid'))
+            ->where('reg_verify', 0)
+            ->get();
+
+        if (isset($user_data[0])){
+
+            $phone = RegisterDetails::where('account_id', $user_data[0]->id)->get();
+
+            $rand = $user_data[0]->verify_code;
+
+            /* Send the SMS to Users */
+            $date = date("YmdHis");
+            $pwd_file = fopen(public_path('msg_tmp/').$date.$rand.".txt","a");
+            $content = "ccucc,".$phone[0]->phone.",夥伴您好：驗證碼：".$rand."請填入系統送出註冊並填報名資訊，始完成報名。驗證網站：https://goo.gl/kfvpCT,";
+            $content = iconv('UTF-8','Big5',$content);
+            fwrite($pwd_file, $content);
+            fclose($pwd_file);
+            $chk_file = fopen(public_path('msg_tmp/').$date.$rand.".chk","a");
+            fclose($chk_file);
+
+            $conn_id = ftp_connect("210.71.253.195");
+            $login_result = ftp_login($conn_id, "sms", "sms");
+            if ($login_result){
+                ftp_put($conn_id,$date.$rand.".txt",public_path('msg_tmp/').$date.$rand.".txt", FTP_ASCII);
+                ftp_put($conn_id,$date.$rand.".chk",public_path('msg_tmp/').$date.$rand.".chk", FTP_ASCII);
+            }
+
+            $email = $user_data[0]->email;
+            $name = $phone[0]->name;
+
+            /* Send the Mail to Users */
+
+            Mail::send('emails.welcome', ['code' => $rand], function($message) use ($email, $name)
+            {
+                $message->from('k12cc@ccu.edu.tw', '105偏鄉教師寒假教學專業成長研習');
+                $message->to($email, $name)->subject('【驗證通知信】105偏鄉教師寒假教學專業成長研習');
+            });
+
+            return redirect()->intended('/verify');
+
+
+        }else{
+            return view('auth.reset')->with('alert_failed', true);
+        }
 
     }
 

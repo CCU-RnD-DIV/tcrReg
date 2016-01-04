@@ -29,8 +29,30 @@
                     <td class="phone">{{$users_details->phone}}</td>
                     <td class="school">{{$users_details->schools->school_name}}</td>
                     <td class="meat_veg">{{isset($users_details->habits->meat_veg) ? ($users_details->habits->meat_veg) ? '葷' : '素' : 'X'}}</td>
-                    <td class="verify">{{($users_details->users->reg_verify) ? '是' : '否'}}</td>
-                    <td></td>
+                    <td class="verify">
+                        @if($users_details->users->reg_verify == 1)
+                            <label class="label label-success">是</label>
+                        @elseif($users_details->users->reg_verify == 0)
+                            <label class="label label-default">否</label>
+                        @elseif($users_details->users->reg_verify == 2)
+                            <label class="label label-danger">帳號鎖定</label>
+                        @endif
+                    </td>
+                    <td>
+                        @if($users_details->users->reg_verify == 0)
+                            {!! Form::open(['url' => '/console/sms-resend']) !!}
+                            <input type="hidden" id="account_id" name="account_id" value="{{$users_details->id}}"/>
+                            <input type="hidden" id="url" name="url" value="/console/member-query"/>
+                            {!! Form::submit('寄發驗證', ['class' => 'btn-sm btn-danger']) !!}
+                            {!! Form::close() !!}
+                        @elseif($users_details->users->reg_verify == 2)
+                            {!! Form::open(['url' => '/console/pwd-resend']) !!}
+                            <input type="hidden" id="account_id" name="account_id" value="{{$users_details->id}}"/>
+                            <input type="hidden" id="url" name="url" value="/console/member-query"/>
+                            {!! Form::submit('寄發臨時密碼', ['class' => 'btn-sm btn-warning']) !!}
+                            {!! Form::close() !!}
+                            @endif
+                    </td>
                 </tr>
             @endforeach
             </tbody>

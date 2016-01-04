@@ -19,6 +19,7 @@ class CreateUsersDetailsTable extends Migration
             $table->string('gender');
             $table->string('school');    // Teacher's Classification (Primary or Junior)
             $table->string('phone');
+            $table->string('tc_class');
             $table->rememberToken();
             $table->timestamps();
         });

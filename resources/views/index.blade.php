@@ -45,17 +45,23 @@
                             <div class="col-lg-6">
                                 <div class="alert alert-warning text-left" role="alert">
                                     <strong class="text-info"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 01/31 第一天</strong><br>
+                                    <?php $count_1 = 0; ?>
                                     @for($i = 0; $i < 9; $i ++)
                                         <strong>{{$subject_list_1[$i]->subject_name}}：</strong>{{$subject_count_1[$subject_list_1[$i]->subject_id]}} 人<br>
+                                        <?php $count_1 += $subject_count_1[$subject_list_1[$i]->subject_id];?>
                                     @endfor
+                                    <strong>共 <?= $count_1;?> 人</strong>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="alert alert-warning text-left" role="alert">
                                     <strong class="text-info"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 02/01 第二天</strong><br>
+                                    <?php $count_2 = 0; ?>
                                     @for($i = 0; $i < 5; $i ++)
                                         <strong>{{$subject_list_2[$i]->subject_name}}：</strong>{{$subject_count_2[$subject_list_2[$i]->subject_id]}} 人<br>
+                                        <?php $count_2 += $subject_count_2[$subject_list_2[$i]->subject_id];?>
                                     @endfor
+                                    <strong>共 <?= $count_2;?> 人</strong>
                                     <br><br>
                                     <strong class="text-success"><span class="glyphicon glyphicon-time" aria-hidden="true"></span> 十分鐘更新一次</strong>
                                     <br><br>

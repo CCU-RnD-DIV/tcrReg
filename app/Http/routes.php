@@ -9,11 +9,10 @@ $router->get('/', 'IndexController@Index');
 /* Obtain Json Data */
 
 $router->post('get-school', ['uses' => 'DataController@getSchool']);
-$router->get('get-junior-school', 'DataController@getJuniorSchool');
 
 /* Dangerous Toolbox */
 
-$router->get('set-bcrypt', 'ToolController@setBcrypt');
+/*$router->get('set-bcrypt', 'ToolController@setBcrypt');*/
 
 $router->group(['middleware' => ['web']], function (Router $router) {
     /* REG_PAGE -- Start of Registering Pages */
@@ -40,8 +39,27 @@ $router->group(['middleware' => ['web']], function (Router $router) {
     $router->get('reset-verify', 'LoginController@resetVerifyView');
     $router->post('reset-verify', 'LoginController@resetVerify');
 
+    $router->get('resend-verify', 'LoginController@resendVerifyView');
+    $router->post('resend-verify', 'LoginController@resendVerify');
+
     /* Under Auth Protection */
 
+
+    $router->group(['prefix' => 'console', 'middleware' => 'authConsole'], function() {
+
+        Route::get('/', 'AdminController@Console');
+
+        Route::get('/system-config', 'AdminController@SystemConfigView');
+        Route::post('/system-config', 'AdminController@SystemConfigUpdate');
+
+        Route::get('/member-query', 'AdminController@MemberQuery');
+        Route::get('/old-member-query', 'AdminController@OldMemberQuery');
+        Route::get('/priority-member-query', 'AdminController@PriorityMemberQuery');
+
+        Route::post('/sms-resend', 'AdminController@SMSSend');
+        Route::post('/pwd-resend', 'AdminController@PWDSend');
+
+    });
 
     $router->group(['prefix' => 'general', 'middleware' => 'authGeneral'], function() {
         Route::get('/', 'AdminController@General');
@@ -60,17 +78,7 @@ $router->group(['middleware' => ['web']], function (Router $router) {
     });
 
 
-    $router->group(['prefix' => 'console', 'middleware' => 'authConsole'], function() {
 
-        Route::get('/', 'AdminController@Console');
-
-        Route::get('/system-config', 'AdminController@SystemConfigView');
-        Route::post('/system-config', 'AdminController@SystemConfigUpdate');
-
-        Route::get('/member-query', 'AdminController@MemberQuery');
-        Route::get('/old-member-query', 'AdminController@OldMemberQuery');
-
-    });
 
 
     $router->get('logout', 'LoginController@logout');

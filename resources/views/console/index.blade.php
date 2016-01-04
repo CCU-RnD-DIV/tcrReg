@@ -53,13 +53,13 @@
                                 <?php $count_2 += $subject_count_2[$subject_list_2[$i]->subject_id];?>
                             @endfor
                             <strong>共 <?= $count_2;?> 人</strong>
-                            <br><br>
+                            <br><br><br>
                             <strong class="text-success"><span class="glyphicon glyphicon-time" aria-hidden="true"></span> 即時更新</strong>
                             <br><br>
                         </div>
-                        <div class="alert alert-info text-center" role="alert">
-                            <strong class="text-info"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 保障名額報名人數</strong><br>
-                            <h1>無資料</h1>
+                        <div class="alert alert-success text-center" role="alert">
+                            <strong class="text-success"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 保障名額報名人數</strong><br>
+                            <h1>{{$count."/".$select_count}}</h1>
                         </div>
                     </div>
                 </div>

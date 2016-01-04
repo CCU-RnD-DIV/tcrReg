@@ -1,4 +1,4 @@
-@extends('layout.general')
+@extends('layout.console')
 
 @section('content')
 

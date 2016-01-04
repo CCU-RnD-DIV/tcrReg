@@ -26,10 +26,7 @@ class ConsoleAuthorization
 
             return redirect()->guest('consoleLogin');
 
-        }else{
-
-            return $next($request);
-
         }
+        return $next($request);
     }
 }
