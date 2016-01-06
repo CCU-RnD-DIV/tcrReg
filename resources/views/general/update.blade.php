@@ -83,8 +83,9 @@
                             <option value="primary" name="primary">國小教師</option>
                             <option value="junior" name="junior">國中教師</option>
                         </select>
-                        <select id="city" name="city" class="form-control" required>
-                            <option value="">縣市不更動</option>
+                        @if ($errors->has('type')) <h5 class="text-danger">{{ $errors->first('type') }}</h5> @endif
+                        <select id="city" name="city" class="form-control">
+                            <option value="0">縣市不更動</option>
                             @foreach($school_country as $school_countries)
                                 <option value="{{$school_countries->country}}" name="{{$school_countries->country}}>">{{$school_countries->country}}</option>
                             @endforeach

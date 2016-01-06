@@ -92,6 +92,7 @@
                                     <option value="primary" name="primary">國小教師</option>
                                     <option value="junior" name="junior">國中教師</option>
                                 </select>
+                                @if ($errors->has('type')) <h5 class="text-danger">{{ $errors->first('type') }}</h5> @endif
                                 <select id="city" name="city" class="form-control" required>
                                     <option value="">請選擇所在縣市</option>
                                     @foreach($school_country as $school_countries)

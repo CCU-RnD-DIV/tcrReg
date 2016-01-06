@@ -121,13 +121,13 @@ class AdminController extends Controller
         $count = 0;
         for($i = 0; $i < $select_count; $i++){
             if(isset($select_list[$i]->pid)){
-                $count += RegisterUsers::where('pid', $select_list[$i]->pid)->take(1)->count();
+                $count += RegisterUsers::where('pid', $select_list[$i]->pid)->count();
             }elseif(isset($select_list[$i]->email)){
-                $count += RegisterUsers::where('email', $select_list[$i]->email)->take(1)->count();
+                $count += RegisterUsers::where('email', $select_list[$i]->email)->count();
             }elseif(isset($select_list[$i]->phone)){
-                $count += RegisterDetails::where('phone', $select_list[$i]->phone)->take(1)->count();
+                $count += RegisterDetails::where('phone', $select_list[$i]->phone)->count();
             }elseif(isset($select_list[$i]->phone)){
-                $count += RegisterDetails::where('name', $select_list[$i]->name)->take(1)->count();
+                $count += RegisterDetails::where('name', $select_list[$i]->name)->count();
             }
         }
 

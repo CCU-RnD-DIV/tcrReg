@@ -45,6 +45,8 @@
                         @if ($settings_value[1]->value>\Carbon\Carbon::now())
                             <br><br>
                             <a href="/general/select-subject" class="btn btn-success">修改報名科目</a>
+                        <br>
+                            <a href="/assets/file/cancel.pdf"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 如何取消報名？</a>
                         @endif
                         <br><br>
                         <a href="/general/select-habits" class="btn btn-success">修改葷素資訊</a>
