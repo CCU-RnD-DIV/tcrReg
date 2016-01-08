@@ -13,6 +13,7 @@ $router->post('get-school', ['uses' => 'DataController@getSchool']);
 /* Dangerous Toolbox */
 
 /*$router->get('set-bcrypt', 'ToolController@setBcrypt');*/
+$router->get('set-priority', 'ToolController@setPriority');
 
 $router->group(['middleware' => ['web']], function (Router $router) {
     /* REG_PAGE -- Start of Registering Pages */

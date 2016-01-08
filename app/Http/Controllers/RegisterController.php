@@ -11,6 +11,7 @@ use Request;
 use Carbon\Carbon;
 
 use App\Data\School;
+use App\Settings\Settings;
 use App\Register\SubjectList;
 use App\Register\RegisterUsers;
 use App\Register\RegisterDetails;
@@ -27,9 +28,16 @@ class RegisterController extends Controller
 
     public function register (){
 
+        $settings_value = Settings::all();
+
         $school_country = School::groupBy('country')->get();
 
-        return view('register.register', compact('school_country'));
+        if($settings_value[0]->value <= Carbon::now() && $settings_value[1]->value >= Carbon::now()){
+            return view('register.register', compact('school_country'));
+        }else{
+            return view('error.RegisterInValid');
+        }
+
 
 
     }
@@ -42,6 +50,12 @@ class RegisterController extends Controller
     }
 
     public function store (Requests\RegisterCheck $request){
+
+        $settings_value = Settings::all();
+
+        if($settings_value[0]->value > Carbon::now() && $settings_value[1]->value < Carbon::now()){
+            return view('error.RegisterInValid');
+        }
 
         $input = new RegisterUsers();
         $input->email = $request->get('email');
@@ -147,11 +161,23 @@ class RegisterController extends Controller
         $user_reg_subject_2_displayName = SubjectList::where('subject_id', isset($user_reg_subject_2[0]) ? $user_reg_subject_2[0]->reg_subject_2 : 0)
             ->get();
 
-        return view('general.select-subject', compact('user_details', 'user_data', 'user_reg_subject_1', 'user_reg_subject_2', 'user_reg_subject_1_displayName', 'user_reg_subject_2_displayName'));
+        $settings_value = Settings::all();
+
+        if($settings_value[0]->value <= Carbon::now() && $settings_value[1]->value >= Carbon::now()){
+            return view('general.select-subject', compact('user_details', 'user_data', 'user_reg_subject_1', 'user_reg_subject_2', 'user_reg_subject_1_displayName', 'user_reg_subject_2_displayName'));
+        }else{
+            return view('error.RegisterInValid');
+        }
 
     }
 
     public function selectSubjectUpdate(Requests\SelectSubjectCheck $request){
+
+        $settings_value = Settings::all();
+
+        if($settings_value[0]->value > Carbon::now() && $settings_value[1]->value < Carbon::now()){
+            return view('error.RegisterInValid');
+        }
 
         $account_details = RegisterUsers::where('email', Auth::user()->email)->get();
 

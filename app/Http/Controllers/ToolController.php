@@ -7,8 +7,13 @@ use Illuminate\Http\Request;
 
 use Hash;
 use App\Http\Requests;
+use App\Settings\Settings;
+use App\Register\SelectList;
 use App\Register\RegisterUsers;
 use App\Register\RegisterDetails;
+use App\Register\RegisterSubjects;
+use App\Register\RegisterSubjects2;
+use App\Register\SubjectList;
 use App\Http\Controllers\Controller;
 
 class ToolController extends Controller
@@ -29,5 +34,33 @@ class ToolController extends Controller
         }
 
         return 'SUCCESS';
+    }
+
+    public function setPriority(){
+
+        $first_day = SelectList::where('subject', '<', 20000)->get();
+        $second_day = SelectList::where('subject', '>', 20000)->get();
+
+        foreach ($first_day as $first_day_people){
+            $user_name = RegisterDetails::where('phone', $first_day_people->phone)->get(['account_id']);
+            if(isset($user_name[0])){
+                if(isset($user_name[0]->account_id)){
+                    RegisterSubjects::where('account_id', $user_name[0]->account_id)->update(['priority' => '1']);
+                }
+            }
+        }
+
+        foreach ($second_day as $second_day_people){
+            $user_name = RegisterDetails::where('phone', $second_day_people->phone)->get(['account_id']);
+            if(isset($user_name[0])){
+                if(isset($user_name[0]->account_id)){
+                    RegisterSubjects2::where('account_id', $user_name[0]->account_id)->update(['priority' => '1']);
+                }
+            }
+        }
+
+        return 'SUCCESS';
+
+
     }
 }

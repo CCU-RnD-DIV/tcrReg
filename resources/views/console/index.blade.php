@@ -59,7 +59,8 @@
                         </div>
                         <div class="alert alert-success text-center" role="alert">
                             <strong class="text-success"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 保障名額報名人數</strong><br>
-                            <h1>{{$count."/".$select_count}}</h1>
+                            <h1>651/705</h1>
+                            <strong class="text-success"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 最後統計時間：1/9 03:41:22</strong><br>
                         </div>
                     </div>
                 </div>

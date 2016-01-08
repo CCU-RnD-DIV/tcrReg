@@ -116,21 +116,6 @@ class AdminController extends Controller
 
         $subject_list_1 = SubjectList::where('subject_id', '<', 20000)->get();
 
-        $select_count = SelectList::all()->count();
-        $select_list = SelectList::all();
-        $count = 0;
-        for($i = 0; $i < $select_count; $i++){
-            if(isset($select_list[$i]->pid)){
-                $count += RegisterUsers::where('pid', $select_list[$i]->pid)->count();
-            }elseif(isset($select_list[$i]->email)){
-                $count += RegisterUsers::where('email', $select_list[$i]->email)->count();
-            }elseif(isset($select_list[$i]->phone)){
-                $count += RegisterDetails::where('phone', $select_list[$i]->phone)->count();
-            }elseif(isset($select_list[$i]->phone)){
-                $count += RegisterDetails::where('name', $select_list[$i]->name)->count();
-            }
-        }
-
         for($i = 0; $i < 9; $i ++){
 
             $subject_count_1[$subject_list_1[$i]->subject_id] = RegisterSubjects::where('reg_subject_1', $subject_list_1[$i]->subject_id)->count();
@@ -158,7 +143,7 @@ class AdminController extends Controller
 
         $settings_value = Settings::all();
 
-        return view('console.index', compact('settings_value', 'total_count_with_reg_complete', 'meat_count', 'veg_count', 'subject_list_1', 'subject_list_2', 'subject_count_1', 'subject_count_2', 'total_count', 'count', 'select_count'));
+        return view('console.index', compact('settings_value', 'total_count_with_reg_complete', 'meat_count', 'veg_count', 'subject_list_1', 'subject_list_2', 'subject_count_1', 'subject_count_2', 'total_count'));
 
     }
 
