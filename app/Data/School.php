@@ -12,4 +12,9 @@ class School extends Model
     {
         return $this->belongsToMany('App\Register\RegisterUsers', 'school_code');
     }
+
+    public function far_school()
+    {
+        return $this->belongsTo('App\Data\FarSchool', 'school_code');
+    }
 }

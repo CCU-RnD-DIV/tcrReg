@@ -17,9 +17,15 @@ class RegisterSubjects2 extends Model
         'reg_time'
     ];
 
+
     public function sList()
     {
-        return $this->belongsTo('SubjectList', 'subject_id');
+        return $this->hasOne('App\Register\SubjectList', 'subject_id', 'reg_subject_2');
+    }
+
+    public function details()
+    {
+        return $this->belongsTo('App\Register\RegisterDetails', 'account_id');
     }
 
 }

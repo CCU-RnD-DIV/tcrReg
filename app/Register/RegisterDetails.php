@@ -31,5 +31,20 @@ class RegisterDetails extends Model
         return $this->hasOne('App\Data\School', 'school_code', 'school');
     }
 
+    public function far_school()
+    {
+        return $this->hasOne('App\Data\FarSchool', 'sf_school_id', 'school');
+    }
+
+    public function reg1()
+    {
+        return $this->hasOne('App\Register\RegisterSubjects', 'account_id', 'account_id');
+    }
+
+    public function reg2()
+    {
+        return $this->hasOne('App\Register\RegisterSubjects2', 'account_id', 'account_id');
+    }
+
 
 }

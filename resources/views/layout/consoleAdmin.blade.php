@@ -22,13 +22,9 @@
             <div style="padding-top: 100px;padding-bottom: 80px;"></div>
         </div>
 
-        <div class="alert alert-info" role="alert">
-            <span class="text-left"><strong><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> 若有相關帳戶問題請連絡</strong> resttc@ccu.edu.tw</span>
-            <span class="pull-right">
-                <strong>
-                    <a href="/assets/file/method.pdf"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 按此查看報名教學</a>
-                </strong>
-            </span>
+        <div class="alert alert-danger">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> <strong>注意篩選系統即將啟動！</strong>
+            系統即將進行篩選，在警訊消失前，請勿變動任何資料與系統設定值。
         </div>
 
         <div class="row">

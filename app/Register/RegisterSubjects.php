@@ -19,7 +19,12 @@ class RegisterSubjects extends Model
 
     public function sList()
     {
-        return $this->belongsTo('SubjectList', 'subject_id');
+        return $this->hasOne('App\Register\SubjectList', 'subject_id', 'reg_subject_1');
+    }
+
+    public function details()
+    {
+        return $this->belongsTo('App\Register\RegisterDetails', 'account_id');
     }
 
 }

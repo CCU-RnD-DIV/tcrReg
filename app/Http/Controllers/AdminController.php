@@ -171,9 +171,7 @@ class AdminController extends Controller
 
     public function MemberQuery (){
 
-        $reg_start = Settings::where('id', 1)->get();
-
-        $user_details = RegisterDetails::where('phone' , '<>' , '')->get();
+        $user_details = RegisterDetails::with(['users', 'reg1', 'reg2', 'reg1.sList', 'reg2.sList', 'habits'])->where('phone' , '<>' , '')->orderby('id')->paginate(75);
 
         return view('console.member-query', compact('user_details'));
 

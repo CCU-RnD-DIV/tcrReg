@@ -42,6 +42,7 @@
                         <div class="alert alert-danger text-center" role="alert">
                             <strong class="text-danger"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 完成報名人數</strong><br>
                             <h1>{{isset($total_count_with_reg_complete) ? $total_count_with_reg_complete : ''}}</h1>
+                            <strong class="text-danger"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 最後統計時間：1/9 03:41:22</strong><br>
                         </div>
                     </div>
                     <div class="col-lg-4">
