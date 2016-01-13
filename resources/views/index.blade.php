@@ -23,6 +23,25 @@
                 </td>
                 <td width="10%">  </td>
             </tr>
+            <strong class="h4">已公佈錄取結果</strong>
+            <br>
+                    <a class="btn-success btn" href="/assets/file/10001.pdf">國中國文</a>
+                    <a class="btn-success btn" href="/assets/file/10002.pdf">國小國語A</a>
+                    <a class="btn-success btn" href="/assets/file/10003.pdf">國小國語B</a>
+                    <a class="btn-success btn" href="/assets/file/10004.pdf">國中自然</a>
+                    <a class="btn-success btn" href="/assets/file/10005.pdf">國小自然</a>
+                    <a class="btn-success btn" href="/assets/file/10006.pdf">國中歷史</a>
+                    <a class="btn-success btn" href="/assets/file/10007.pdf">國中地理</a>
+                    <a class="btn-success btn" href="/assets/file/10008.pdf">國中公民</a>
+                    <a class="btn-success btn" href="/assets/file/10009.pdf">國小社會</a>
+            <br>
+                    <a class="btn-warning btn" href="/assets/file/20001.pdf">國中數學</a>
+                    <a class="btn-warning btn" href="/assets/file/20002.pdf">國小數學A</a>
+                    <a class="btn-warning btn" href="/assets/file/20003.pdf">國小數學B</a>
+                    <a class="btn-warning btn" href="/assets/file/20004.pdf">國中英文</a>
+                    <a class="btn-warning btn" href="/assets/file/20005.pdf">國小英文</a>
+
+
             <tr>
                 <td width="10%"></td>
                 <td width="35%">

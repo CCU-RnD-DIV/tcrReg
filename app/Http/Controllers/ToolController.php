@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Hash;
+use Mail;
 use App\Http\Requests;
 use App\Settings\Settings;
 use App\Register\SelectList;
@@ -47,7 +48,25 @@ class ToolController extends Controller
             $user_name = RegisterDetails::where('phone', $first_day_people->phone)->get(['account_id']);
             if(isset($user_name[0])){
                 if(isset($user_name[0]->account_id)){
-                    RegisterSubjects::where('account_id', $user_name[0]->account_id)->update(['priority' => '1']);
+                    RegisterSubjects::where('reg_subject_1', $first_day_people->subject)->where('account_id', $user_name[0]->account_id)->update(['priority' => '1']);
+                }
+            }
+            $user_name = RegisterUsers::where('pid', $first_day_people->pid)->get(['id']);
+            if(isset($user_name[0])){
+                if(isset($user_name[0]->account_id)){
+                    RegisterSubjects::where('reg_subject_1', $first_day_people->subject)->where('account_id', $user_name[0]->id)->update(['priority' => '1']);
+                }
+            }
+            $user_name = RegisterDetails::where('name', $first_day_people->name)->get(['account_id']);
+            if(isset($user_name[0])){
+                if(isset($user_name[0]->account_id)){
+                    RegisterSubjects::where('reg_subject_1', $first_day_people->subject)->where('account_id', $user_name[0]->account_id)->update(['priority' => '1']);
+                }
+            }
+            $user_name = RegisterUsers::where('email', $first_day_people->email)->get(['id']);
+            if(isset($user_name[0])){
+                if(isset($user_name[0]->id)){
+                    RegisterSubjects::where('reg_subject_1', $first_day_people->subject)->where('account_id', $user_name[0]->id)->update(['priority' => '1']);
                 }
             }
         }
@@ -56,7 +75,45 @@ class ToolController extends Controller
             $user_name = RegisterDetails::where('phone', $second_day_people->phone)->get(['account_id']);
             if(isset($user_name[0])){
                 if(isset($user_name[0]->account_id)){
-                    RegisterSubjects2::where('account_id', $user_name[0]->account_id)->update(['priority' => '1']);
+                    if($second_day_people->subject == 40005){
+                        RegisterSubjects2::where('reg_subject_2','>=' , 20002)->where('reg_subject_2','<=', 20003)->where('account_id', $user_name[0]->account_id)->update(['priority' => '1']);
+                    }else{
+                        RegisterSubjects2::where('reg_subject_2', $second_day_people->subject)->where('account_id', $user_name[0]->account_id)->update(['priority' => '1']);
+                    }
+
+                }
+            }
+            $user_name = RegisterUsers::where('pid', $second_day_people->pid)->get(['id']);
+            if(isset($user_name[0])){
+                if(isset($user_name[0]->id)){
+                    if($second_day_people->subject == 40005){
+                        RegisterSubjects2::where('reg_subject_2','>=' , 20002)->where('reg_subject_2','<=', 20003)->where('account_id', $user_name[0]->id)->update(['priority' => '1']);
+                    }else{
+                        RegisterSubjects2::where('reg_subject_2', $second_day_people->subject)->where('account_id', $user_name[0]->id)->update(['priority' => '1']);
+                    }
+
+                }
+            }
+            $user_name = RegisterDetails::where('name', $second_day_people->name)->get(['account_id']);
+            if(isset($user_name[0])){
+                if(isset($user_name[0]->account_id)){
+                    if($second_day_people->subject == 40005){
+                        RegisterSubjects2::where('reg_subject_2','>=' , 20002)->where('reg_subject_2','<=', 20003)->where('account_id', $user_name[0]->account_id)->update(['priority' => '1']);
+                    }else{
+                        RegisterSubjects2::where('reg_subject_2', $second_day_people->subject)->where('account_id', $user_name[0]->account_id)->update(['priority' => '1']);
+                    }
+
+                }
+            }
+            $user_name = RegisterUsers::where('email', $second_day_people->email)->get(['id']);
+            if(isset($user_name[0])){
+                if(isset($user_name[0]->id)){
+                    if($second_day_people->subject == 40005){
+                        RegisterSubjects2::where('reg_subject_2','>=' , 20002)->where('reg_subject_2','<=', 20003)->where('account_id', $user_name[0]->id)->update(['priority' => '1']);
+                    }else{
+                        RegisterSubjects2::where('reg_subject_2', $second_day_people->subject)->where('account_id', $user_name[0]->id)->update(['priority' => '1']);
+                    }
+
                 }
             }
         }
@@ -74,7 +131,7 @@ class ToolController extends Controller
          * Priority all selected.
          */
 
-       /* $subject_list = SubjectList::where('subject_id', '<', 20000)->get();
+       $subject_list = SubjectList::where('subject_id', '<', 20000)->get();
 
 
 
@@ -164,7 +221,7 @@ class ToolController extends Controller
                     break;
                 }
             }
-        }*/
+        }
 
         /* Giving Registration Number */
 
@@ -177,7 +234,7 @@ class ToolController extends Controller
 
             if($subject_first_day->subject_id == 10001){
 
-                $first_one = RegisterSubjects::where('reg_subject_1', $subject_first_day->subject_id)->where('ps', 'PRIORITY')->get();
+                $first_one = RegisterSubjects::where('reg_subject_1', $subject_first_day->subject_id)->where('already_pick_1', 1)->where('ps', 'PRIORITY')->get();
                 $reg = 0;
 
                 foreach($first_one as $first_one_things){
@@ -189,7 +246,7 @@ class ToolController extends Controller
 
                 }
 
-                $first_one = RegisterSubjects::where('reg_subject_1', $subject_first_day->subject_id)->where('ps', '!=', 'PRIORITY')->get();
+                $first_one = RegisterSubjects::where('reg_subject_1', $subject_first_day->subject_id)->where('already_pick_1', 1)->where('ps', '!=', 'PRIORITY')->get();
                 $reg = 0;
 
                 foreach($first_one as $first_one_things){
@@ -366,7 +423,7 @@ class ToolController extends Controller
 
             if ($subject_first_day->subject_id == 20001) {
 
-                $first_one = RegisterSubjects2::where('reg_subject_2', $subject_first_day->subject_id)->get();
+                $first_one = RegisterSubjects2::where('reg_subject_2', $subject_first_day->subject_id)->where('already_pick_2', 1)->get();
                 $reg = 0;
 
                 foreach ($first_one as $first_one_things) {
@@ -383,7 +440,7 @@ class ToolController extends Controller
 
             if ($subject_first_day->subject_id == 20005) {
 
-                $first_one = RegisterSubjects2::where('reg_subject_2', $subject_first_day->subject_id)->get();
+                $first_one = RegisterSubjects2::where('reg_subject_2', $subject_first_day->subject_id)->where('already_pick_2', 1)->get();
                 $reg = 0;
 
                 foreach ($first_one as $first_one_things) {
@@ -400,7 +457,7 @@ class ToolController extends Controller
 
             if ($subject_first_day->subject_id == 20002 || $subject_first_day->subject_id == 20003) {
 
-                $first_one = RegisterSubjects2::where('reg_subject_2', $subject_first_day->subject_id)->where('ps', 'PRIORITY')->get();
+                $first_one = RegisterSubjects2::where('ps', 'PRIORITY')->where('already_pick_2', 1)->where('reg_subject_2', '>=',  20002)->where('reg_subject_2', '<=', 20003)->get();
                 $reg = 0;
 
                 foreach ($first_one as $first_one_things) {
@@ -412,7 +469,7 @@ class ToolController extends Controller
 
                 }
 
-                $first_one = RegisterSubjects2::where('reg_subject_2', $subject_first_day->subject_id)->where('ps', '!=', 'PRIORITY')->get();
+                $first_one = RegisterSubjects2::where('ps', '!=', 'PRIORITY')->where('already_pick_2', 1)->where('reg_subject_2', '>=',  20002)->where('reg_subject_2', '<=', 20003)->get();
                 $reg = 0;
 
                 foreach ($first_one as $first_one_things) {
@@ -430,6 +487,72 @@ class ToolController extends Controller
 
         return 'SUCCESS';
 
+    }
 
+    public function RegSMSSend(){
+        $list_first_day = RegisterSubjects::where('already_pick_1', 1)->get();
+        $list_second_day = RegisterSubjects2::where('already_pick_2', 1)->get();
+
+        foreach($list_first_day as $list_first_days){
+            echo $list_first_days->details->users->email;
+            $rand = rand(100000,999999);
+            $date = date("YmdHis");
+            $pwd_file = fopen(public_path('msg_tmp/').$date.$rand.".txt","a");
+            $content = "ccucc,".$list_first_days->details->phone.",夥伴您好，1/12至1/15間，務必上網印錄取通知單與填報調查。http://dream.k12cc.tw，歡迎於初春到風光明媚的中正來,";
+            $content = iconv('UTF-8','Big5',$content);
+            fwrite($pwd_file, $content);
+            fclose($pwd_file);
+            $chk_file = fopen(public_path('msg_tmp/').$date.$rand.".chk","a");
+            fclose($chk_file);
+
+            $conn_id = ftp_connect("210.71.253.195");
+            $login_result = ftp_login($conn_id, "sms", "sms");
+            if ($login_result){
+                ftp_put($conn_id,$date.$rand.".txt",public_path('msg_tmp/').$date.$rand.".txt", FTP_ASCII);
+                ftp_put($conn_id,$date.$rand.".chk",public_path('msg_tmp/').$date.$rand.".chk", FTP_ASCII);
+            }
+
+            $email = $list_first_days->details->users->email;
+            $name = $list_first_days->details->name;
+
+            Mail::send('emails.enroll', ['code' => $rand], function($message) use ($email, $name)
+            {
+                $message->from('k12cc@ccu.edu.tw', '105偏鄉教師寒假教學專業成長研習');
+                $message->to($email, $name)->subject('【第一天科目錄取通知信】105偏鄉教師寒假教學專業成長研習');
+            });
+        }
+
+        foreach($list_second_day as $list_second_days){
+            echo $list_second_days->details->users->email;
+            $rand = rand(1000000,9999999);
+            $date = date("YmdHis");
+            $pwd_file = fopen(public_path('msg_tmp/').$date.$rand.".txt","a");
+            $content = "ccucc,".$list_second_days->details->phone.",夥伴您好，1/12至1/15間，務必上網印錄取通知單與填報調查。http://dream.k12cc.tw，歡迎於初春到風光明媚的中正來,";
+            $content = iconv('UTF-8','Big5',$content);
+            fwrite($pwd_file, $content);
+            fclose($pwd_file);
+            $chk_file = fopen(public_path('msg_tmp/').$date.$rand.".chk","a");
+            fclose($chk_file);
+
+            $conn_id = ftp_connect("210.71.253.195");
+            $login_result = ftp_login($conn_id, "sms", "sms");
+            if ($login_result){
+                ftp_put($conn_id,$date.$rand.".txt",public_path('msg_tmp/').$date.$rand.".txt", FTP_ASCII);
+                ftp_put($conn_id,$date.$rand.".chk",public_path('msg_tmp/').$date.$rand.".chk", FTP_ASCII);
+            }
+
+            $email = $list_second_days->details->users->email;
+            $name = $list_second_days->details->name;
+
+            Mail::send('emails.enroll', ['code' => $rand], function($message) use ($email, $name)
+            {
+                $message->from('k12cc@ccu.edu.tw', '105偏鄉教師寒假教學專業成長研習');
+                $message->to($email, $name)->subject('【第二天科目錄取通知信】105偏鄉教師寒假教學專業成長研習');
+            });
+        }
+
+        //$all_list = RegisterUsers::all();
+
+        return 'SUCCESS';
     }
 }

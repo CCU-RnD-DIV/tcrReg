@@ -13,8 +13,9 @@ $router->post('get-school', ['uses' => 'DataController@getSchool']);
 /* Dangerous Toolbox */
 
 /*$router->get('set-bcrypt', 'ToolController@setBcrypt');*/
-$router->get('set-priority', 'ToolController@setPriority');
-$router->get('set-select', 'ToolController@setSelect');
+/*$router->get('set-priority', 'ToolController@setPriority');*/
+/*$router->get('set-select', 'ToolController@setSelect');*/
+$router->get('send-sms-reg', 'ToolController@RegSMSSend');
 
 $router->group(['middleware' => ['web']], function (Router $router) {
     /* REG_PAGE -- Start of Registering Pages */
@@ -43,6 +44,7 @@ $router->group(['middleware' => ['web']], function (Router $router) {
 
     $router->get('resend-verify', 'LoginController@resendVerifyView');
     $router->post('resend-verify', 'LoginController@resendVerify');
+    Route::get('/export-pdf', 'ExportController@ExportMemberPDF');
 
     /* Under Auth Protection */
 
@@ -54,12 +56,17 @@ $router->group(['middleware' => ['web']], function (Router $router) {
         Route::get('/system-config', 'AdminController@SystemConfigView');
         Route::post('/system-config', 'AdminController@SystemConfigUpdate');
 
-        Route::get('/member-query', 'AdminController@MemberQuery');
+        Route::get('/member-query/{id}', ['uses' => 'AdminController@MemberQuery', 'as' => 'id']);
         Route::get('/old-member-query', 'AdminController@OldMemberQuery');
         Route::get('/priority-member-query', 'AdminController@PriorityMemberQuery');
 
+        Route::get('/member-exchange', 'AdminController@MemberExchange');
+        Route::post('/member-exchange', 'AdminController@MemberExchange');
+
         Route::post('/sms-resend', 'AdminController@SMSSend');
         Route::post('/pwd-resend', 'AdminController@PWDSend');
+
+        Route::get('/export-member/{id}', ['uses' => 'ExportController@ExportMemberExcel', 'as' => 'id']);
 
     });
 
@@ -76,6 +83,7 @@ $router->group(['middleware' => ['web']], function (Router $router) {
         Route::post('/select-traffic', 'RegisterController@selectTrafficUpdate');
 
         Route::get('/select-subject', 'RegisterController@selectSubject');
+        Route::get('/export-pdf', 'ExportController@ExportMemberPDF');
         Route::post('/select-subject', 'RegisterController@selectSubjectUpdate');
     });
 

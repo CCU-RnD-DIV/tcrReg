@@ -19,7 +19,27 @@
                     <tbody>
                     <tr>
                         <td>
-                            <h4 class="text-danger"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 尚未公佈錄取結果</h4>
+                            @if ($settings_value[2]->value<\Carbon\Carbon::now() && $settings_value[3]->value>\Carbon\Carbon::now())
+
+                                @if(isset($user_details[0]->reg1->already_pick_1))
+                                    <h4>{{($user_details[0]->reg1->already_pick_1) ? '您錄取了第一天的 '.$user_details[0]->reg1->sList->subject_name : '第一天未錄取'}}</h4>
+                                    <br>
+                                @endif
+                                @if(isset($user_details[0]->reg2->already_pick_2))
+                                    <h4>{{($user_details[0]->reg2->already_pick_2) ? '您錄取了第二天的 '.$user_details[0]->reg2->sList->subject_name : '第二天未錄取'}}</h4>
+                                    <br>
+                                @endif
+                                @if((isset($user_details[0]->reg1->already_pick_1) && $user_details[0]->reg1->already_pick_1) || (isset($user_details[0]->reg2->already_pick_2) && $user_details[0]->reg2->already_pick_2))
+                                    @if(!isset($user_details[0]->habits->traffic) ||  $user_details[0]->habits->traffic == 0)
+                                        <a href="/general/select-traffic" class="btn btn-success">填寫交通資訊始得列印錄取及交通接駁單</a>
+                                    @else
+                                        <a href="/general/export-pdf" class="btn btn-warning">列印錄取及交通接駁單</a>
+                                    @endif
+                                @endif
+
+                            @else
+                                <h4 class="text-danger"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> 尚未公佈錄取結果</h4>
+                            @endif
                         </td>
                     </tr>
                     </tbody>
@@ -84,8 +104,8 @@
         <td width="2%">  </td>
         </tr>
         </table>
-            </div>
-        </div>
+    </div>
+    </div>
     </div>
 
 @stop

@@ -50,10 +50,10 @@
                         @endif
                         <br><br>
                         <a href="/general/select-habits" class="btn btn-success">修改葷素資訊</a>
-                        @if ($settings_value[2]->value<\Carbon\Carbon::now() && $settings_value[3]->value>\Carbon\Carbon::now())
+                       <!-- @if ($settings_value[2]->value<\Carbon\Carbon::now() && $settings_value[3]->value>\Carbon\Carbon::now() )
                             <br><br>
                             <a href="/general/select-traffic" class="btn btn-success">修改交通資訊</a>
-                        @endif
+                        @endif -->
                         <br><br>
                         <a href="/logout" class="btn btn-danger">登出系統</a>
                     </div>

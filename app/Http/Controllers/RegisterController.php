@@ -35,7 +35,7 @@ class RegisterController extends Controller
         if($settings_value[0]->value <= Carbon::now() && $settings_value[1]->value >= Carbon::now()){
             return view('register.register', compact('school_country'));
         }else{
-            return view('error.RegisterInValid');
+            return view('errors.RegisterInValid');
         }
 
 
@@ -54,7 +54,7 @@ class RegisterController extends Controller
         $settings_value = Settings::all();
 
         if($settings_value[0]->value > Carbon::now() && $settings_value[1]->value < Carbon::now()){
-            return view('error.RegisterInValid');
+            return view('errors.RegisterInValid');
         }
 
         $input = new RegisterUsers();
@@ -166,7 +166,7 @@ class RegisterController extends Controller
         if($settings_value[0]->value <= Carbon::now() && $settings_value[1]->value >= Carbon::now()){
             return view('general.select-subject', compact('user_details', 'user_data', 'user_reg_subject_1', 'user_reg_subject_2', 'user_reg_subject_1_displayName', 'user_reg_subject_2_displayName'));
         }else{
-            return view('error.RegisterInValid');
+            return view('errors.RegisterInValid');
         }
 
     }
@@ -176,7 +176,7 @@ class RegisterController extends Controller
         $settings_value = Settings::all();
 
         if($settings_value[0]->value > Carbon::now() && $settings_value[1]->value < Carbon::now()){
-            return view('error.RegisterInValid');
+            return view('errors.RegisterInValid');
         }
 
         $account_details = RegisterUsers::where('email', Auth::user()->email)->get();

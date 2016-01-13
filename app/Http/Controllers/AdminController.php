@@ -169,11 +169,43 @@ class AdminController extends Controller
 
     }
 
-    public function MemberQuery (){
+    public function MemberQuery ($id){
 
-        $user_details = RegisterDetails::with(['users', 'reg1', 'reg2', 'reg1.sList', 'reg2.sList', 'habits'])->where('phone' , '<>' , '')->orderby('id')->paginate(75);
+        if($id == 0){
+            $user_details = RegisterDetails::with(['users', 'reg1', 'reg2', 'reg1.sList', 'reg2.sList', 'habits'])->where('phone' , '<>' , '')->orderby('id')->paginate(75);
+            return view('console.member-query', compact('user_details', 'id'));
+        }else{
+            $count =  RegisterDetails::with(['users', 'reg1', 'reg2', 'reg1.sList', 'reg2.sList', 'habits'])
+                ->whereHas('reg1', function($query) use ($id) {
+                    $query->where('reg_subject_1', $id)->where('already_pick_1', 1)->orderBy('stu_id','ASC');
+                })
+                ->orWhereHas('reg2', function($query) use ($id) {
+                    $query->where('reg_subject_2', $id)->where('already_pick_2', 1)->orderBy('stu_id','ASC');
+                })
+                ->count();
+            $user_details = RegisterDetails::with(['users', 'reg1', 'reg2', 'reg1.sList', 'reg2.sList', 'habits'])
+                ->whereHas('reg1', function($query) use ($id) {
+                    $query->where('reg_subject_1', $id)->where('already_pick_1', 1)->orderBy('stu_id','ASC');
+                })
+                ->orWhereHas('reg2', function($query) use ($id) {
+                    $query->where('reg_subject_2', $id)->where('already_pick_2', 1)->orderBy('stu_id','ASC');
+                })
+                ->paginate(300);
+            $user_details_secondary = RegisterDetails::with(['users', 'reg1', 'reg2', 'reg1.sList', 'reg2.sList', 'habits'])
+                ->whereHas('reg1', function($query) use ($id) {
+                    $query->where('reg_subject_1', $id)->where('already_pick_1', 0);
+                })
+                ->orWhereHas('reg2', function($query) use ($id) {
+                    $query->where('reg_subject_2', $id)->where('already_pick_2', 0);
+                })
+                ->orderby('id')
+                ->paginate(300);
+            return view('console.member-query', compact('user_details','user_details_secondary', 'id', 'count'));
+        }
 
-        return view('console.member-query', compact('user_details'));
+
+
+
 
     }
 
@@ -282,8 +314,84 @@ class AdminController extends Controller
             }
         }
 
+    }
+
+    public function MemberExchange(Requests\ExchangeCheck $request){
+
+        if($request->properties){
+            if($request->subject_id < 20000){
+                if($request->reg_num != ''){
+                    $final_count = $request->reg_num;
+                }else{
+                    $final_count = RegisterSubjects::where('reg_subject_1', $request->subject_id)->orderBy('stu_id','DESC')->take(1)->get();
+                    $prefix = substr($final_count[0]->stu_id,0,1);
+                    $final_count = substr($final_count[0]->stu_id,1,3);
+                    $final_count = str_pad($final_count, 3, '0', STR_PAD_LEFT);
+                    $final_count = $prefix . ++$final_count;
+                }
+
+                RegisterSubjects::where('account_id', $request->account_id)->update(['already_pick_1' => 1, 'stu_id' => $final_count, 'ps' => 'SECONDARY']);
+
+                if($request->exchange_id != ''){
+                    RegisterSubjects::where('account_id', $request->exchange_id)->update(['already_pick_1' => 0, 'stu_id' => '', 'ps' => 'NORMAL']);
+                }
+            }elseif($request->subject_id > 20000){
+                if($request->reg_num != ''){
+                    $final_count = $request->reg_num;
+                }else{
+                    $final_count = RegisterSubjects2::where('reg_subject_2', $request->subject_id)->orderBy('stu_id','DESC')->take(1)->get();
+                    $prefix = substr($final_count[0]->stu_id,0,1);
+                    $final_count = substr($final_count[0]->stu_id,1,3);
+                    $final_count = str_pad($final_count, 3, '0', STR_PAD_LEFT);
+                    $final_count = $prefix . ++$final_count;
+                }
+
+                RegisterSubjects2::where('account_id', $request->account_id)->update(['already_pick_2' => 1, 'stu_id' => $final_count, 'ps' => 'SECONDARY']);
+
+                if($request->exchange_id != ''){
+                    RegisterSubjects2::where('account_id', $request->exchange_id)->update(['already_pick_2' => 0, 'stu_id' => '', 'ps' => 'NORMAL']);
+                }
+            }
+
+        }else{
+            if($request->subject_id < 20000){
+                if($request->reg_num != ''){
+                    $final_count = $request->reg_num;
+                }else{
+                    $final_count = RegisterSubjects::where('reg_subject_1', $request->subject_id)->orderBy('stu_id','DESC')->take(1)->get();
+                    $prefix = substr($final_count[0]->stu_id,0,1);
+                    $final_count = substr($final_count[0]->stu_id,1,3);
+                    $final_count = str_pad($final_count, 3, '0', STR_PAD_LEFT);
+                    $final_count = $prefix . ++$final_count;
+                }
+
+                RegisterSubjects::where('account_id', $request->account_id)->update(['already_pick_1' => 0, 'stu_id' => '', 'ps' => 'NORMAL']);
+
+                if($request->exchange_id != ''){
+                    RegisterSubjects::where('account_id', $request->exchange_id)->update(['already_pick_1' => 1, 'stu_id' => $final_count, 'ps' => 'SECONDARY']);
+                }
+            }elseif($request->subject_id > 20000) {
+                if ($request->reg_num != '') {
+                    $final_count = $request->reg_num;
+                } else {
+                    $final_count = RegisterSubjects2::where('reg_subject_2', $request->subject_id)->orderBy('stu_id', 'DESC')->take(1)->get();
+                    $prefix = substr($final_count[0]->stu_id, 0, 1);
+                    $final_count = substr($final_count[0]->stu_id, 1, 3);
+                    $final_count = str_pad($final_count, 3, '0', STR_PAD_LEFT);
+                    $final_count = $prefix . ++$final_count;
+                }
+
+                RegisterSubjects2::where('account_id', $request->account_id)->update(['already_pick_2' => 0, 'stu_id' => '', 'ps' => 'NORMAL']);
+
+                if ($request->exchange_id != '') {
+                    RegisterSubjects2::where('account_id', $request->exchange_id)->update(['already_pick_2' => 1, 'stu_id' => $final_count, 'ps' => 'SECONDARY']);
+                }
+            }
+        }
 
 
+
+        return redirect('/console/member-query/'.$request->subject_id);
 
     }
 }
