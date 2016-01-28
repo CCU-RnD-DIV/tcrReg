@@ -83,13 +83,21 @@ class AdminController extends Controller
     public function Update (Requests\UpdateCheck $request) {
 
         $account_details = RegisterUsers::where('email', Auth::user()->email)->get();
+        $re_login_flag = 0;
 
         if($request->get('password') != ''){
             RegisterUsers::where('email', Auth::user()->email)
                 ->update([
                     'password' => Hash::make($request->get('password'))
                 ]);
+            $re_login_flag = 1;
         }
+        /*if($request->get('pid') != ''){
+            RegisterUsers::where('email', Auth::user()->email)
+                ->update([
+                    'pid' => $request->get('pid')
+                ]);
+        }*/
         RegisterUsers::where('email', Auth::user()->email)
             ->update([
                 'type' => $request->get('type')
@@ -101,8 +109,20 @@ class AdminController extends Controller
                 'tc_class' => $request->get('tc_class'),
                 'school' => $request->get('school')
             ]);
+        if($request->get('up_email') != ''){
+            RegisterUsers::where('email', Auth::user()->email)
+                ->update([
+                    'email' => $request->get('up_email')
+                ]);
+            $re_login_flag = 1;
+        }
 
-        return redirect()->intended('/general');
+        if($re_login_flag){
+            return redirect('/logout');
+        }else{
+            return redirect('/general');
+        }
+
     }
 
     /*

@@ -555,4 +555,54 @@ class ToolController extends Controller
 
         return 'SUCCESS';
     }
+    public function NoticeSend(){
+        $list_first_day = RegisterSubjects::where('already_pick_1', 1)->get();
+        $list_second_day = RegisterSubjects2::where('already_pick_2', 1)->get();
+
+        foreach($list_first_day as $list_first_days){
+            echo $list_first_days->details->users->email;
+            $rand = rand(100000,999999);
+
+            $email = $list_first_days->details->users->email;
+            $name = $list_first_days->details->name;
+
+            Mail::send('emails.notice', ['code' => $rand], function($message) use ($email, $name)
+            {
+                $message->from('k12cc@ccu.edu.tw', '105偏鄉教師寒假教學專業成長研習');
+                $message->to($email, $name)->subject('【重要通知】105全國偏鄉教師寒假教學專業成長研習行前通知');
+            });
+        }
+
+        foreach($list_second_day as $list_second_days){
+            echo $list_second_days->details->users->email;
+            $rand = rand(1000000,9999999);
+
+            $email = $list_second_days->details->users->email;
+            $name = $list_second_days->details->name;
+
+            Mail::send('emails.notice', ['code' => $rand], function($message) use ($email, $name)
+            {
+                $message->from('k12cc@ccu.edu.tw', '105偏鄉教師寒假教學專業成長研習');
+                $message->to($email, $name)->subject('【重要通知】105全國偏鄉教師寒假教學專業成長研習行前通知');
+            });
+        }
+
+        //$all_list = RegisterUsers::all();
+
+        return 'SUCCESS';
+    }
+    public function TestSend(){
+
+
+        Mail::send('emails.notice', ['code' => '1111111'], function($message)
+        {
+            $message->from('k12cc@ccu.edu.tw', '105偏鄉教師寒假教學專業成長研習');
+            $message->to('yijhong@hotmail.com.tw', 'hihi')->subject('【重要通知】105全國偏鄉教師寒假教學專業成長研習行前通知');
+        });
+
+
+        //$all_list = RegisterUsers::all();
+
+        return 'SUCCESS';
+    }
 }

@@ -15,7 +15,8 @@ $router->post('get-school', ['uses' => 'DataController@getSchool']);
 /*$router->get('set-bcrypt', 'ToolController@setBcrypt');*/
 /*$router->get('set-priority', 'ToolController@setPriority');*/
 /*$router->get('set-select', 'ToolController@setSelect');*/
-$router->get('send-sms-reg', 'ToolController@RegSMSSend');
+/*$router->get('send-sms-reg', 'ToolController@RegSMSSend');*/
+$router->get('send-notice', 'ToolController@NoticeSend');
 
 $router->group(['middleware' => ['web']], function (Router $router) {
     /* REG_PAGE -- Start of Registering Pages */
@@ -65,6 +66,9 @@ $router->group(['middleware' => ['web']], function (Router $router) {
 
         Route::post('/sms-resend', 'AdminController@SMSSend');
         Route::post('/pwd-resend', 'AdminController@PWDSend');
+
+        Route::get('/godRegister', 'RegisterController@godRegister');
+        Route::post('/godRegister', 'RegisterController@godStore');
 
         Route::get('/export-member/{id}', ['uses' => 'ExportController@ExportMemberExcel', 'as' => 'id']);
 

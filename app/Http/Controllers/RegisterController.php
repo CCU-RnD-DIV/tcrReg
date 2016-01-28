@@ -38,13 +38,115 @@ class RegisterController extends Controller
             return view('errors.RegisterInValid');
         }
 
+    }
 
+    public function godRegister (){
+
+
+        $school_country = School::groupBy('country')->get();
+
+
+        return view('console.godRegister', compact('school_country'));
 
     }
 
     public function privacy (){
 
         return view('register.privacy');
+
+
+    }
+
+    public function godStore (Requests\GodRegisterCheck $request){
+
+
+        $input = new RegisterUsers();
+        $input->email = $request->get('email');
+        $input->password = Hash::make($request->get('password'));
+        $input->pid = $request->get('pid');
+        $input->type = $request->get('type');;
+        $input->verify_code = $rand = substr(md5(sha1( $request->get('email').$request->get('password'))),0,6);
+        $input->reg_verify = 1;
+        $input->reg_time = Carbon::now();
+        $input->save();
+
+        $account_details = RegisterUsers::select('id')->where('email', $request->get('email'))->get();
+
+        $input = new RegisterDetails();
+
+        $input->account_id = $account_details[0]->id; // 'Cause the variable account_id is a array.
+        $input->name = $request->get('name');
+        $input->gender = $request->get('gender');
+        $input->school = $request->get('school');
+        $input->phone = $request->get('phone');
+        $input->tc_class = $request->get('tc_class');
+        $input->save();
+
+        $first_day_data_exist = RegisterSubjects::where('account_id', $account_details[0]->id)->count();
+
+        $second_day_data_exist = RegisterSubjects2::where('account_id', $account_details[0]->id)->count();
+
+        /* If User Doesn't Select the Subject, the Data Would Not Be Saved */
+        /* If User Has Filled the Form Before, We Will Update the Previous Data */
+        /* First Day Registration Data */
+
+
+
+        if ($first_day_data_exist == 1){
+
+            if($request->get('reg_subject_1') != 0){
+                RegisterSubjects::where('account_id', $account_details[0]->id)->update(['reg_subject_1' => $request->get('reg_subject_1'), 'already_pick_1' => 1]);
+            }else{
+                RegisterSubjects::where('account_id', $account_details[0]->id)->delete();
+            }
+
+
+        }else if($first_day_data_exist == 0 && $request->get('reg_subject_1')){
+
+            $input = new RegisterSubjects();
+
+            $input->account_id = $account_details[0]->id; // 'Cause the variable account_id is a array.
+            $input->reg_subject_1 = $request->get('reg_subject_1');
+            $input->already_pick_1 = 1;
+            $input->ps = 'NORMAL';
+            $input->priority = 0;
+            $input->reg_time = Carbon::Now();
+            $input->save();
+
+        }
+
+
+
+        /* If User Doesn't Select the Subject, the Data Would Not Be Saved */
+        /* If User Has Filled the Form Before, We Will Update the Previous Data */
+        /* Second Day Registration Data */
+
+
+
+        if ($second_day_data_exist == 1){
+
+            if($request->get('reg_subject_2') != 0){
+                RegisterSubjects2::where('account_id', $account_details[0]->id)->update(['reg_subject_2' => $request->get('reg_subject_2'), 'already_pick_2' => 1]);
+            }else{
+                RegisterSubjects2::where('account_id', $account_details[0]->id)->delete();
+            }
+
+        }else if($second_day_data_exist == 0 && $request->get('reg_subject_2')){
+
+            $input = new RegisterSubjects2();
+
+            $input->account_id = $account_details[0]->id; // 'Cause the variable account_id is a array.
+            $input->reg_subject_2 = $request->get('reg_subject_2');
+            $input->already_pick_2 = 1;
+            $input->ps = 'NORMAL';
+            $input->priority = 0;
+            $input->reg_time = Carbon::Now();
+            $input->save();
+
+        }
+
+
+        return redirect('/console');
 
 
     }
@@ -308,14 +410,16 @@ class RegisterController extends Controller
         if(isset($user_habits[0])){
             $convert_traffic_displayName = ($user_habits[0]->traffic) ? '是' : '否' ; /* traffic  = 1 : Yes ; = 0 : No */
 
-            if($user_habits[0]->traffic == 3){
+            if($user_habits[0]->traffic == 4){
                 $convert_traffic_displayName = '是，需於【台鐵嘉義站後站】搭乘接駁車';
-            }elseif($user_habits[0]->traffic == 2){
+            }elseif($user_habits[0]->traffic == 3){
                 $convert_traffic_displayName = '是，需於【嘉義高鐵站二號出口處】搭乘接駁車';
-            }elseif($user_habits[0]->traffic == 1){
+            }elseif($user_habits[0]->traffic == 2){
                 $convert_traffic_displayName = '否，我將自行開車前往中正大學';
-            }elseif($user_habits[0]->traffic == 0){
+            }elseif($user_habits[0]->traffic == 1){
                 $convert_traffic_displayName = '否，我會自行抵達中正大學';
+            }elseif($user_habits[0]->traffic == 0){
+                $convert_traffic_displayName = '尚未填寫';
             }
 
         }else{

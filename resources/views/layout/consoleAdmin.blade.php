@@ -39,6 +39,8 @@
                     <div class="panel panel-body">
                         <a href="/console/member-query/0" class="btn btn-success">報名查詢</a>
                         <br><br>
+                        <a href="/console/godRegister" class="btn btn-danger">新增報名</a>
+                        <br><br>
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                 分科報名查詢

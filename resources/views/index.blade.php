@@ -9,7 +9,8 @@
                 <td width="35%">
                     <h2 class="ui header">夢一舊學員、或已註冊者</h2>
                     <br>
-                    <p><a class="btn btn-lg btn-success" href="/general" role="button"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> 登入</a></p>
+                    <p><a class="btn btn-lg btn-success" href="/
+                   " role="button"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> 登入</a></p>
                 </td>
                 <td width="10%">  </td>
                 <td width="35%">

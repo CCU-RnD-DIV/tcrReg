@@ -26,7 +26,7 @@ class RegisterCheck extends Request
 
         return [
             'email' => 'required|email|unique:tcr_users,email',
-            'password' => 'required',
+            'password' => 'required|min:8',
             'cmf_pwd' => 'required|same:password',
             'pid' => 'required|unique:tcr_users,pid|pid',
             'name' => 'required',
